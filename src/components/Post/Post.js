@@ -1,7 +1,7 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 
-const Post = ({ company, job, Dday, career, area, stack }) => {
+const Post = ({ img, company, job, Dday, career, area, stack }) => {
     // const navigate = useNavigate();
 
     const good = (event) => {
@@ -16,7 +16,7 @@ const Post = ({ company, job, Dday, career, area, stack }) => {
     return (
         <div className="post">
             <div className="postLeft">
-                <img className="postImg" src={require("../../assets/images/test.jpg")} alt="companyImg" />
+                <img className="postImg" src={img} alt="companyImg" />
             </div>
 
             <div className="postText">

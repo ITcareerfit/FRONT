@@ -95,7 +95,7 @@ const MainProfile = () => {
 
                 <div className="profileInfoDetail">
                     <div className="profileImgLeft">
-                        <img className="profileImg" src={require('../../assets/images/test.jpg')} alt="user" />
+                        <img className="profileImg" src={require('../../assets/images/test.png')} alt="user" />
                         <span className="profileImgEmail">
                             known@user.com
                         </span>

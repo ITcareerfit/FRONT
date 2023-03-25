@@ -1,12 +1,18 @@
 import React from "react";
 
-const Filter = ({ className, mainClassName, selectBase, img, option, result }) => {
-
+const Filter = ({ className, mainClassName, selectBase, option, result, open }) => {
     const selectOpen = (className) => {
-        document.getElementsByClassName(className)[0].children[1].classList.item(1) === 'selectNone'
-            ? document.getElementsByClassName(className)[0].children[1].classList.replace('selectNone', 'selectBlock')
-            // selectNone을 selectBlock으로 변경
-            : document.getElementsByClassName(className)[0].children[1].classList.replace('selectBlock', 'selectNone');
+        if (document.getElementsByClassName(className)[0].children[1].classList.item(1) === 'selectNone') {
+            if (open[0] !== '') {
+                document.getElementsByClassName(open[0])[0].children[1].classList.replace('selectBlock', 'selectNone');
+            }
+            document.getElementsByClassName(className)[0].children[1].classList.replace('selectNone', 'selectBlock');
+            open[1](className);
+        }
+        else {
+            document.getElementsByClassName(className)[0].children[1].classList.replace('selectBlock', 'selectNone');
+            open[1]('');
+        }
     };
 
     const optionSelect = (name, className) => {
@@ -50,14 +56,13 @@ const Filter = ({ className, mainClassName, selectBase, img, option, result }) =
             default:
                 break;
         }
-
     };
 
     return (
         <div className={className} onClick={() => selectOpen(mainClassName)}>
             <div className="selectBase">
                 {selectBase}
-                <img src={require(`../../assets/images/${img}.png`)} className="selectImg" alt="select" />
+                <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
             </div>
             <ul className="select selectNone">
                 {option.map((v, index) => {

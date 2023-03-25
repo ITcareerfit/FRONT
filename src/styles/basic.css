@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
@@ -11,17 +11,29 @@ body {
 
 :root {
     /* 모든 페이지 기본 적용 */
-    --background-color: rgb(242, 242, 242);
+    --background-color: rgb(245, 245, 245);
     --green-color: rgb(29, 154, 120);
     --line-color: rgb(231, 230, 230);
-    --gray-color: rgb(117, 117, 117);
+    --gray-color: rgb(101, 111, 119);
     --lightGray-color: rgb(232, 238, 243);
     --purple-color: rgb(111, 108, 217);
+    --silver-color: rgb(172, 184, 194);
     --lightBlue-color: rgb(205, 237, 246);
     --purpleText-color: rgb(99, 86, 215);
     --lightOrange-color: rgb(255, 236, 214);
     --orangeText-color: rgb(202, 131, 121);
     /* --붙여서 선언해놓고 다른 파트 호출 가능 */
+}
+
+#root>.infoPage {
+    /* root태그 바로 아래 자식 classname이 infoPage에 적용 */
+    background-color: var(--background-color);
+}
+
+#root>.valuePage {
+    height: 100%;
+    box-shadow: inset 0 -200px 200px -200px var(--green-color);
+    /* x, y, 번짐정도, 확대정도 */
 }
 
 .intro {
@@ -228,7 +240,7 @@ body {
 .basicPage {
     width: 1300px;
     margin: 0 auto;
-    padding-top: 80px;
+    padding-top: 90px;
 }
 
 .headerFarPage {
@@ -377,6 +389,7 @@ body {
 .filterBox {
     width: 1300px;
     margin: 0 auto;
+    margin-bottom: 15px;
 }
 
 .searchFilter {
@@ -412,6 +425,29 @@ body {
     height: 44px;
     padding-left: 20px;
     align-items: center;
+    cursor: pointer;
+}
+
+.inputGroup {
+    display: flex;
+    background-color: white;
+    border: 1px solid var(--line-color);
+    border-radius: 5px;
+}
+
+.selectInput {
+    width: 0;
+    margin-right: 10px;
+    padding: 0;
+    padding-left: 20px;
+    border: none;
+    flex: auto;
+    font-size: 15px;
+}
+
+.selectInput::placeholder {
+    font-size: 15px;
+    color: black;
 }
 
 .selectImg {
@@ -542,15 +578,16 @@ body {
 .goodBtn {
     width: 35px;
     height: 35px;
+    cursor: pointer;
 }
 
 .postBoxGroup {
-    margin: 18px 0px;
+    margin: 15px 0px;
 }
 
 .postBox {
     border-radius: 3px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     width: auto;
     margin-right: 10px;
 }
@@ -600,6 +637,187 @@ body {
     color: white;
 }
 
+.infoBox {
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+    /* flex 요소 높이가 꽉 차지 않도록 함(자동조정) */
+}
+
+.infoLeft {
+    flex: 3;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.infoBoxTool {
+    border: 1px solid var(--line-color);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.infoIn {
+    margin: 30px;
+}
+
+.infoDetail {
+    display: flex;
+}
+
+.infoCompanyImg {
+    width: 100px;
+    margin-right: 30px;
+}
+
+.infoDetailRight {
+    font-weight: bold;
+    height: 100px;
+    display: grid;
+    align-content: space-between;
+    /* 상하 간격 최대한으로 두기 */
+}
+
+.infoJobName {
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+.infoCompanyName {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: var(--silver-color);
+}
+
+.infoGrayBox {
+    background-color: rgb(247, 247, 251);
+    margin: 30px 0;
+    display: flex;
+}
+
+.infoBoxHalf {
+    flex: 1;
+}
+
+.infoText {
+    display: flex;
+    margin: 20px;
+}
+
+.infoBoxTitle {
+    flex: 1;
+    color: var(--silver-color);
+}
+
+.infoBoxAnswer {
+    flex: 2;
+    font-weight: bold;
+}
+
+.infoPostText {
+    margin: 40px 0;
+}
+
+.infoPostTitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.infoPostAnswer {
+    white-space: pre-wrap;
+    /* word-break: break-all;
+    overflow: auto; */
+}
+
+.infoStack {
+    padding: 3px 10px;
+}
+
+.infoApply {
+    flex: 1;
+    margin-left: 10px;
+    /* height:350px; */
+}
+
+.infoApplyHeader {
+    display: flex;
+}
+
+.infoApplyCompanyImg {
+    height: 80px;
+    width: auto;
+}
+
+.infoGoodBtn {
+    margin-left: auto;
+}
+
+.infoApplyJobName {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.infoApplyCompanyName {
+    font-weight: bold;
+    color: var(--silver-color);
+}
+
+.infoBtn {
+    width: 100%;
+    font-size: 15px;
+    margin-top: 30px;
+    padding: 3px 0;
+}
+
+.valueBox {
+    text-align: center;
+    border: 1px solid red;
+    margin: auto 0;
+}
+
+.valueHeader {
+    font-size: 30px;
+}
+
+.valueUserText {
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--purple-color);
+}
+
+.valueExplain {
+    color: var(--gray-color);
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.valueRow {
+    display: flex;
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.valueQuestion {
+    flex: 1;
+    margin: auto 0;
+    text-align: left;
+    color: var(--gray-color);
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.selectValue {
+    flex: 3;
+    position: relative;
+}
+
+.valueSelectBase {
+    color: var(--gray-color);
+}
+
 /* Edit After */
 .trend {
     width: 1000px;
@@ -616,6 +834,10 @@ body {
     .filterBox,
     .basicPage {
         width: 95%;
+    }
+
+    .infoBox {
+        width: 100%
     }
 
     .profile {
@@ -637,6 +859,17 @@ body {
     }
 }
 
+@media (max-width: 900px) {
+
+    .infoDetail {
+        margin-right: 0;
+    }
+
+    .infoApply {
+        display: none;
+    }
+}
+
 @media (max-width: 800px) {
     .headerSearchText {
         margin-right: 10px;
@@ -653,6 +886,10 @@ body {
 
     .bannerBtn {
         margin-top: 40px;
+    }
+
+    .infoJobName {
+        font-size: 25px;
     }
 }
 
@@ -679,6 +916,10 @@ body {
     }
 
     .postDetail {
+        display: none;
+    }
+
+    .infoCompanyName {
         display: none;
     }
 }

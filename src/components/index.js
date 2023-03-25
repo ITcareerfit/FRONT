@@ -4,3 +4,7 @@ export { default as Post } from './Post';
 export { default as NoProfile } from './NoProfile';
 export { default as MainProfile } from './MainProfile';
 export { default as Filter } from './Filter';
+export { default as FilterInput } from './FilterInput';
+export { default as FilterValue } from './FilterValue';
+export { default as InfoBox } from './InfoBox';
+export { default as InfoApply } from './InfoApply';
