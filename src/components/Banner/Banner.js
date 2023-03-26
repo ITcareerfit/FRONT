@@ -54,7 +54,7 @@ const Banner = () => {
                         <div className="bannerAnswer">
                             AI를 활용하여 업종별 일자리 수요를 예측 해드립니다.
                         </div>
-                        <button className="btn bannerBtn  purpleBtn">업종별 IT 트렌드 분석</button>
+                        <button className="btn bannerBtn purpleBtn">업종별 IT 트렌드 분석</button>
                     </div>
                     <img className="bannerImg" src={require('../../assets/images/values.png')} alt="values" />
                 </div>

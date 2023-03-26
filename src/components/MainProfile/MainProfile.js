@@ -22,6 +22,7 @@ ChartJS.register(
 
 const MainProfile = () => {
     const navigate = useNavigate();
+    const userName = 'known@user.com';
 
     const data = {
         labels: ['안정성', '성장성', '사내문화', '워라밸', '연봉'],
@@ -70,7 +71,7 @@ const MainProfile = () => {
             </div>
             <div className="profileInfo">
                 <div className="profileText">프로필</div>
-                <div className="profileEmail">known@user.com 님</div>
+                <div className="profileEmail">{userName} 님</div>
 
                 <div className="profileInfoDetail">
                     <div className="profileInfoTitle">관심 포지션</div>
@@ -95,9 +96,9 @@ const MainProfile = () => {
 
                 <div className="profileInfoDetail">
                     <div className="profileImgLeft">
-                        <img className="profileImg" src={require('../../assets/images/test.png')} alt="user" />
+                        <img className="profileImg" src={require('../../assets/images/user.png')} alt="user" />
                         <span className="profileImgEmail">
-                            known@user.com
+                            {userName}
                         </span>
                     </div>
                     <div className="goProfile">프로필 확인하기</div>

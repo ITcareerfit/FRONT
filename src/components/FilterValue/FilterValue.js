@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilterValue = ({ name, className, mainClassName, selectBase, option, open }) => {
+const FilterValue = ({ name, className, mainClassName, selectBase, option, result, open }) => {
     const selectOpen = (className) => {
         if (document.getElementsByClassName(className)[0].children[1].classList.item(1) === 'selectNone') {
             if (open[0] !== '') {
@@ -15,8 +15,26 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, open 
         }
     };
 
-    const optionSelect = (name, className) => {
-        console.log(name, className);
+    const optionSelect = (index) => {
+        switch (option.length) {
+            case 2:
+                result((index + 1) / 2 * 100);
+                break;
+            case 3:
+                result((index + 1) / 3 * 100);
+                break;
+            case 4:
+                result((index + 1) / 4 * 100);
+                break;
+            case 5:
+                result((index + 1) / 5 * 100);
+                break;
+            case 6:
+                result((index + 1) / 6 * 100);
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -32,7 +50,7 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, open 
                 <ul className="select selectNone">
                     {option.map((v, index) => {
                         return (
-                            <li key={v + index} className="option" onClick={() => optionSelect(v, mainClassName)} value={index} >{v}</li>
+                            <li key={v + index} className="option" onClick={() => optionSelect(index)} value={index}>{v}</li>
                         );
                     })}
                 </ul>
