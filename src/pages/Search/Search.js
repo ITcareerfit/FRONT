@@ -17,7 +17,7 @@ const Search = () => {
         document.getElementsByClassName('headerSearchImg')[0].style.height = '30px';
         document.getElementsByClassName('headerPost')[0].style.fontSize = '18px';
         document.getElementsByClassName('headerPost')[0].style.fontWeight = 'bold';
-        document.getElementsByClassName('headerPost')[0].style.color = 'rgb(117, 117, 117)';
+        document.getElementsByClassName('headerPost')[0].style.color = 'rgb(101, 111, 119)';
     }, []);
 
     useEffect(() => {
@@ -62,7 +62,7 @@ const Search = () => {
                     </div>
 
                     <div className="searchFilter">
-                        <Filter className={'selectGroup selectArea selectLeft'} mainClassName={'selectArea'} selectBase={'지역'} option={['서울', '경기', '부산']} result={[setResult, setBackground, setText]} open={[open, setOpen]} />
+                        <Filter className={'selectGroup selectJobType selectLeft'} mainClassName={'selectJobType'} selectBase={'지역'} option={['서울', '경기', '부산']} result={[setResult, setBackground, setText]} open={[open, setOpen]} />
 
                         <Filter className={'selectGroup selectEmployee selectMiddle'} mainClassName={'selectEmployee'} selectBase={'사원 수'} option={['50명 이하', '500명 이하']} result={[setResult, setBackground, setText]} open={[open, setOpen]} />
 
@@ -75,8 +75,6 @@ const Search = () => {
                         {viewResult.map((v, index) => {
                             return (
                                 <span key={v + index} className="searchResultBox" style={{ 'backgroundColor': colorSet[index][0], 'color': colorSet[index][1] }}>
-                                    <span className="checkText">▷</span>
-                                    {/*  ∨ ν */}
                                     {v}
                                     <span className="xText" onClick={() => removeSearchResult(v)}>×</span>
                                 </span>

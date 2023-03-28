@@ -11,17 +11,16 @@ body {
 
 :root {
     /* 모든 페이지 기본 적용 */
-    --background-color: rgb(245, 245, 245);
+    --background-color: rgb(249, 250, 251);
+    --infoBackground-color: rgb(247, 247, 251);
+    --line-color: rgb(209, 209, 209);
+    --darkLine-color: rgb(143, 143, 143);
     --green-color: rgb(29, 154, 120);
-    --line-color: rgb(231, 230, 230);
     --gray-color: rgb(101, 111, 119);
     --lightGray-color: rgb(232, 238, 243);
+    --darkGray-color: rgb(82, 82, 82);
     --purple-color: rgb(111, 108, 217);
     --silver-color: rgb(172, 184, 194);
-    --lightBlue-color: rgb(205, 237, 246);
-    --purpleText-color: rgb(99, 86, 215);
-    --lightOrange-color: rgb(255, 236, 214);
-    --orangeText-color: rgb(202, 131, 121);
     --pink-color: rgb(255, 99, 132);
     /* --붙여서 선언해놓고 다른 파트 호출 가능 */
 }
@@ -29,6 +28,11 @@ body {
 #root>.infoPage {
     /* root태그 바로 아래 자식 classname이 infoPage에 적용 */
     background-color: var(--background-color);
+}
+
+#root>.valueMainPage {
+    background: linear-gradient(180deg, rgba(35, 233, 180, 0.3), white 30%);
+    /* 수평으로, 앞의 색깔을 %비율만큼 배정 */
 }
 
 .intro {
@@ -47,7 +51,7 @@ body {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid var(--line-color);
+    border-bottom: 1px solid rgb(209, 209, 209);
 }
 
 .headerBox {
@@ -86,7 +90,7 @@ body {
     margin: auto 0;
     margin-left: 8px;
     margin-right: 70px;
-    color: rgb(127, 127, 127);
+    color: var(--gray-color);
     cursor: pointer;
 }
 
@@ -198,7 +202,7 @@ body {
     display: inline-block;
     margin: 18px;
     background-color: white;
-    border: 2px solid var(--line-color);
+    border: 1px solid var(--darkLine-color);
     border-radius: 5px;
     box-shadow: 0px 3px 5px var(--silver-color);
     /* 좌우, 상하, 번짐 */
@@ -228,7 +232,8 @@ body {
     height: 50px;
     font-size: 18px;
     margin-left: 5px;
-    border: none;
+    border: 0px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -241,7 +246,7 @@ body {
     margin-bottom: 40px;
     margin-left: 70px;
     font-size: 18px;
-    color: rgb(143, 143, 143);
+    color: var(--darkLine-color);
     display: flex;
     align-items: center;
 }
@@ -259,7 +264,7 @@ body {
 }
 
 .askSignUp {
-    color: var(--gray-color);
+    color: var(--darkGray-color);
 }
 
 .signupBtn {
@@ -287,7 +292,7 @@ body {
 
 .signUpHeader {
     font-size: 20px;
-    color: var(--silver-color);
+    color: var(--darkLine-color);
     margin-bottom: 30px;
 }
 
@@ -316,23 +321,35 @@ body {
 .signUpAnswer {
     flex: 3;
     font-size: 20px;
-    border: 1px solid var(--line-color);
-    border-radius: 5px;
-    display: flex;
     width: 410px;
-    justify-content: space-between;
-    justify-content: space-around;
+    display: flex;
 }
 
-.signUpInput::placeholder {
-    color: var(--silver-color);
+.signUpBorder {
+    border: 1px solid var(--darkLine-color);
+    border-radius: 5px;
+}
+
+.signUpBorder::placeholder {
+    color: var(--darkLine-color);
     font-size: 17px;
     padding-left: 5px;
 }
 
-.signUpId {
+.signUpSmall {
+    border: 1px solid var(--darkLine-color);
+    border-radius: 5px;
+    font-size: 20px;
     flex: 1;
-    /* border: none; */
+    width: 0px;
+}
+
+.signUpInputLeft {
+    margin-right: 2.5px;
+}
+
+.signUpInputRight {
+    margin-left: 2.5px;
 }
 
 .signUpPWCheck {
@@ -341,17 +358,14 @@ body {
     border: none;
 }
 
-.pwCheck {
+.pwCheckImg {
     margin: auto;
     width: 30px;
     height: 30px;
 }
 
-.signUpBirth {
-    flex: 1;
-    font-size: 20px;
-    width:50px;
-    /* border: none; */
+.signUpInputMiddle {
+    margin: 0 2.5px;
 }
 
 .smallBlue {
@@ -359,7 +373,6 @@ body {
     color: rgb(124, 153, 255);
     margin-top: 2px;
 }
-
 
 /* 페이지 기본 틀 */
 .basicPage {
@@ -505,6 +518,162 @@ body {
     margin-bottom: 20px;
 }
 
+.mypage {
+    text-align: center;
+}
+
+.mypageHeader {
+    margin-top: 20px;
+}
+
+.mypageImg {
+    width: 150px;
+}
+
+.mypageUser {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--gray-color);
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.userName {
+    color: var(--purple-color);
+}
+
+.mypageInfoText {
+    display: flex;
+    width: 1300px;
+    color: var(--darkLine-color);
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.mypageTitle {
+    flex: 1;
+    text-align: start;
+    margin-left: 20px;
+}
+
+.mypageInfoBox {
+    display: flex;
+    width: 1300px;
+    margin: 0 auto;
+    border: 1px solid var(--line-color);
+    border-radius: 10px;
+    background-color: var(--infoBackground-color);
+}
+
+.mypageInfo {
+    flex: 1;
+    text-align: end;
+    margin: 10px;
+}
+
+.mypageValue {
+    text-align: start;
+    color: var(--gray-color);
+    margin-left: 5%;
+}
+
+.goLink {
+    margin-right: 5%;
+    text-decoration: underline;
+    color: rgb(75, 75, 255);
+    cursor: pointer;
+}
+
+.mypageBox {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.mypageCompany {
+    border: 1px solid var(--line-color);
+    border-radius: 5px;
+    background-color: white;
+    text-align: start;
+    width: 150px;
+    margin: 5px;
+}
+
+.mypageCompanyImg {
+    width: 40px;
+    height: auto;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.mypageCompanyName {
+    color: var(--gray-color);
+    margin: 0 10px;
+}
+
+.mypageCompanyLink {
+    color: blue;
+    font-size: 15px;
+    margin-left: 65px;
+    margin-bottom: 10px;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mypageCompanySelect {
+    width: 20px;
+}
+
+.mypagePost {
+    width: 95%;
+    border: 1px solid var(--line-color);
+    border-radius: 5px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+.mypagePostHeader {
+    display: flex;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.mypagePostCompany {
+    color: var(--gray-color);
+    margin-top: 10px;
+}
+
+.mypageGood {
+    margin-left: auto;
+}
+
+.mypagePostTitle {
+    text-align: start;
+    font-size: 23px;
+    margin: 0 10px;
+    margin-bottom: 10px;
+}
+
+.mypagePostDetail {
+    display: flex;
+    color: var(--gray-color);
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.mypagePostDetailBox {
+    flex: 1;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    word-break: keep-all;
+}
+
 .filterBoxGroup {
     padding-top: 80px;
     border-bottom: 1px solid var(--line-color);
@@ -545,8 +714,9 @@ body {
 .selectBase {
     display: flex;
     background-color: white;
-    border: 1px solid var(--line-color);
+    border: 1px solid var(--darkLine-color);
     border-radius: 5px;
+    color: var(--darkGray-color);
     height: 44px;
     padding-left: 20px;
     align-items: center;
@@ -556,7 +726,7 @@ body {
 .inputGroup {
     display: flex;
     background-color: white;
-    border: 1px solid var(--line-color);
+    border: 1px solid var(--darkLine-color);
     border-radius: 5px;
 }
 
@@ -572,7 +742,7 @@ body {
 
 .selectInput::placeholder {
     font-size: 15px;
-    color: black;
+    color: var(--darkGray-color);
 }
 
 .selectImg {
@@ -623,12 +793,7 @@ body {
     height: 30px;
     margin-right: 10px;
     margin-bottom: 10px;
-}
-
-.checkText {
-    margin-left: 5px;
-    margin-right: 8px;
-    font-size: 16px;
+    padding-left: 10px;
 }
 
 .xText {
@@ -660,6 +825,7 @@ body {
     background-color: white;
     margin-bottom: 30px;
     display: flex;
+    cursor: pointer;
 }
 
 .postLeft {
@@ -720,15 +886,15 @@ body {
 
 .postDdayBox {
     font-weight: bold;
-    border: 1px solid var(--lightBlue-color);
-    background-color: var(--lightBlue-color);
-    color: var(--purpleText-color);
+    border: 1px solid rgb(205, 237, 246);
+    background-color: rgb(205, 237, 246);
+    color: rgb(99, 86, 215);
 }
 
 .postDetail {
     display: flex;
     font-size: 16px;
-    color: var(--gray-color);
+    color: var(--darkGray-color);
 }
 
 .postDetailText {
@@ -758,8 +924,8 @@ body {
 }
 
 .postStackBox {
-    border: 1px solid rgb(100, 100, 100);
-    background-color: rgb(100, 100, 100);
+    border: 1px solid var(--gray-color);
+    background-color: var(--gray-color);
     color: white;
 }
 
@@ -778,7 +944,7 @@ body {
 }
 
 .infoBoxTool {
-    border: 1px solid var(--line-color);
+    border: 1px solid var(--lightGray-color);
     border-radius: 10px;
     background-color: white;
 }
@@ -816,7 +982,7 @@ body {
 }
 
 .infoGrayBox {
-    background-color: rgb(247, 247, 251);
+    background-color: var(--infoBackground-color);
     margin: 30px 0;
     display: flex;
 }
@@ -838,6 +1004,7 @@ body {
 .infoBoxAnswer {
     flex: 2;
     font-weight: bold;
+    color: var(--darkGray-color);
 }
 
 .infoPostText {
@@ -895,12 +1062,16 @@ body {
 
 .valuePageHeader {
     display: flex;
-    border-bottom: 1px solid var(--line-color);
 }
 
 .valueBox {
     flex: 1;
     text-align: center;
+    margin-top: 6vh;
+}
+
+.valueBoxLeft {
+    margin-top: 0;
 }
 
 .valueHeader {
@@ -919,6 +1090,11 @@ body {
     font-size: 17px;
     margin-top: 15px;
     margin-bottom: 40px;
+}
+
+.valueMainBox {
+    width: 50%;
+    margin: 0 auto;
 }
 
 .valueRow {
@@ -946,10 +1122,16 @@ body {
     color: var(--gray-color);
 }
 
+.valueMainBtn {
+    width: 90%;
+    margin-top: 50px;
+    height: 50px;
+}
+
 .valueDisplay {
     flex: 1;
     border-left: 1px solid var(--line-color);
-    filter: blur(5px);
+    filter: blur(20px);
     z-index: -1;
 }
 
@@ -994,12 +1176,13 @@ body {
 .valueSearchText {
     font-size: 20px;
     color: var(--gray-color);
-    margin-top: 20px;
-    margin-left: 10px;
+    border-top: 1px solid var(--line-color);
+    padding-top: 20px;
+    padding-left: 10px;
 }
 
 .valuePosts {
-    filter: blur(5px);
+    filter: blur(20px);
 }
 
 .companyValuePost {
@@ -1100,7 +1283,9 @@ body {
     .headerBox,
     .bannerBox,
     .filterBox,
-    .basicPage {
+    .basicPage,
+    .mypageInfoText,
+    .mypageInfoBox {
         width: 95%;
     }
 
@@ -1144,6 +1329,10 @@ body {
     .infoApply {
         display: none;
     }
+
+    .valueMainBox {
+        width: 80%;
+    }
 }
 
 @media (max-width: 800px) {
@@ -1168,7 +1357,7 @@ body {
         font-size: 25px;
     }
 
-    .valueBox {
+    .valueBoxLeft {
         display: none;
     }
 
@@ -1223,6 +1412,10 @@ body {
 
     .infoCompanyName {
         display: none;
+    }
+
+    .valueMainBox {
+        width: 95%;
     }
 
     .noUserValueDisplay {

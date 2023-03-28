@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Intro, Login, SignUp, Main, Search, Info, Value, Doughnut, Wrong } from './pages';
+import { Intro, Login, SignUp, Main, Search, Info, ValueMain, Value, Doughnut, Wrong, Mypage } from './pages';
 // import { IsLogin } from "./router";
 
 function App() {
@@ -11,9 +11,11 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
 
         <Route path="/main" element={<Main />} />
-        {/* <Route path="/search" element={<IsLogin><Search /></IsLogin>} /> */}
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/search" element={<Search />} />
         <Route path="/info" element={<Info />} />
+        {/* <Route path="/valueMain" element={<IsLogin><Value/></IsLogin>} />*/}
+        <Route path="/valueMain" element={<ValueMain />} />
         <Route path="/value" element={<Value />} />
         <Route path="/trend" element={<Doughnut />} />
 

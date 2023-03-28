@@ -8,9 +8,6 @@ const InfoApply = ({ img, job, company }) => {
         event.target.src === require("../../assets/images/good.png")
             ? event.target.src = require("../../assets/images/redGood.png")
             : event.target.src = require("../../assets/images/good.png");
-
-        event.target.classList.toggle('redGood');
-        // 좋아요 누르면 redGood이 className에 추가됨
     };
 
     return (

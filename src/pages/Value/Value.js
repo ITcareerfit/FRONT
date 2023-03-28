@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
+import cookies from "react-cookies";
 import { CompanyValue, FilterValue, Header, MyValue } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 const Value = () => {
     const navigate = useNavigate();
-    const [profit, setProfit] = useState(50);
-    const [stable, setStable] = useState(50);
-    const [pay, setPay] = useState(50);
-    const [culture, setCulture] = useState(50);
-    const [grow, setGrow] = useState(50);
+    const [userName, setUserName] = useState('사용자');
+    const [profit, setProfit] = useState(0);
+    const [stable, setStable] = useState(0);
+    const [pay, setPay] = useState(0);
+    const [culture, setCulture] = useState(0);
+    const [grow, setGrow] = useState(0);
     const [open, setOpen] = useState('');
     const [type, setType] = useState('');
 
-    let userName = 'known@user.com';
-
-    sessionStorage.removeItem('userPK');
-    sessionStorage.setItem('userPK', 12345);
+    sessionStorage.clear();
+    sessionStorage.setItem('userPK', 'known@user.com');
 
     useEffect(() => {
         document.getElementsByClassName('headerValues')[0].style.fontSize = '18px';
         document.getElementsByClassName('headerValues')[0].style.fontWeight = 'bold';
-        document.getElementsByClassName('headerValues')[0].style.color = 'rgb(117, 117, 117)';
+        document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
 
         if (sessionStorage.getItem('userPK')) {
+            setUserName(sessionStorage.getItem('userPK'));
+
+            if (cookies.load('profit')) setProfit(parseInt(cookies.load('profit')));
+            if (cookies.load('stable')) setStable(parseInt(cookies.load('stable')));
+            if (cookies.load('pay')) setPay(parseInt(cookies.load('pay')));
+            if (cookies.load('culture')) setCulture(parseInt(cookies.load('culture')));
+            if (cookies.load('grow')) setGrow(parseInt(cookies.load('grow')));
+
             document.getElementsByClassName('valueDisplay')[0].style.filter = 'none';
             document.getElementsByClassName('valuePosts')[0].style.filter = 'none';
             document.getElementsByClassName('noUserValueDisplay')[0].style.display = 'none';
+        }
+        else {
+            document.getElementsByClassName('valueBoldGrayText')[0].style.color = 'rgb(111, 108, 217)';
         }
     }, []);
 
@@ -57,12 +68,12 @@ const Value = () => {
             <Header />
             <div className="basicPage">
                 <div className="valuePageHeader">
-                    <div className="valueBox">
+                    <div className="valueBox valueBoxLeft">
                         <div className="valueHeader">
                             <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
                         </div>
                         <div className="valueExplain">
-                            수익성, 안정성, 연봉, 사내문화, 성장가능성을 토대로 추천해드립니다.
+                            수익성, 안정성, 급여여, 사내문화, 성장가능성을 토대로 추천해드립니다.
                         </div>
 
                         <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={['1억', '2억', '3억']} result={setProfit} open={[open, setOpen]} />

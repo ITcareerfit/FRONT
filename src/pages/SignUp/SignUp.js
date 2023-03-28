@@ -6,12 +6,12 @@ const SignUp = () => {
         const pw = document.getElementsByClassName('signUpPW')[0].value;
         const pwCheck = document.getElementsByClassName('signUpPWCheck')[0].value;
 
-        if (pw!=='' || pwCheck!=='') {
+        if (pw !== '' || pwCheck !== '') {
             if (pw === pwCheck) {
-                document.getElementsByClassName('pwCheck')[0].src = require('../../assets/images/samePW.png');
+                document.getElementsByClassName('pwCheckImg')[0].src = require('../../assets/images/samePW.png');
             }
             else {
-                document.getElementsByClassName('pwCheck')[0].src = require('../../assets/images/pw.png');
+                document.getElementsByClassName('pwCheckImg')[0].src = require('../../assets/images/pw.png');
             }
         }
     };
@@ -27,8 +27,8 @@ const SignUp = () => {
                     아이디(이메일)
                 </div>
                 <div className="signUpAnswer">
-                    <input className="signUpId" type="text" />
-                    <input className="signUpId" type="text" />
+                    <input className="signUpBorder signUpSmall signUpInputLeft" type="text" />
+                    <input className="signUpBorder signUpSmall signUpInputRight" type="text" />
                 </div>
             </div>
 
@@ -36,16 +36,16 @@ const SignUp = () => {
                 <div className="signUpTitle">
                     비밀번호
                 </div>
-                <input className="signUpAnswer signUpPW" type="password" onChange={passWordCheck} />
+                <input className="signUpPW signUpAnswer signUpBorder" type="password" onChange={passWordCheck} />
             </div>
 
             <div className="signUpGroup">
                 <div className="signUpTitle">
                     비밀번호 재확인
                 </div>
-                <div className="signUpAnswer" >
-                    <input className="signUpPWCheck" type="password" onChange={passWordCheck} />
-                    <img className="pwCheck" src={require('../../assets/images/pw.png')} alt="pw" />
+                <div className="signUpAnswer signUpBorder" >
+                    <input className="signUpPWCheck signUpBorder" type="password" onChange={passWordCheck} />
+                    <img className="pwCheckImg" src={require('../../assets/images/pw.png')} alt="pw" />
                 </div>
             </div>
 
@@ -53,7 +53,7 @@ const SignUp = () => {
                 <div className="signUpTitle">
                     이름
                 </div>
-                <input className="signUpAnswer" type="text" />
+                <input className="signUpAnswer signUpBorder" type="text" />
             </div>
 
             <div className="signUpGroup">
@@ -61,9 +61,9 @@ const SignUp = () => {
                     생년월일
                 </div>
                 <div className="signUpAnswer">
-                    <input className="signUpBirth signUpInput" type="text" placeholder="년(4자)" />
-                    <input className="signUpBirth" type="text" />
-                    <input className="signUpBirth signUpInput" type="text" placeholder="일" />
+                    <input className="signUpBorder signUpSmall signUpInputLeft" type="text" placeholder="년(4자)" />
+                    <input className="signUpBorder signUpSmall signUpInputMiddle" type="text" placeholder="월" />
+                    <input className="signUpBorder signUpSmall signUpInputRight" type="text" placeholder="일" />
                 </div>
             </div>
 
@@ -71,15 +71,15 @@ const SignUp = () => {
                 <div className="signUpTitle">
                     전화번호
                 </div>
-                <input className="signUpAnswer signUpInput" type="text" placeholder="전화번호 입력" />
+                <input className="signUpAnswer signUpBorder" type="text" placeholder="전화번호 입력" />
             </div>
 
             <div className="signUpGroup">
                 <div className="signUpTitle">
-                    관심 포지션 &nbsp;
+                    관심 직무 &nbsp;
                     <div className="smallBlue">(선택)</div>
                 </div>
-                <input className="signUpAnswer" type="password" />
+                <input className="signUpAnswer signUpBorder" type="password" />
             </div>
         </div>
     );

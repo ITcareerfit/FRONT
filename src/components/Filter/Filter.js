@@ -19,22 +19,22 @@ const Filter = ({ className, mainClassName, selectBase, option, result, open }) 
         let background, text;
         switch (className) {
             case 'selectJob':
-                background = 'rgb(205, 237, 246)';
-                text = 'rgb(99, 86, 215)';
+                background = 'rgb(222, 210, 249)';
+                text = 'rgb(123, 97, 255)';
                 result[0](name);
                 result[1](background);
                 result[2](text);
                 break;
-            case 'selectArea':
-                background = 'rgb(255, 236, 214)';
-                text = 'rgb(202, 131, 121)';
+            case 'selectJobType':
+                background = 'rgb(234, 242, 215)';
+                text = 'rgb(104, 134, 122)';
                 result[0](name);
                 result[1](background);
                 result[2](text);
                 break;
             case 'selectEmployee':
-                background = 'rgb(205, 237, 246)';
-                text = 'rgb(99, 86, 215)';
+                background = 'rgb(250, 244, 211)';
+                text = 'rgb(202, 131, 121)';
                 result[0](name);
                 result[1](background);
                 result[2](text);
@@ -47,8 +47,8 @@ const Filter = ({ className, mainClassName, selectBase, option, result, open }) 
                 result[2](text);
                 break;
             case 'selectCareer':
-                background = 'rgb(205, 237, 246)';
-                text = 'rgb(99, 86, 215)';
+                background = 'rgb(255, 204, 204)';
+                text = 'rgb(255, 124, 140)';
                 result[0](name);
                 result[1](background);
                 result[2](text);

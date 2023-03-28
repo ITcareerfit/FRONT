@@ -9,15 +9,15 @@ const FilterInput = ({ className, mainClassName, inputClassName, placeholder, re
         let background, text;
         switch (className) {
             case 'selectStack':
-                background = 'rgb(205, 237, 246)';
-                text = 'rgb(99, 86, 215)';
+                background = 'rgb(168, 200, 249)';
+                text = 'rgb(11, 82, 141)';
                 result[0](search);
                 result[1](background);
                 result[2](text);
                 break;
             case 'selectCompany':
-                background = 'rgb(255, 236, 214)';
-                text = 'rgb(202, 131, 121)';
+                background = 'rgb(205, 237, 246)';
+                text = 'rgb(111, 108, 217)';
                 result[0](search);
                 result[1](background);
                 result[2](text);

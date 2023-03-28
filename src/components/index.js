@@ -8,5 +8,7 @@ export { default as FilterInput } from './FilterInput';
 export { default as FilterValue } from './FilterValue';
 export { default as InfoBox } from './InfoBox';
 export { default as InfoApply } from './InfoApply';
+export { default as MypageCompany } from './MypageCompany';
+export { default as MypagePost } from './MypagePost';
 export { default as MyValue } from './MyValue';
 export { default as CompanyValue } from './CompanyValue';
