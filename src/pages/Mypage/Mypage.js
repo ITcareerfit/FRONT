@@ -30,7 +30,7 @@ const Mypage = () => {
                     <div className="mypageInfoText">
                         <div className="mypageTitle">추천 기업</div>
                         <div className="mypageTitle">관심 채용 정보</div>
-                        <div className="mypageTitle">회원정보</div>
+                        <div className="mypageTitle mypageTitleUserEdit">회원정보</div>
                     </div>
                     <div className="mypageInfoBox">
                         <div className="mypageInfo">
@@ -60,10 +60,22 @@ const Mypage = () => {
                             </div>
 
                         </div>
-                        <div className="mypageInfo">
+                        <div className="mypageInfo mypageInfoUserEdit">
                             <span className="goLink">수정하기</span>
+                            <div className="mypageEditBox">
+                                <div className="mypageEditTitle">이름</div>
+                                <input className="mypageEditInput signUpBorder" type="text" placeholder="홍길동" />
+                            </div>
 
+                            <div className="mypageEditBox">
+                                <div className="mypageEditTitle">전화번호</div>
+                                <input className="mypageEditInput signUpBorder" type="text" placeholder="010-0000-0000" />
+                            </div>
 
+                            <div className="mypageEditBox">
+                                <div className="mypageEditTitle">관심 직무</div>
+                                <input className="mypageEditInput signUpBorder" type="text" placeholder="백엔드 개발자" />
+                            </div>
                         </div>
                     </div>
                 </div>

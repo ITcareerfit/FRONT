@@ -674,6 +674,27 @@ body {
     word-break: keep-all;
 }
 
+.mypageEditBox {
+    display: flex;
+    font-size: 18px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25px;
+    align-items: center;
+}
+
+.mypageEditTitle {
+    color: var(--gray-color);
+    font-weight: bold;
+    flex: 1;
+    text-align: start;
+}
+
+.mypageEditInput {
+    flex: 3;
+    font-size: 20px;
+}
+
 .filterBoxGroup {
     padding-top: 80px;
     border-bottom: 1px solid var(--line-color);
@@ -1296,6 +1317,11 @@ body {
     .profile {
         display: none;
     }
+
+    .mypageEditInput {
+        flex: 2;
+        width: 0;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -1345,7 +1371,8 @@ body {
     }
 
     .bannerAnswer,
-    .headerBtn {
+    .headerBtn,
+    .valueBoxLeft {
         display: none;
     }
 
@@ -1355,10 +1382,6 @@ body {
 
     .infoJobName {
         font-size: 25px;
-    }
-
-    .valueBoxLeft {
-        display: none;
     }
 
     .valueDisplay {
@@ -1385,7 +1408,8 @@ body {
         margin: 18px 0;
     }
 
-    .loginInputBox {
+    .loginInputBox,
+    .postText {
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -1401,16 +1425,10 @@ body {
         height: 0;
     }
 
-    .postText {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .postDetail {
-        display: none;
-    }
-
-    .infoCompanyName {
+    .postDetail,
+    .infoCompanyName,
+    .mypageTitleUserEdit,
+    .mypageInfoUserEdit {
         display: none;
     }
 
