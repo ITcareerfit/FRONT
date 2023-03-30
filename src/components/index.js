@@ -12,3 +12,6 @@ export { default as MypageCompany } from './MypageCompany';
 export { default as MypagePost } from './MypagePost';
 export { default as MyValue } from './MyValue';
 export { default as CompanyValue } from './CompanyValue';
+export { default as BarGraph } from './BarGraph';
+export { default as LineGraph } from './LineGraph';
+export { default as DoughnutGraph } from './DoughnutGraph';

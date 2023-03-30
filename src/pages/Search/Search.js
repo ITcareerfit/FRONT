@@ -62,7 +62,7 @@ const Search = () => {
                     </div>
 
                     <div className="searchFilter">
-                        <Filter className={'selectGroup selectJobType selectLeft'} mainClassName={'selectJobType'} selectBase={'지역'} option={['서울', '경기', '부산']} result={[setResult, setBackground, setText]} open={[open, setOpen]} />
+                        <Filter className={'selectGroup selectJobType selectLeft'} mainClassName={'selectJobType'} selectBase={'업종'} option={['요식', '금융', '문화예술']} result={[setResult, setBackground, setText]} open={[open, setOpen]} />
 
                         <Filter className={'selectGroup selectEmployee selectMiddle'} mainClassName={'selectEmployee'} selectBase={'사원 수'} option={['50명 이하', '500명 이하']} result={[setResult, setBackground, setText]} open={[open, setOpen]} />
 

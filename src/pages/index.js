@@ -7,5 +7,5 @@ export { default as Search } from './Search';
 export { default as Info } from './Info';
 export { default as ValueMain } from './ValueMain';
 export { default as Value } from './Value';
-export { Doughnut } from './Doughnut';
+export { default as Trend } from './Trend';
 export { default as Wrong } from './Wrong';

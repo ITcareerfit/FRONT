@@ -22,6 +22,7 @@ body {
     --purple-color: rgb(111, 108, 217);
     --silver-color: rgb(172, 184, 194);
     --pink-color: rgb(255, 99, 132);
+    --title-color: rgb(164, 164, 164);
     /* --붙여서 선언해놓고 다른 파트 호출 가능 */
 }
 
@@ -1289,13 +1290,68 @@ body {
     margin-bottom: 0px;
 }
 
+.languageTrend {
+    background-color: rgba(234, 250, 254, 0.8);
+}
 
-/* Edit After */
-.trend {
-    width: 1000px;
-    height: 400px;
-    background: white;
-    background-color: #F6FCFB;
+.trendPage {
+    display: flex;
+    padding-bottom: 40px;
+}
+
+.trendText {
+    flex: 2;
+}
+
+.trendTitle {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--title-color);
+}
+
+.trendPurple {
+    color: var(--purple-color);
+    margin-bottom: 30px;
+}
+
+.trendBold {
+    font-weight: bold;
+}
+
+.trendLanguage {
+    color: var(--green-color);
+    font-weight: bold;
+}
+
+.trendExtra {
+    font-size: 15px;
+    color: var(--darkLine-color);
+    text-align: end;
+    margin-top: 20px;
+}
+
+.trendGraph {
+    flex: 1;
+    width: 60%;
+}
+
+.doughnut {
+    width: 400px;
+    margin: -50px auto;
+    margin-bottom: -80px;
+}
+
+.jobTrend {
+    border-top: 1px solid var(--line-color);
+    border-bottom: 1px solid var(--line-color);
+}
+
+.graph {
+    /* bar, line 그래프 className */
+}
+
+.jobTypeTrend {
+    background-color: rgba(208, 241, 235, 0.2);
 }
 
 /* width 1300px보다 작을 경우 */
@@ -1343,6 +1399,10 @@ body {
 
     .noUserValueDisplay {
         margin: 0 auto;
+    }
+
+    .doughnut {
+        width: 350px;
     }
 }
 
@@ -1428,7 +1488,8 @@ body {
     .postDetail,
     .infoCompanyName,
     .mypageTitleUserEdit,
-    .mypageInfoUserEdit {
+    .mypageInfoUserEdit,
+    .trendText {
         display: none;
     }
 
@@ -1438,5 +1499,9 @@ body {
 
     .noUserValueDisplay {
         top: -300px;
+    }
+
+    .trendPage {
+        display: block;
     }
 }

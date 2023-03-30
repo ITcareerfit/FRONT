@@ -19,8 +19,7 @@ ChartJS.register(
     Legend
 );
 
-// Bar Graph
-const Trend = () => {
+const BarGraph = () => {
 
     const data = {
         labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
@@ -125,10 +124,10 @@ const Trend = () => {
     };
 
     return (
-        <div className="trend">
-            <Bar type="bar" data={data} options={options} />
+        <div className="graph">
+            <Bar type="bar" data={data} options={options} style={{ display: 'inline-block' }} />
         </div>
     );
 };
 
-export default Trend;
+export default BarGraph;

@@ -21,8 +21,7 @@ ChartJS.register(
     Legend
 );
 
-// Line Graph
-const Doughnut = () => {
+const LineGraph = () => {
     const data = {
         labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
         datasets: [
@@ -78,10 +77,10 @@ const Doughnut = () => {
     };
 
     return (
-        <div className="trend">
-            <Line data={data} options={options} />
+        <div className="graph">
+            <Line data={data} options={options} style={{ display: 'inline-block' }} />
         </div>
     );
 };
 
-export default Doughnut;
+export default LineGraph;
