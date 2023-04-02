@@ -15,7 +15,7 @@ ChartJS.register(
 );
 
 
-const DoughnutGraph = ({ labels, label, datas, title }) => {
+const DoughnutGraph = ({ labels, label, datas, title, size }) => {
 
     const data = {
         labels: labels,
@@ -53,12 +53,14 @@ const DoughnutGraph = ({ labels, label, datas, title }) => {
                             align: 'end',
                             anchor: 'end',
                             padding: '0',
-                            font: {
-                                weight: 'bold',
-                                size: '15px'
-                            },
-                            formatter: (val, ctx) => ctx.chart.data.labels[ctx.dataIndex], // labels 내용
-                        }
+                            font: (context) => // fontSize 말고 객체 형태로 받아야함
+                                context.dataIndex === size[0] // 더 큰 글씨로
+                                    ? { size: '18px', weight: 'bold' }
+                                    : context.dataIndex === size[1] // 더 작은 글씨로
+                                        ? { size: '12px', weight: 'bold' }
+                                        : { size: '15px', weight: 'bold' },
+                            formatter: (value, context) => context.chart.data.labels[context.dataIndex], // labels 내용
+                        },
                     }
                 }
             }
@@ -87,8 +89,8 @@ const DoughnutGraph = ({ labels, label, datas, title }) => {
             padding: {
                 top: 70,
                 bottom: 70,
-            },
-        },
+            }
+        }
     };
 
     return (

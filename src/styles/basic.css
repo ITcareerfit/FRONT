@@ -1296,6 +1296,8 @@ body {
 
 .trendPage {
     display: flex;
+    width: 90%;
+    margin: 0 auto;
     padding-bottom: 40px;
 }
 
@@ -1304,12 +1306,13 @@ body {
 }
 
 .trendTitle {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
     color: var(--title-color);
 }
 
 .trendPurple {
+    font-size: 25px;
     color: var(--purple-color);
     margin-bottom: 30px;
 }
@@ -1318,9 +1321,10 @@ body {
     font-weight: bold;
 }
 
-.trendLanguage {
+.trendItem {
     color: var(--green-color);
     font-weight: bold;
+    font-size: 18px;
 }
 
 .trendExtra {
@@ -1352,6 +1356,11 @@ body {
 
 .jobTypeTrend {
     background-color: rgba(208, 241, 235, 0.2);
+}
+
+.trendGray {
+    font-size: 22px;
+    color: var(--title-color);
 }
 
 /* width 1300px보다 작을 경우 */
@@ -1399,6 +1408,10 @@ body {
 
     .noUserValueDisplay {
         margin: 0 auto;
+    }
+
+    .trendPage {
+        width: 100%;
     }
 
     .doughnut {
@@ -1499,9 +1512,5 @@ body {
 
     .noUserValueDisplay {
         top: -300px;
-    }
-
-    .trendPage {
-        display: block;
     }
 }

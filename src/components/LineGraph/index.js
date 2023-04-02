@@ -1,1 +1,1 @@
-export { default } from './LindGraph';
+export { default } from './LineGraph';
