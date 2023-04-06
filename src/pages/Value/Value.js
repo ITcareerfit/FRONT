@@ -26,11 +26,12 @@ const Value = () => {
         if (sessionStorage.getItem('userPK')) {
             setUserName(sessionStorage.getItem('userPK'));
 
-            if (cookies.load('profit')) setProfit(parseInt(cookies.load('profit')));
-            if (cookies.load('stable')) setStable(parseInt(cookies.load('stable')));
-            if (cookies.load('pay')) setPay(parseInt(cookies.load('pay')));
-            if (cookies.load('culture')) setCulture(parseInt(cookies.load('culture')));
-            if (cookies.load('grow')) setGrow(parseInt(cookies.load('grow')));
+            if (cookies.load('profit')) setProfit(parseFloat(cookies.load('profit')));
+            if (cookies.load('stable')) setStable(parseFloat(cookies.load('stable')));
+            if (cookies.load('pay')) setPay(parseFloat(cookies.load('pay')));
+            if (cookies.load('culture')) setCulture(parseFloat(cookies.load('culture')));
+            if (cookies.load('grow')) setGrow(parseFloat(cookies.load('grow')));
+            if (cookies.load('big')) setBig(cookies.load('big'));
 
             document.getElementsByClassName('valueDisplay')[0].style.filter = 'none';
             document.getElementsByClassName('valuePosts')[0].style.filter = 'none';
@@ -51,8 +52,14 @@ const Value = () => {
             if (valueGroup[i] === max) maxGroup.push(i);
         }
 
-        if (maxGroup.length === 5) setType('균일');
-        else if (maxGroup.length === 4) setType('복합');
+        if (maxGroup.length === 5) {
+            setBig([]);
+            setType('균일');
+        }
+        else if (maxGroup.length === 4) {
+            setBig([]);
+            setType('복합');
+        }
         else {
             let text = '';
             for (let i = 0; i < maxGroup.length; i++) {

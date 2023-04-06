@@ -36,11 +36,21 @@ const ValueMain = () => {
 
     useEffect(() => {
         if (sessionStorage.getItem('userPK')) {
+            const valueGroup = [profit, stable, pay, culture, grow];
+            const max = Math.max(...valueGroup);
+            let maxGroup = [];
+            for (let i = 0; i < 5; i++) {
+                if (valueGroup[i] === max) maxGroup.push(i);
+            }
+
+            if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup=[]
+
             cookies.save('profit', profit);
             cookies.save('stable', stable);
             cookies.save('pay', pay);
             cookies.save('culture', culture);
             cookies.save('grow', grow);
+            cookies.save('big', maxGroup);
         }
     }, [profit, stable, pay, culture, grow]);
 
