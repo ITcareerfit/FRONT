@@ -19,87 +19,39 @@ ChartJS.register(
     Legend
 );
 
-const BarGraph = () => {
+const BarGraph = ({ labels, label, datas, title }) => {
 
     const data = {
-        labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+        labels: labels,
         datasets: [
             {
-                label: 'BackEnd',
-                data: [25, 37, 40, 38, 53, 49, 58],
+                label: label[0],
+                data: datas[0],
                 barThickness: 20,
                 categoryPercentage: 1.0,
                 barPercentage: 0.5,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    // 'rgba(255, 159, 64, 0.2)',
-                    // 'rgba(255, 205, 86, 0.2)',
-                    // 'rgba(75, 192, 192, 0.2)',
-                    // 'rgba(54, 162, 235, 0.2)',
-                    // 'rgba(153, 102, 255, 0.2)',
-                    // 'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    // 'rgb(255, 159, 64)',
-                    // 'rgb(255, 205, 86)',
-                    // 'rgb(75, 192, 192)',
-                    // 'rgb(54, 162, 235)',
-                    // 'rgb(153, 102, 255)',
-                    // 'rgb(201, 203, 207)'
-                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 1
             },
             {
-                label: 'FrontEnd',
-                data: [65, 49, 58, 55, 43, 48, 30],
+                label: label[1],
+                data: datas[1],
                 barThickness: 20,
                 categoryPercentage: 1.0,
                 barPercentage: 0.5,
-                backgroundColor: [
-                    // 'rgba(255, 99, 132, 0.2)',
-                    // 'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    // 'rgba(75, 192, 192, 0.2)',
-                    // 'rgba(54, 162, 235, 0.2)',
-                    // 'rgba(153, 102, 255, 0.2)',
-                    // 'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    // 'rgb(75, 192, 192)',
-                    // 'rgb(54, 162, 235)',
-                    // 'rgb(153, 102, 255)',
-                    // 'rgb(201, 203, 207)'
-                ],
+                backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                borderColor: 'rgb(255, 205, 86)',
                 borderWidth: 1
             },
             {
-                label: 'AI',
-                data: [50, 52, 48, 45, 54, 56, 52],
+                label: label[2],
+                data: datas[2],
                 barThickness: 20,
                 categoryPercentage: 1.0,
                 barPercentage: 0.5,
-                backgroundColor: [
-                    // 'rgba(255, 99, 132, 0.2)',
-                    // 'rgba(255, 159, 64, 0.2)',
-                    // 'rgba(255, 205, 86, 0.2)',
-                    // 'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    // 'rgba(153, 102, 255, 0.2)',
-                    // 'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 159, 64)',
-                    // 'rgb(255, 205, 86)',
-                    // 'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    // 'rgb(153, 102, 255)',
-                    // 'rgb(201, 203, 207)'
-                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgb(54, 162, 235)',
                 borderWidth: 1
             }]
     };
@@ -108,19 +60,43 @@ const BarGraph = () => {
         responsive: true,
         plugins: {
             legend: {
-                // position: 'top' as const,
+                labels: { // 상단의 설명 텍스트 (ex. BackEnd)
+                    font: {
+                        family: 'Noto Sans KR'
+                    }
+                }
             },
             title: {
                 display: true,
-                text: '2023 상반기 직종별 IT Trend',
-                size: '20px'
+                text: title,
+                font: {
+                    size: '17px',
+                    family: 'Noto Sans Kr'
+                }
             },
+            tooltip: {
+                bodyFont: {
+                    family: 'Noto Sans KR'
+                }
+            }
         },
-        // scales: {
-        //     xAxes: [{
-        //         barPercentage: 1
-        //     }]
-        // }
+        scales: {
+            x: { // 1월, 2월, 3월 ...
+                ticks: {
+                    font: {
+                        size: '14px',
+                        family: 'Noto Sans KR'
+                    }
+                },
+            },
+            y: { // 0, 10, 20 ...
+                ticks: {
+                    font: {
+                        family: 'Noto Sans KR'
+                    }
+                },
+            },
+        }
     };
 
     return (

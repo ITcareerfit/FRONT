@@ -36,7 +36,6 @@ const MyValue = ({ myValue, companyValue, big, similar }) => {
                 {
                     label: 'Company Values',
                     data: [companyValue[0], companyValue[1], companyValue[2], companyValue[3], companyValue[4]],
-                    //58, 90, 40, 60, 76
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgb(54, 162, 235)',
                 }
@@ -91,10 +90,15 @@ const MyValue = ({ myValue, companyValue, big, similar }) => {
             plugins: { // 데이터의 라벨 지우기 (ex. myValue)
                 legend: {
                     display: false
+                },
+                tooltip: {
+                    bodyFont: {
+                        family: 'Noto Sans KR'
+                    }
                 }
             }
-        } :
-        options = {
+        }
+        : options = {
             scales: {
                 r: {
                     min: 0,
@@ -130,6 +134,11 @@ const MyValue = ({ myValue, companyValue, big, similar }) => {
             plugins: {
                 legend: {
                     display: false
+                },
+                tooltip: {
+                    bodyFont: {
+                        family: 'Noto Sans KR'
+                    }
                 }
             }
         };

@@ -1154,7 +1154,6 @@ body {
     flex: 1;
     border-left: 1px solid var(--line-color);
     filter: blur(20px);
-    z-index: -1;
 }
 
 .valueDisplayExplain {
@@ -1179,7 +1178,7 @@ body {
 .noUserValueDisplay {
     height: 0px;
     position: relative;
-    top: -300px;
+    top: -360px;
     left: 25%;
     text-align: center;
     margin: 0 auto;
@@ -1299,10 +1298,17 @@ body {
     width: 90%;
     margin: 0 auto;
     padding-bottom: 40px;
+    margin-top: -50px;
 }
 
 .trendText {
+    font-size: 18px;
+    word-break: keep-all;
+}
+
+.languageText {
     flex: 2;
+    margin-top: 50px;
 }
 
 .trendTitle {
@@ -1324,7 +1330,7 @@ body {
 .trendItem {
     color: var(--green-color);
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .trendExtra {
@@ -1334,15 +1340,16 @@ body {
     margin-top: 20px;
 }
 
-.trendGraph {
+.doughnutGraph {
     flex: 1;
     width: 60%;
+    margin-top: 50px;
 }
 
 .doughnut {
     width: 400px;
     margin: -50px auto;
-    margin-bottom: -80px;
+    margin-bottom: -70px;
 }
 
 .jobTrend {
@@ -1350,12 +1357,32 @@ body {
     border-bottom: 1px solid var(--line-color);
 }
 
+.trendGraph {
+    flex: 1;
+}
+
 .graph {
-    /* bar, line 그래프 className */
+    width: 99%;
+}
+
+.jobText {
+    flex: 1;
+    text-align: right;
+    margin-left: 50px;
+}
+
+.jobTitle {
+    margin-bottom: 30px;
+    color: var(--darkGray-color);
 }
 
 .jobTypeTrend {
     background-color: rgba(208, 241, 235, 0.2);
+}
+
+.jobTypeText {
+    flex: 1;
+    margin-right: 50px;
 }
 
 .trendGray {
@@ -1386,6 +1413,10 @@ body {
     .mypageEditInput {
         flex: 2;
         width: 0;
+    }
+
+    .noUserValueDisplay {
+        top: -300px;
     }
 }
 
@@ -1425,11 +1456,14 @@ body {
         margin-right: 0;
     }
 
-    .infoApply {
+    .infoApply,
+    .jobText,
+    .jobTypeText {
         display: none;
     }
 
-    .valueMainBox {
+    .valueMainBox,
+    .trendGraph {
         width: 80%;
     }
 }
@@ -1502,7 +1536,7 @@ body {
     .infoCompanyName,
     .mypageTitleUserEdit,
     .mypageInfoUserEdit,
-    .trendText {
+    .languageText {
         display: none;
     }
 

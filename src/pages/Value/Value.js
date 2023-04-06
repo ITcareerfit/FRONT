@@ -15,7 +15,7 @@ const Value = () => {
     const [open, setOpen] = useState('');
     const [type, setType] = useState('');
 
-    sessionStorage.clear();
+    // sessionStorage.clear();
     sessionStorage.setItem('userPK', 'known@user.com');
 
     useEffect(() => {
@@ -70,6 +70,13 @@ const Value = () => {
             setType(text);
         }
 
+        // 로그인 안해도 cookie 저장 -> 로그인하면 결과 확인 가능
+        cookies.save('profit', profit);
+        cookies.save('stable', stable);
+        cookies.save('pay', pay);
+        cookies.save('culture', culture);
+        cookies.save('grow', grow);
+        cookies.save('big', maxGroup);
     }, [profit, stable, pay, culture, grow]);
 
     return (

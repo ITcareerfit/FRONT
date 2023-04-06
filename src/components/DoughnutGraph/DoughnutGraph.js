@@ -55,10 +55,10 @@ const DoughnutGraph = ({ labels, label, datas, title, size }) => {
                             padding: '0',
                             font: (context) => // fontSize 말고 객체 형태로 받아야함
                                 context.dataIndex === size[0] // 더 큰 글씨로
-                                    ? { size: '18px', weight: 'bold' }
+                                    ? { size: '18px', weight: 'bold', family: 'Noto Sans KR' }
                                     : context.dataIndex === size[1] // 더 작은 글씨로
-                                        ? { size: '12px', weight: 'bold' }
-                                        : { size: '15px', weight: 'bold' },
+                                        ? { size: '12px', weight: 'bold', family: 'Noto Sans KR' }
+                                        : { size: '15px', weight: 'bold', family: 'Noto Sans KR' },
                             formatter: (value, context) => context.chart.data.labels[context.dataIndex], // labels 내용
                         },
                     }
@@ -77,13 +77,19 @@ const DoughnutGraph = ({ labels, label, datas, title, size }) => {
                 display: true,
                 text: title,
                 font: {
-                    size: '15px'
+                    size: '15px',
+                    family: 'Noto Sans KR'
                 },
                 padding: {
                     top: '30'
                 },
                 position: 'bottom',
             },
+            tooltip: {
+                bodyFont: {
+                    family: 'Noto Sans KR'
+                }
+            }
         },
         layout: {
             padding: {

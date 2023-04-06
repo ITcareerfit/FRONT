@@ -21,30 +21,30 @@ ChartJS.register(
     Legend
 );
 
-const LineGraph = () => {
+const LineGraph = ({ labels, label, datas, title }) => {
     const data = {
-        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
+        labels: labels,
         datasets: [
             {
-                label: 'Spring',
-                data: [5, 4, 3, 4, 5, 3, 4],
+                label: label[0],
+                data: datas[0],
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 yAxisID: 'y',
             },
             {
-                label: 'Node',
-                data: [7, 6, 7, 5, 3, 2, 4],
+                label: label[1],
+                data: datas[1],
                 borderColor: 'rgb(255, 205, 86)',
                 backgroundColor: 'rgba(255, 205, 86,0.5)',
-                yAxisID: 'y1',
+                yAxisID: 'y',
             },
             {
-                label: 'Django',
-                data: [4, 5, 4, 3, 6, 5, 5],
+                label: label[2],
+                data: datas[2],
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                yAxisID: 'y1',
+                yAxisID: 'y',
             },
         ],
     };
@@ -52,28 +52,47 @@ const LineGraph = () => {
     const options = {
         responsive: true,
         plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: 'Noto Sans KR'
+                    }
+                }
+            },
             title: {
                 display: true,
-                text: 'Chart.js Line Chart - Multi Axis',
+                text: title,
+                font: {
+                    size: '17px',
+                    family: 'Noto Sans KR'
+                },
             },
+            tooltip: {
+                bodyFont: {
+                    family: 'Noto Sans KR'
+                }
+            }
         },
         scales: {
+            x: {
+                ticks: {
+                    font: {
+                        size: '14px',
+                        family: 'Noto Sans KR'
+                    }
+                },
+            },
             y: {
+                ticks: {
+                    font: {
+                        family: 'Noto Sans KR'
+                    }
+                },
                 type: 'linear',
                 display: true,
                 position: 'left',
-                min: 1,
-                max: 7,
-            },
-            y1: {
-                type: 'linear',
-                display: false,
-                position: 'right',
-                grid: {
-                    drawOnChartArea: false,
-                },
-            },
-        },
+            }
+        }
     };
 
     return (

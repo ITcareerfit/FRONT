@@ -13,7 +13,7 @@ const ValueMain = () => {
     const [grow, setGrow] = useState(0);
     const [open, setOpen] = useState('');
 
-    sessionStorage.clear();
+    // sessionStorage.clear();
     // cookies.remove('profit');
     // cookies.remove('stable');
     // cookies.remove('pay');
@@ -28,6 +28,12 @@ const ValueMain = () => {
 
         if (sessionStorage.getItem('userPK')) {
             setUserName(sessionStorage.getItem('userPK'));
+
+            if (cookies.load('profit')) setProfit(parseFloat(cookies.load('profit')));
+            if (cookies.load('stable')) setStable(parseFloat(cookies.load('stable')));
+            if (cookies.load('pay')) setPay(parseFloat(cookies.load('pay')));
+            if (cookies.load('culture')) setCulture(parseFloat(cookies.load('culture')));
+            if (cookies.load('grow')) setGrow(parseFloat(cookies.load('grow')));
         }
         else {
             document.getElementsByClassName('valueBoldGrayText')[0].style.color = 'rgb(111, 108, 217)';
@@ -43,7 +49,7 @@ const ValueMain = () => {
                 if (valueGroup[i] === max) maxGroup.push(i);
             }
 
-            if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup=[]
+            if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup = [];
 
             cookies.save('profit', profit);
             cookies.save('stable', stable);
