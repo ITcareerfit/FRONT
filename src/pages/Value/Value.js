@@ -11,6 +11,7 @@ const Value = () => {
     const [pay, setPay] = useState(0);
     const [culture, setCulture] = useState(0);
     const [grow, setGrow] = useState(0);
+    const [big, setBig] = useState([]);
     const [open, setOpen] = useState('');
     const [type, setType] = useState('');
 
@@ -58,6 +59,7 @@ const Value = () => {
                 text = text + valueText[maxGroup[i]];
                 if (i !== maxGroup.length - 1) text = text + ' ';
             }
+            setBig(maxGroup);
             setType(text);
         }
 
@@ -93,7 +95,7 @@ const Value = () => {
                             <span className="valueBoldGrayText">{userName}</span> 님은&nbsp;
                             <span className="valueText">"{type}형"</span> 입니다.
                             <div className="myValueRadar">
-                                <MyValue myValue={[profit, stable, pay, culture, grow]} />
+                                <MyValue myValue={[profit, stable, pay, culture, grow]} big={big} />
                             </div>
                         </div>
                     </div>

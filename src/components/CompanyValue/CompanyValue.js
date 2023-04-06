@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MyValue from "../MyValue";
 
 const CompanyValue = ({ img, company, myValue, companyValue }) => {
+    const [similar, setSimilar] = useState([]);
     const [type, setType] = useState('');
 
     useEffect(() => {
@@ -24,6 +25,7 @@ const CompanyValue = ({ img, company, myValue, companyValue }) => {
                 text = text + valueText[minGroup[i]];
                 if (i !== minGroup.length - 1) text = text + ' ';
             }
+            setSimilar(minGroup);
             setType(text);
         }
 
@@ -81,7 +83,6 @@ const CompanyValue = ({ img, company, myValue, companyValue }) => {
                 </div>
                 <div className="goCompany">
                     채용정보 보기 ∨
-                    {/* ∨ ν */}
                 </div>
             </div>
             <div className="companyValueRight">
@@ -91,7 +92,7 @@ const CompanyValue = ({ img, company, myValue, companyValue }) => {
                         <span className="companyValueMax">"{type}"</span> 부분에서 높은 일치율을 보입니다.
                     </div>
                     <div className="companyRadar">
-                        <MyValue myValue={[myValue[0], myValue[1], myValue[2], myValue[3], myValue[4]]} companyValue={[companyValue[0], companyValue[1], companyValue[2], companyValue[3], companyValue[4]]} />
+                        <MyValue myValue={[myValue[0], myValue[1], myValue[2], myValue[3], myValue[4]]} companyValue={[companyValue[0], companyValue[1], companyValue[2], companyValue[3], companyValue[4]]} similar={similar} />
                     </div>
                 </div>
             </div>
