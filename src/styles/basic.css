@@ -10,7 +10,7 @@ body {
 }
 
 :root {
-    /* 모든 페이지 기본 적용 */
+    /* 모든 페이지 기본 적용 -> html보다 상위에 있는 가상 요소 */
     --background-color: rgb(249, 250, 251);
     --infoBackground-color: rgb(247, 247, 251);
     --line-color: rgb(209, 209, 209);
@@ -33,158 +33,11 @@ body {
 
 #root>.valueMainPage {
     background: linear-gradient(180deg, rgba(35, 233, 180, 0.3), white 30%);
-    /* 수평으로, 앞의 색깔을 %비율만큼 배정 */
+    /* 수평으로, 앞의 색깔을 %비율만큼 배정 및 흐리기 */
 }
 
 .intro {
     color: red;
-}
-
-.wrong {
-    text-align: center;
-    margin-top: 30vh;
-    font-size: 40px;
-}
-
-.header {
-    background-color: white;
-    height: 60px;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    border-bottom: 1px solid rgb(209, 209, 209);
-}
-
-.headerBox {
-    margin: 0 auto;
-    width: 1300px;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.headerLeft {
-    display: flex;
-    margin: auto 0;
-    /* 상하좌우 */
-}
-
-.headerLogo {
-    font-size: 30px;
-    font-weight: bold;
-    color: var(--green-color);
-    margin-right: 40px;
-}
-
-.headerSearch {
-    display: flex;
-    margin: auto 0;
-}
-
-.headerSearchImg {
-    width: 20px;
-    height: 20px;
-    margin-top: 2px;
-}
-
-.headerSearchText {
-    margin: auto 0;
-    margin-left: 8px;
-    margin-right: 70px;
-    color: var(--gray-color);
-    cursor: pointer;
-}
-
-.headerBtnBox {
-    margin: 13px 0;
-    margin-left: auto;
-    display: flex;
-}
-
-.headerUserImg {
-    text-align: center;
-    margin: auto;
-    width: 34px;
-}
-
-.headerUser {
-    margin-right: 30px;
-    font-weight: bold;
-    margin: auto 5px;
-    margin-right: 20px;
-}
-
-.btn {
-    border: 1px solid;
-    border-radius: 5px;
-    height: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.headerBtn {
-    height: 35px;
-}
-
-.blackBtn {
-    border-color: black;
-    background-color: white;
-    color: black;
-}
-
-.banner {
-    padding-top: 60px;
-    height: 250px;
-}
-
-#firstBanner {
-    background-color: rgb(0, 177, 167);
-}
-
-#secondBanner {
-    background-color: rgb(255, 180, 184);
-}
-
-.bannerBox {
-    margin: 0 auto;
-    width: 1300px;
-    display: flex;
-    color: white;
-}
-
-.bannerLeft {
-    flex: 2;
-    margin: 20px;
-    margin-top: 45px;
-    line-height: 240%;
-    /* 줄간격 조정 */
-}
-
-.bannerTitle {
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.bannerBtn {
-    height: auto;
-    font-size: 18px;
-    font-weight: 100;
-    margin-top: 10px;
-    padding: 3px 20px;
-}
-
-.purpleBtn {
-    border-color: var(--purple-color);
-    background-color: var(--purple-color);
-    color: white;
-}
-
-.bannerImg {
-    width: 150px;
-    height: 150px;
-    padding-top: 45px;
-    padding-right: 20px;
 }
 
 .login {
@@ -193,7 +46,7 @@ body {
 }
 
 .loginText {
-    font-size: 40px;
+    font-size: 45px;
     font-weight: bold;
     color: var(--green-color);
     /* root 속성에 저장해놓은 변수로 사용 가능 */
@@ -203,7 +56,7 @@ body {
     display: inline-block;
     margin: 18px;
     background-color: white;
-    border: 1px solid var(--darkLine-color);
+    border: 1px solid var(--silver-color);
     border-radius: 5px;
     box-shadow: 0px 3px 5px var(--silver-color);
     /* 좌우, 상하, 번짐 */
@@ -213,13 +66,14 @@ body {
     display: flex;
     align-items: center;
     border: 1px solid var(--line-color);
-    border-radius: 5px;
     width: 400px;
     margin: 0 70px;
 }
 
 .loginInputFirst {
     margin-top: 40px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .loginImg {
@@ -230,7 +84,7 @@ body {
 
 .loginInput {
     flex: 15;
-    height: 50px;
+    height: 40px;
     font-size: 18px;
     margin-left: 5px;
     border: 0px;
@@ -242,25 +96,42 @@ body {
     color: var(--line-color);
 }
 
+.loginInputSecond {
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .keepLogin {
     margin-top: 10px;
     margin-bottom: 40px;
     margin-left: 70px;
-    font-size: 18px;
+    font-size: 15px;
     color: var(--darkLine-color);
     display: flex;
     align-items: center;
 }
 
 .keepLoginImg {
-    width: 30px;
+    width: 20px;
     cursor: pointer;
     margin-right: 5px;
+}
+
+.btn {
+    border: 1px solid;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .loginBtn {
     margin-bottom: 40px;
     width: 400px;
+    height: 50px;
+    border-radius: 10px;
     box-shadow: 0px 5px 5px var(--silver-color);
 }
 
@@ -306,23 +177,22 @@ body {
 .signUpGroup {
     display: flex;
     margin: 0 auto;
-    width: 550px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    width: 600px;
 }
 
 .signUpTitle {
     flex: 1;
     color: var(--gray-color);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     text-align: start;
     display: flex;
+    margin: auto 0;
 }
 
 .signUpAnswer {
     flex: 3;
-    font-size: 20px;
-    width: 410px;
     display: flex;
 }
 
@@ -331,10 +201,15 @@ body {
     border-radius: 5px;
 }
 
-.signUpBorder::placeholder {
+.signUpPadding {
+    padding: 6px 0;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.signUpPadding::placeholder {
     color: var(--darkLine-color);
     font-size: 17px;
-    padding-left: 5px;
 }
 
 .signUpSmall {
@@ -353,10 +228,15 @@ body {
     margin-left: 2.5px;
 }
 
+.signUpInside {
+    width: 100%;
+}
+
 .signUpPWCheck {
-    flex: 2;
+    flex: 1;
     font-size: 20px;
     border: none;
+    padding-left: -30px;
 }
 
 .pwCheckImg {
@@ -370,153 +250,175 @@ body {
 }
 
 .smallBlue {
-    font-size: 12px;
+    font-size: 13px;
     color: rgb(124, 153, 255);
     margin-top: 2px;
+}
+
+.signUpBtn {
+    width: 550px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 40px 0;
+    box-shadow: 0px 5px 5px var(--silver-color);
+}
+
+.header {
+    background-color: white;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+.headerBox {
+    margin: 0 auto;
+    width: 1300px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerLeft {
+    display: flex;
+    margin: auto 0;
+    /* 상하좌우 */
+}
+
+.headerLogo {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--green-color);
+    margin-right: 40px;
+}
+
+.headerSearch {
+    display: flex;
+    margin: auto 0;
+}
+
+.headerSearchImg {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+.headerSearchText {
+    margin: auto 0;
+    margin-left: 8px;
+    margin-right: 70px;
+    color: var(--gray-color);
+    cursor: pointer;
+}
+
+.headerBtnBox {
+    margin: auto 0;
+    margin-left: auto;
+    display: flex;
+}
+
+.headerUserImg {
+    text-align: center;
+    margin: auto;
+    width: 34px;
+}
+
+.headerUser {
+    margin-right: 30px;
+    font-weight: bold;
+    margin: auto 5px;
+    margin-right: 20px;
+}
+
+.headerBtn {
+    height: 30px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.blackBtn {
+    border-color: black;
+    background-color: white;
+    color: black;
+}
+
+.mainPage {
+    display: flex;
+}
+
+.mainBox {
+    flex: 1;
+    margin-top: 180px;
+    color: white;
+}
+
+.mainTool {
+    width: 60%;
+}
+
+.mainLeft {
+    margin-left: auto;
+    margin-right: 90px;
+}
+
+.mainTitle {
+    text-align: left;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    line-height: 40px;
+    /* 줄 사이 간격 조정 */
+}
+
+.mainText {
+    font-size: 20px;
+    line-height: 110%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mainImgBox {
+    margin: 0 auto;
+    width: 70%;
+    height: auto;
+}
+
+.mainImg {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.mainBtn {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0px 3px 3px rgba(1, 1, 1, 0.4);
+}
+
+.purpleBtn {
+    border-color: var(--purple-color);
+    background-color: var(--purple-color);
+    color: white;
+}
+
+.mainRight {
+    margin-right: auto;
+    margin-left: 90px;
+}
+
+.grayBtn {
+    border-color: var(--silver-color);
+    background-color: var(--silver-color);
+    color: white;
 }
 
 /* 페이지 기본 틀 */
 .basicPage {
     width: 1300px;
     margin: 0 auto;
-    padding-top: 90px;
-}
-
-.headerFarPage {
-    padding-top: 30px;
-}
-
-.goPost {
-    display: flex;
-    margin-bottom: 20px;
-    cursor: pointer;
-    width: 160px;
-}
-
-.goPostText {
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.goPostImg {
-    width: 25px;
-    height: 25px;
-    margin: auto 0;
-}
-
-.mainBox {
-    display: flex;
-}
-
-.mainPostGroup {
-    flex: 3;
-}
-
-.profile {
-    border: 2px solid var(--line-color);
-    border-radius: 10px;
-    width: 300px;
-    height: 435px;
-    background-color: white;
-    margin-left: 50px;
-}
-
-.profileChartBox {
-    height: 200px;
-}
-
-.profileChart {
-    margin: 0 auto;
-}
-
-.profileInfo {
-    padding: 15px 10px;
-    background-color: var(--lightGray-color);
-}
-
-.profileText {
-    color: var(--gray-color);
-    font-size: 15px;
-}
-
-.profileEmail {
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 5px 0;
-}
-
-.profileInfoDetail {
-    display: flex;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.profileInfoTitle {
-    flex: 2;
-    color: var(--gray-color);
-}
-
-.profileInfoAnswer {
-    flex: 1;
-    color: var(--purple-color);
-    text-align: center;
-    display: flex;
-}
-
-.profileLink {
-    cursor: pointer;
-    margin-left: 30px;
-}
-
-.companyNext {
-    width: 18px;
-    height: 18px;
-    margin: auto 0;
-    margin-left: 35px;
-}
-
-.profileImgLeft {
-    flex: 2;
-    font-size: 15px;
-    margin: auto 0;
-    display: flex;
-}
-
-.profileImg {
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--line-color);
-    border-radius: 50px;
-}
-
-.profileImgEmail {
-    width: 130px;
-    margin: auto 5px;
-    font-size: 14px;
-    word-wrap: break-word;
-    /* 단어 넘치면 임의로 자르기 */
-}
-
-.goProfile {
-    flex: 1;
-    color: var(--purple-color);
-    font-size: 12px;
-    margin: auto 0;
-    cursor: pointer;
-}
-
-.noProfile {
-    height: 220px;
-    background-color: var(--lightGray-color);
-    text-align: center;
-}
-
-.noProfileText {
-    font-weight: bold;
-    margin-top: 60px;
-    margin-bottom: 20px;
+    padding-top: 100px;
 }
 
 .mypage {
@@ -550,20 +452,28 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin: 0 auto;
+    margin-top: 30px;
     margin-bottom: 15px;
 }
 
 .mypageTitle {
     flex: 1;
     text-align: start;
-    margin-left: 20px;
+    margin-left: 30px;
+}
+
+.mypageLine {
+    width: 98%;
+    height: 1px;
+    border: 0;
+    margin: 0 auto;
+    background: var(--line-color);
 }
 
 .mypageInfoBox {
     display: flex;
     width: 1300px;
     margin: 0 auto;
-    border: 1px solid var(--line-color);
     border-radius: 10px;
     background-color: var(--infoBackground-color);
 }
@@ -571,13 +481,14 @@ body {
 .mypageInfo {
     flex: 1;
     text-align: end;
-    margin: 10px;
+    margin: 10px 30px;
 }
 
 .mypageValue {
-    text-align: start;
+    float: left;
+    /* text-align: start; */
     color: var(--gray-color);
-    margin-left: 5%;
+    margin-bottom: 20px;
 }
 
 .goLink {
@@ -587,11 +498,18 @@ body {
     cursor: pointer;
 }
 
+.goLinkValue {
+    float: left;
+}
+
 .mypageBox {
     margin-top: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
 }
 
 .mypageCompany {
@@ -601,6 +519,7 @@ body {
     text-align: start;
     width: 150px;
     margin: 5px;
+    margin-bottom: 15px;
 }
 
 .mypageCompanyImg {
@@ -635,7 +554,8 @@ body {
     border: 1px solid var(--line-color);
     border-radius: 5px;
     background-color: white;
-    margin: 5px 0;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .mypagePostHeader {
@@ -655,7 +575,7 @@ body {
 
 .mypagePostTitle {
     text-align: start;
-    font-size: 23px;
+    font-size: 22px;
     margin: 0 10px;
     margin-bottom: 10px;
 }
@@ -678,10 +598,10 @@ body {
 .mypageEditBox {
     display: flex;
     font-size: 18px;
-    width: 90%;
     margin: 0 auto;
     margin-top: 25px;
     align-items: center;
+    width: 90%;
 }
 
 .mypageEditTitle {
@@ -692,8 +612,33 @@ body {
 }
 
 .mypageEditInput {
-    flex: 3;
+    flex: 2;
+    width: 0;
     font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mypagePadding {
+    padding: 3px 0;
+    padding-left: 10px;
+}
+
+.mypageEditInputBirth {
+    margin-left: -10px;
+}
+
+.mypageEditBirth {
+    flex: auto;
+    background-color: white;
+    padding-right: 5px;
+    margin-left: 5px;
+    color: var(--darkGray-color);
+    display: flex;
+}
+
+.birthDetail {
+    margin-right: auto;
 }
 
 .filterBoxGroup {
@@ -823,6 +768,10 @@ body {
     margin-right: 5px;
     font-size: 18px;
     cursor: pointer;
+}
+
+.headerFarPage {
+    padding-top: 30px;
 }
 
 .filterSearchNum {
@@ -1092,10 +1041,6 @@ body {
     margin-top: 6vh;
 }
 
-.valueBoxLeft {
-    margin-top: 0;
-}
-
 .valueHeader {
     font-size: 25px;
     word-break: keep-all;
@@ -1119,6 +1064,10 @@ body {
     margin: 0 auto;
 }
 
+.valueSelectBase {
+    color: var(--gray-color);
+}
+
 .valueRow {
     display: flex;
     width: 90%;
@@ -1140,14 +1089,14 @@ body {
     position: relative;
 }
 
-.valueSelectBase {
-    color: var(--gray-color);
-}
-
 .valueMainBtn {
     width: 90%;
     margin-top: 50px;
     height: 50px;
+}
+
+.valueBoxLeft {
+    margin-top: 0;
 }
 
 .valueDisplay {
@@ -1390,30 +1339,57 @@ body {
     color: var(--title-color);
 }
 
-/* width 1300px보다 작을 경우 */
-@media (max-width: 1300px) {
+.wrong {
+    text-align: center;
+    margin-top: 30vh;
+    font-size: 40px;
+}
+
+/* width 1320px보다 작을 경우 */
+/* 20px은 스크롤바 너비 */
+@media (max-width: 1320px) {
 
     .headerBox,
-    .bannerBox,
-    .filterBox,
+    /* .bannerBox, */
     .basicPage,
+    .filterBox,
     .mypageInfoText,
     .mypageInfoBox {
         width: 95%;
+    }
+
+    .mainText {
+        font-size: 17px;
+    }
+
+    .mypageLine {
+        width: 93%;
+    }
+
+    .mypageBox {
+        width: 100%;
+    }
+
+    .mypageCompany {
+        margin: 5px auto;
+        margin-bottom: 15px;
+    }
+
+    .mypageEditBox {
+        width: 100%;
+    }
+
+    .mypageEditInputBirth {
+        margin-left: -15px;
     }
 
     .infoBox {
         width: 100%
     }
 
-    .profile {
+    /* .profile {
         display: none;
-    }
-
-    .mypageEditInput {
-        flex: 2;
-        width: 0;
-    }
+    } */
 
     .noUserValueDisplay {
         top: -300px;
@@ -1424,6 +1400,18 @@ body {
     .headerSearchText {
         margin-right: 30px;
     }
+
+    .mypageValue {
+        display: none;
+    }
+
+    .goLinkValue {
+        margin-bottom: 20px;
+    }
+
+    .mypageEditBirth {
+        padding-left: 5px;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -1431,6 +1419,23 @@ body {
     .headerUser,
     .headerUserImg {
         display: none;
+    }
+
+    .mainTool {
+        width: 75%;
+    }
+
+    .mainLeft {
+        margin-right: 70px;
+    }
+
+    .mainRight {
+        margin-left: 70px;
+    }
+
+    .mypageEditBirth {
+        font-size: 15px;
+        padding: 7px 5px;
     }
 
     .myValueRadar {
@@ -1450,7 +1455,37 @@ body {
     }
 }
 
+@media (max-width: 1000px) {
+    .mypageEditTitle {
+        font-size: 15px;
+    }
+
+    .mypageEditBirth {
+        padding: 7px 0;
+    }
+}
+
 @media (max-width: 900px) {
+
+    .mainTool {
+        width: 80%;
+    }
+
+    .mainLeft {
+        margin-right: 50px;
+    }
+
+    .mainTitle {
+        font-size: 30px;
+    }
+
+    .mainRight {
+        margin-left: 50px;
+    }
+
+    .mypageInfoUserEdit {
+        margin: 10px 10px;
+    }
 
     .infoDetail {
         margin-right: 0;
@@ -1477,14 +1512,43 @@ body {
         margin-right: 30px;
     }
 
-    .bannerAnswer,
+    /* .bannerAnswer, */
     .headerBtn,
     .valueBoxLeft {
         display: none;
     }
 
-    .bannerBtn {
+    .mainTool {
+        width: 85%;
+    }
+
+    .mainLeft {
+        margin-right: 30px;
+    }
+
+    .mainText {
+        display: none
+    }
+
+    .mainRight {
+        margin-left: 30px;
+    }
+
+    /* .bannerBtn {
         margin-top: 40px;
+    } */
+
+    .mypageLine {
+        width: 90%;
+    }
+
+    .mypageEditInput {
+        flex: 1;
+        font-size: 15px;
+    }
+
+    .mypageEditBirthBox {
+        display: none;
     }
 
     .infoJobName {
@@ -1503,9 +1567,21 @@ body {
 
 @media (max-width: 700px) {
 
+    .signUpGroup {
+        width: 95%;
+    }
+
     .headerSearchImg,
     .headerSearchText {
         display: none;
+    }
+
+    .mainTitle {
+        font-size: 25px;
+    }
+
+    .mypageEditTitle {
+        font-size: 12px;
     }
 }
 
@@ -1521,30 +1597,229 @@ body {
         margin-right: 10px;
     }
 
+    .signUpBtn,
+    .valueMainBox {
+        width: 95%;
+    }
+
+    .signUpTitle {
+        font-size: 17px;
+    }
+
     .keepLogin {
         margin-left: 10px;
     }
 
-    .bannerImg {
-        /* display:none 안돼서 대체 */
+    .mainLeft {
+        margin-right: 20px;
+    }
+
+    .mainTitle {
+        font-size: 22px;
+    }
+
+    .mainRight {
+        margin-left: 20px;
+    }
+
+    /* .bannerImg {
         visibility: hidden;
         width: 0;
         height: 0;
-    }
+    } */
 
-    .postDetail,
-    .infoCompanyName,
     .mypageTitleUserEdit,
+    .postDetail,
     .mypageInfoUserEdit,
+    .infoCompanyName,
     .languageText {
         display: none;
-    }
-
-    .valueMainBox {
-        width: 95%;
     }
 
     .noUserValueDisplay {
         top: -300px;
     }
 }
+
+/* bannerpage START */
+/* .banner {
+    padding-top: 60px;
+    height: 250px;
+}
+
+#firstBanner {
+    background-color: rgb(0, 177, 167);
+}
+
+#secondBanner {
+    background-color: rgb(255, 180, 184);
+}
+
+.bannerBox {
+    margin: 0 auto;
+    width: 1300px;
+    display: flex;
+    color: white;
+}
+
+.bannerLeft {
+    flex: 2;
+    margin: 20px;
+    margin-top: 45px;
+    line-height: 240%;
+}
+
+.bannerTitle {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.bannerBtn {
+    height: auto;
+    font-size: 18px;
+    font-weight: 100;
+    margin-top: 10px;
+    padding: 3px 20px;
+}
+
+.bannerImg {
+    width: 150px;
+    height: 150px;
+    padding-top: 45px;
+    padding-right: 20px;
+} */
+/* banner END */
+
+/* pastmain START */
+/* .goPost {
+    display: flex;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 160px;
+}
+
+.goPostText {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.goPostImg {
+    width: 25px;
+    height: 25px;
+    margin: auto 0;
+}
+
+.mainBox {
+    display: flex;
+}
+
+.mainPostGroup {
+    flex: 3;
+}
+
+.profile {
+    border: 2px solid var(--line-color);
+    border-radius: 10px;
+    width: 300px;
+    height: 435px;
+    background-color: white;
+    margin-left: 50px;
+}
+
+.profileChartBox {
+    height: 200px;
+}
+
+.profileChart {
+    margin: 0 auto;
+}
+
+.profileInfo {
+    padding: 15px 10px;
+    background-color: var(--lightGray-color);
+}
+
+.profileText {
+    color: var(--gray-color);
+    font-size: 15px;
+}
+
+.profileEmail {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.profileInfoDetail {
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profileInfoTitle {
+    flex: 2;
+    color: var(--gray-color);
+}
+
+.profileInfoAnswer {
+    flex: 1;
+    color: var(--purple-color);
+    text-align: center;
+    display: flex;
+}
+
+.profileLink {
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.companyNext {
+    width: 18px;
+    height: 18px;
+    margin: auto 0;
+    margin-left: 35px;
+}
+
+.profileImgLeft {
+    flex: 2;
+    font-size: 15px;
+    margin: auto 0;
+    display: flex;
+}
+
+.profileImg {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--line-color);
+    border-radius: 50px;
+}
+
+.profileImgEmail {
+    width: 130px;
+    margin: auto 5px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.goProfile {
+    flex: 1;
+    color: var(--purple-color);
+    font-size: 12px;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.noProfile {
+    height: 220px;
+    background-color: var(--lightGray-color);
+    text-align: center;
+}
+
+.noProfileText {
+    font-weight: bold;
+    margin-top: 60px;
+    margin-bottom: 20px;
+} */
+/* pastmain END */

@@ -1,40 +1,53 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Banner, Header, MainProfile, NoProfile, Post } from "../../components";
+import React, { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+import { Header } from "../../components";
 
 const Main = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+
+    useEffect(() => {
+        // 전체 배경색을 바꾸고 싶다면 :root 또는 body로 조절하기
+        document.getElementsByTagName('body')[0].style.background = 'linear-gradient(to right, rgb(0, 177, 167) 50%, rgb(255, 180, 184) 50%)';
+        // 수직으로, 각각의 색을 % 비율만큼 배정
+    }, []);
 
     return (
         <>
             <Header />
-            <Banner />
-            <div className="basicPage headerFarPage">
-                <div className="goPost" onClick={() => { navigate('/'); }}>
-                    <span className="goPostText">공고 확인하기</span>
-                    <img className="goPostImg" src={require('../../assets/images/blackNext.png')} alt="next" />
-                </div>
-
+            <div className="mainPage">
                 <div className="mainBox">
+                    <div className="mainTool mainLeft">
+                        <div className="mainTitle">
+                            나의 가치관과<br />
+                            맞는 기업은 어디일까?
+                        </div>
+                        <div className="mainText">
+                            수익성, 안정성, 연봉, 사내문화, 성장가능성을<br />
+                            토대로 추천해드립니다.
+                        </div>
+                        <div className="mainImgBox">
+                            <img className="mainImg" src={require('../../assets/images/values.png')} alt='value' />
 
-                    <div className="postGroup mainPostGroup">
-                        <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
-
-                        <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
-
-                        <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
-
-                        <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
-
-                        <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
-
-                        <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
-
+                            <button className="btn mainBtn purpleBtn">기업 추천 받기</button>
+                        </div>
                     </div>
-                    {sessionStorage.getItem('userPK') ?
-                        <MainProfile img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} />
-                        :
-                        <NoProfile />}
+                </div>
+                <div className="mainBox">
+                    <div className="mainTool mainRight">
+                        <div className="mainTitle">
+                            2023 IT 트렌드<br />
+                            DATA 분석
+                        </div>
+                        <div className="mainText">
+                            AI를 활용하여 업종별 일자리 수요를<br />
+                            예측 해드립니다.
+                        </div>
+                        <div className="mainImgBox">
+                            <img className="mainImg" src={require('../../assets/images/trend.png')} alt='value' />
+
+                            <button className="btn mainBtn grayBtn">IT 트렌드 보기</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

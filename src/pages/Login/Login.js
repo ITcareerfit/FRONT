@@ -23,7 +23,7 @@ const Login = () => {
                     <img className="loginImg" src={require('../../assets/images/id.png')} alt="id" />
                     <input className="loginInput email" type="email" placeholder="이메일(이메일 주소)" />
                 </div>
-                <div className="loginInputBox">
+                <div className="loginInputBox loginInputSecond">
                     <img className="loginImg" src={require('../../assets/images/pw.png')} alt="pw" />
                     <input className="loginInput password" type="password" placeholder="비밀번호" />
                 </div>
