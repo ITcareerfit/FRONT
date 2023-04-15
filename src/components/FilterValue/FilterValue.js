@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const FilterValue = ({ name, className, mainClassName, selectBase, option, result, open }) => {
+
+    const [holder, setHolder] = useState(selectBase);
+
+    useEffect(() => { }, [selectBase]);
+
     const selectOpen = (className) => {
         if (document.getElementsByClassName(className)[0].children[1].classList.item(1) === 'selectNone') {
             if (open[0] !== '') {
@@ -15,7 +20,9 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
         }
     };
 
-    const optionSelect = (index) => {
+    const optionSelect = (index, v) => {
+        setHolder(v);
+
         switch (option.length) {
             case 2:
                 result((index + 1) / 2 * 100);
@@ -43,14 +50,16 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
                 {name}
             </div>
             <div className={className} onClick={() => selectOpen(mainClassName)}>
+
                 <div className="selectBase valueSelectBase">
-                    {selectBase}
+                    {holder}
                     <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
                 </div>
+
                 <ul className="select selectNone">
                     {option.map((v, index) => {
                         return (
-                            <li key={v + index} className="option" onClick={() => optionSelect(index)} value={index}>{v}</li>
+                            <li key={v + index} className="option" onClick={() => optionSelect(index, v)} value={index}>{v}</li>
                         );
                     })}
                 </ul>

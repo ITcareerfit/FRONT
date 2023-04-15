@@ -224,8 +224,77 @@ body {
     margin-right: 2.5px;
 }
 
+.selectGroup {
+    position: relative;
+    cursor: pointer;
+    width: 0;
+    flex: auto;
+    /* 주어진 간격동안 너비 꽉 차도록 */
+}
+
+.selectBase {
+    display: flex;
+    background-color: white;
+    border: 1px solid var(--darkLine-color);
+    border-radius: 5px;
+    color: var(--darkGray-color);
+    height: 40px;
+    padding-left: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selectSignUp {
+    height: 43px;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
 .signUpInputRight {
     margin-left: 2.5px;
+}
+
+.selectImg {
+    width: 20px;
+    height: 20px;
+    margin: auto 0;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.select {
+    position: absolute;
+    width: 90%;
+    overflow: hidden;
+    z-index: 10;
+    padding: 0;
+    margin: 0;
+}
+
+.select.selectNone {
+    /* className을 붙여서 선언하면 loginInput, password 같이 있는 태그에 적용됨 */
+    max-height: 0;
+}
+
+.select.selectBlock {
+    max-height: none;
+}
+
+.option {
+    background-color: white;
+    list-style: none;
+    cursor: pointer;
+    border: 1px solid var(--line-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0;
+    text-align: left;
+    display: list-item;
+    /* li 태그의 기본 설정으로, list 형식으로 나옴 */
+}
+
+.optionBox {
+    margin-right: 7px;
 }
 
 .signUpInside {
@@ -642,7 +711,7 @@ body {
 }
 
 .filterBoxGroup {
-    padding-top: 80px;
+    padding-top: 85px;
     border-bottom: 1px solid var(--line-color);
     background-color: var(--background-color);
 }
@@ -650,20 +719,25 @@ body {
 .filterBox {
     width: 1300px;
     margin: 0 auto;
+}
+
+.searchHeader {
+    color: var(--purple-color);
+    font-weight: bold;
+    font-size: 20px;
     margin-bottom: 15px;
+    display: flex;
+}
+
+.searchHeaderImg {
+    width: 22px;
+    margin: auto 5px;
 }
 
 .searchFilter {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-}
-
-.selectGroup {
-    position: relative;
-    cursor: pointer;
-    flex: auto;
-    /* 주어진 간격동안 너비 꽉 차도록 */
 }
 
 .selectLeft {
@@ -676,18 +750,6 @@ body {
 
 .selectRight {
     margin-left: 5px;
-}
-
-.selectBase {
-    display: flex;
-    background-color: white;
-    border: 1px solid var(--darkLine-color);
-    border-radius: 5px;
-    color: var(--darkGray-color);
-    height: 44px;
-    padding-left: 20px;
-    align-items: center;
-    cursor: pointer;
 }
 
 .inputGroup {
@@ -712,42 +774,6 @@ body {
     color: var(--darkGray-color);
 }
 
-.selectImg {
-    width: 20px;
-    height: 20px;
-    margin: auto 0;
-    margin-left: auto;
-    margin-right: 10px;
-}
-
-.select {
-    position: absolute;
-    width: 90%;
-    top: 30px;
-    overflow: hidden;
-    z-index: 10;
-    padding: 0;
-}
-
-.select.selectNone {
-    /* className을 붙여서 선언하면 loginInput, password 같이 있는 태그에 적용됨 */
-    max-height: 0;
-}
-
-.select.selectBlock {
-    max-height: none;
-}
-
-.option {
-    background-color: white;
-    list-style: none;
-    cursor: pointer;
-    border: 1px solid var(--line-color);
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 0;
-}
-
 .searchResult {
     display: flex;
     flex-wrap: wrap;
@@ -761,6 +787,12 @@ body {
     margin-right: 10px;
     margin-bottom: 10px;
     padding-left: 10px;
+}
+
+.searchResultFirst {
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
 }
 
 .xText {
@@ -790,7 +822,7 @@ body {
 
 .post {
     border: 2px solid var(--line-color);
-    border-radius: 10px;
+    border-radius: 5px;
     width: 600px;
     height: 200px;
     background-color: white;
@@ -800,15 +832,15 @@ body {
 }
 
 .postLeft {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     background-color: var(--lightGray-color);
     flex: 1;
     display: flex;
 }
 
 .postImg {
-    width: 160px;
+    width: 130px;
     height: auto;
     margin: auto;
 }
@@ -845,13 +877,12 @@ body {
 }
 
 .postBoxGroup {
-    margin: 15px 0px;
+    margin: 13px 0px;
 }
 
 .postBox {
-    border-radius: 3px;
-    padding: 0px 10px;
-    width: auto;
+    border-radius: 5px;
+    padding: 2px 10px;
     margin-right: 10px;
 }
 
@@ -898,6 +929,7 @@ body {
     border: 1px solid var(--gray-color);
     background-color: var(--gray-color);
     color: white;
+    font-size: 14px;
 }
 
 .infoBox {
@@ -916,12 +948,12 @@ body {
 
 .infoBoxTool {
     border: 1px solid var(--lightGray-color);
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: white;
 }
 
 .infoIn {
-    margin: 30px;
+    margin: 40px;
 }
 
 .infoDetail {
@@ -955,6 +987,7 @@ body {
 .infoGrayBox {
     background-color: var(--infoBackground-color);
     margin: 30px 0;
+    padding: 20px;
     display: flex;
 }
 
@@ -1000,6 +1033,10 @@ body {
     margin-left: 10px;
 }
 
+.infoApplyIn {
+    margin: 20px 30px;
+}
+
 .infoApplyHeader {
     display: flex;
 }
@@ -1027,7 +1064,7 @@ body {
 .infoBtn {
     width: 100%;
     font-size: 15px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 3px 0;
 }
 
@@ -1038,7 +1075,7 @@ body {
 .valueBox {
     flex: 1;
     text-align: center;
-    margin-top: 6vh;
+    margin-top: 9vh;
 }
 
 .valueHeader {
@@ -1070,9 +1107,9 @@ body {
 
 .valueRow {
     display: flex;
-    width: 90%;
+    width: 75%;
     margin: 0 auto;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .valueQuestion {
@@ -1097,6 +1134,11 @@ body {
 
 .valueBoxLeft {
     margin-top: 0;
+}
+
+.valueBtn {
+    margin-top: -15px;
+    margin-bottom: 15px;
 }
 
 .valueDisplay {
@@ -1186,13 +1228,14 @@ body {
     color: var(--gray-color);
     font-weight: bold;
     font-size: 17px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .companyValueDetail {
     display: flex;
     color: var(--gray-color);
     font-weight: bold;
+    margin-bottom: 12px;
 }
 
 .companyValueTitle {
@@ -1240,14 +1283,17 @@ body {
 
 .languageTrend {
     background-color: rgba(234, 250, 254, 0.8);
+    padding-top: 70px;
+}
+
+.trendTool {
+    padding-top: 0;
 }
 
 .trendPage {
     display: flex;
     width: 90%;
-    margin: 0 auto;
-    padding-bottom: 40px;
-    margin-top: -50px;
+    padding: 30px 0;
 }
 
 .trendText {
@@ -1257,7 +1303,6 @@ body {
 
 .languageText {
     flex: 2;
-    margin-top: 50px;
 }
 
 .trendTitle {
@@ -1297,13 +1342,12 @@ body {
 
 .doughnut {
     width: 400px;
-    margin: -50px auto;
+    margin: -100px auto;
     margin-bottom: -70px;
 }
 
-.jobTrend {
-    border-top: 1px solid var(--line-color);
-    border-bottom: 1px solid var(--line-color);
+.trendSection {
+    padding-top: 0px;
 }
 
 .trendGraph {

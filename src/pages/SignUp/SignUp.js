@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { Choose } from "../../components";
 
 const SignUp = () => {
+
+    const [open, setOpen] = useState('');
 
     const passWordCheck = () => {
         const pw = document.getElementsByClassName('signUpPW')[0].value;
@@ -28,7 +31,8 @@ const SignUp = () => {
                 </div>
                 <div className="signUpAnswer">
                     <input className="signUpBorder signUpPadding signUpSmall signUpInputLeft" type="text" />
-                    <input className="signUpBorder signUpPadding signUpSmall signUpInputRight" type="text" />
+
+                    <Choose className={'selectGroup selectEmail signUpInputRight'} mainClassName={'selectEmail'} option={['@naver.com', '@kakao.com', '@gmail.com']} open={[open, setOpen]} />
                 </div>
             </div>
 
@@ -86,7 +90,7 @@ const SignUp = () => {
                     <div className="smallBlue">(선택)</div>
                 </div>
                 <div className="signUpAnswer">
-                    <input className="signUpInside signUpBorder signUpPadding" type="password" />
+                    <Choose className={'selectGroup selectJob'} mainClassName={'selectJob'} option={['프론트엔드', '백엔드', 'AI']} open={[open, setOpen]} />
                 </div>
             </div>
 

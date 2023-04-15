@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-const Filter = ({ className, mainClassName, selectBase, option, result, viewResult, remove, open }) => {
+const FilterMany = ({ className, mainClassName, selectBase, option, result, viewResult, open }) => {
 
-    const [check, setCheck] = useState(null);
+    const [check, setCheck] = useState([]);
 
     useEffect(() => {
-        // viewResult 기반으로 radio 반영
-        setCheck(null);
+        // viewResult 기반으로 checkbox 반영
+        setCheck([]);
+        let makeCheck = [];
         for (let i = 0; i < option.length; i++) {
             if (viewResult.includes(option[i])) {
-                setCheck(option[i]);
-                break;
+                makeCheck = [...makeCheck, option[i]];
             }
         }
+        setCheck(makeCheck);
     }, [viewResult, option]);
 
     const selectOpen = (className) => {
@@ -40,8 +41,6 @@ const Filter = ({ className, mainClassName, selectBase, option, result, viewResu
     };
 
     const optionSelect = (name, className) => {
-        if (check !== []) remove(check);
-        setCheck(name);
         let background, text;
         switch (className) {
             case 'selectJob':
@@ -101,8 +100,9 @@ const Filter = ({ className, mainClassName, selectBase, option, result, viewResu
                     return (
                         <label key={v + index} className="option">
                             {/* label 태그로 텍스트 클릭해도 클릭 적용되도록 */}
-
-                            <input type="radio" className="optionBox" onChange={() => optionSelect(v, mainClassName)} checked={v === check} value={v} /> {/* checked 속성은 v가 check과 같다면 채워지도록 */}
+                            <input type="checkbox" className="optionBox" onChange={() => optionSelect(v, mainClassName)}
+                                checked={check.includes(v)}
+                                value={v} /> {/* checked 속성은 v가 check에 있다면 채워지도록 */}
                             {v}
                         </label>
                     );
@@ -112,4 +112,4 @@ const Filter = ({ className, mainClassName, selectBase, option, result, viewResu
     );
 };
 
-export default Filter;
+export default FilterMany;

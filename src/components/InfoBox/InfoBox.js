@@ -1,7 +1,7 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 
-const InfoBox = ({ img, job, company, jobtitle, employTitle, pay, Dday, career, loc, stack, text }) => {
+const InfoBox = ({ img, job, company, jobtitle, employTitle, pay, Dday, career, loc, stack, text, htmlText }) => {
     // const navigate = useNavigate();
 
     return (
@@ -100,6 +100,9 @@ const InfoBox = ({ img, job, company, jobtitle, employTitle, pay, Dday, career, 
                         </div>
                     );
                 })}
+
+                {/* html태그를 react에 띄우기 */}
+                <div className="infoPostText" dangerouslySetInnerHTML={{ __html: htmlText }} />
             </div>
         </div >
     );

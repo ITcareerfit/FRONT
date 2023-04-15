@@ -12,7 +12,7 @@ const InfoApply = ({ img, job, company }) => {
 
     return (
         <div className="infoApply infoBoxTool">
-            <div className="infoIn">
+            <div className="infoApplyIn">
                 <div className="infoApplyHeader">
                     <img className="infoApplyCompanyImg" src={img} alt="company" />
                     <img className="goodBtn infoGoodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={good} />

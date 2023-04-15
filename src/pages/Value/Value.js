@@ -102,6 +102,7 @@ const Value = () => {
 
                         <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
 
+                        <button className="btn valueBtn purpleBtn">공고 확인</button>
                     </div>
 
                     <div className="valueDisplay">

@@ -29,7 +29,7 @@ const Trend = () => {
             <Header />
 
             <div className="languageTrend">
-                <div className="basicPage">
+                <div className="basicPage trendTool">
                     <div className="trendPage">
                         <div className="trendText languageText">
                             <div className="trendTitle">
@@ -52,7 +52,7 @@ const Trend = () => {
             </div>
 
             <div className="jobTrend">
-                <div className="basicPage">
+                <div className="basicPage trendSection">
                     <div className="trendPage">
                         <div className="trendGraph">
                             <BarGraph labels={['1월', '2월', '3월', '4월', '5월', '6월']} label={['BackEnd', 'FrontEnd', 'AI']} datas={[[25, 37, 40, 38, 53, 49, 58], [65, 49, 58, 55, 43, 48, 30], [50, 52, 48, 45, 54, 56, 52]]} title={jobTitle} />
@@ -72,7 +72,7 @@ const Trend = () => {
             </div>
 
             <div className="jobTypeTrend">
-                <div className="basicPage">
+                <div className="basicPage trendSection">
                     <div className="trendPage">
                         <div className="trendText jobTypeText">
                             <div className="trendTitle">
