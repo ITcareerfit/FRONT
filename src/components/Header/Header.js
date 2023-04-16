@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const navigate = useNavigate();
+
     return (
         <header className="header">
             <div className="headerBox">
@@ -10,14 +11,14 @@ const Header = () => {
                     <span className="headerLogo">IT Career Fit</span>
 
                     <span className="headerSearch">
-                        <span className="headerSearchText headerValues">
+                        <span className="headerSearchText headerValues" onClick={() => { navigate('/value'); }}>
                             '나'와 기업 가치관
                         </span>
                         <img className="headerSearchImg" src={require('../../assets/images/search.png')} alt="search" />
-                        <span className="headerSearchText headerPost" onClick={() => { navigate('/employment'); }}>
+                        <span className="headerSearchText headerPost" onClick={() => { navigate('/search'); }}>
                             채용 공고
                         </span>
-                        <span className="headerSearchText headerTrend">
+                        <span className="headerSearchText headerTrend" onClick={() => { navigate('/trend'); }}>
                             2023 IT 트렌드
                         </span>
                     </span>
@@ -33,7 +34,7 @@ const Header = () => {
                                 Log Out
                             </button>
                         </>
-                        : <button className="btn headerBtn blackBtn" >
+                        : <button className="btn headerBtn blackBtn" onClick={() => { navigate('/login'); }}>
                             Log In
                         </button>
                     }

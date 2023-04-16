@@ -18,6 +18,9 @@ const Choose = ({ className, mainClassName, option, open }) => {
             document.getElementsByClassName(className)[0].children[1].classList.replace('selectNone', 'selectBlock');
             open[1](className);
 
+            // select창이 길이 차지하도록
+            if (mainClassName === 'selectJob') document.getElementsByClassName(mainClassName)[0].children[1].style.position = 'relative';
+
             // filter 배경색 변경
             document.getElementsByClassName(className)[0].children[0].style.background = 'rgb(232, 238, 243)';
         }

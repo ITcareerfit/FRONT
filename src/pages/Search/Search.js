@@ -14,6 +14,8 @@ const Search = () => {
     const [open, setOpen] = useState('');
 
     useEffect(() => {
+        document.getElementsByTagName('body')[0].style.background = 'white';
+
         document.getElementsByClassName('headerSearchImg')[0].style.width = '30px';
         document.getElementsByClassName('headerSearchImg')[0].style.height = '30px';
         document.getElementsByClassName('headerPost')[0].style.fontSize = '18px';

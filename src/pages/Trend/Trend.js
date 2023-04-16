@@ -19,6 +19,8 @@ const Trend = () => {
     const jobTypeReason = '는 대규모 프로젝트에서 안정성과 확장성이 뛰어나며, 개발 생산성과 유지 보수성도 높은';
 
     useEffect(() => {
+        document.getElementsByTagName('body')[0].style.background = 'white';
+
         document.getElementsByClassName('headerTrend')[0].style.fontSize = '18px';
         document.getElementsByClassName('headerTrend')[0].style.fontWeight = 'bold';
         document.getElementsByClassName('headerTrend')[0].style.color = 'rgb(101, 111, 119)';

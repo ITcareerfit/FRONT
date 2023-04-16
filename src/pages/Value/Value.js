@@ -19,6 +19,8 @@ const Value = () => {
     sessionStorage.setItem('userPK', 'known@user.com');
 
     useEffect(() => {
+        document.getElementsByTagName('body')[0].style.background = 'white';
+
         document.getElementsByClassName('headerValues')[0].style.fontSize = '18px';
         document.getElementsByClassName('headerValues')[0].style.fontWeight = 'bold';
         document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
