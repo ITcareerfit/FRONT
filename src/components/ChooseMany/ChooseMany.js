@@ -1,6 +1,6 @@
 import React from "react";
 
-const Choose = ({ className, mainClassName, option, open, value }) => {
+const ChooseMany = ({ className, mainClassName, option, open, value }) => {
 
     const selectOpen = (className) => {
         if (document.getElementsByClassName(className)[0].children[1].classList.item(1) === 'selectNone') {
@@ -30,7 +30,12 @@ const Choose = ({ className, mainClassName, option, open, value }) => {
     };
 
     const optionSelect = (name, className) => {
-        value[1](name);
+        if (value[0].includes(name)) {
+            const newCheck = value[0].filter(elem => elem !== name);
+            // elem이 name이면 빼고 새 배열 생성
+            value[1](newCheck);
+        }
+        else value[1]([...value[0], name]);
 
         // 창 닫고 배경색 변경
         document.getElementsByClassName(className)[0].children[1].classList.replace('selectBlock', 'selectNone');
@@ -41,7 +46,10 @@ const Choose = ({ className, mainClassName, option, open, value }) => {
     return (
         <div className={className} onClick={() => selectOpen(mainClassName)}>
             <div className="selectBase selectSignUp">
-                {value[0]}
+                {value[0].map((v, index) => {
+                    if (index !== value[0].length - 1) return v + ', ';
+                    else return v;
+                })}
                 <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
             </div>
 
@@ -50,8 +58,9 @@ const Choose = ({ className, mainClassName, option, open, value }) => {
                     return (
                         <label key={v + index} className="option">
                             {/* label 태그로 텍스트 클릭해도 클릭 적용되도록 */}
-                            <input type="radio" className="optionBox" onChange={() => optionSelect(v, mainClassName)} checked={v === value[0]} value={v} />
-                            {/* checked 속성은 v가 value[0]과 같다면 채워지도록 */}
+                            <input type="checkbox" className="optionBox" onChange={() => optionSelect(v, mainClassName)}
+                                checked={value[0].includes(v)}
+                                value={v} /> {/* checked 속성은 v가 value[0]에 있다면 채워지도록 */}
                             {v}
                         </label>
                     );
@@ -61,4 +70,4 @@ const Choose = ({ className, mainClassName, option, open, value }) => {
     );
 };
 
-export default Choose;
+export default ChooseMany;

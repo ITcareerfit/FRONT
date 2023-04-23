@@ -1,24 +1,24 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useGood } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
-const Post = ({ img, company, job, Dday, career, area, stack }) => {
-    // const navigate = useNavigate();
+const Post = ({ pk, img, company, job, Dday, career, area, stack }) => {
+    const good = useGood;
+    const navigate = useNavigate();
 
-    const good = (event) => {
-        event.target.src === require("../../assets/images/good.png")
-            ? event.target.src = require("../../assets/images/redGood.png")
-            : event.target.src = require("../../assets/images/good.png");
-    };
+    const userPK = sessionStorage.getItem('userPK');
+
+    const go = () => navigate(`/info/${pk}`);
 
     return (
         <div className="post">
-            <div className="postLeft">
+            <div className="postLeft" onClick={go}>
                 <img className="postImg" src={img} alt="companyImg" />
             </div>
 
             <div className="postText">
                 <div className="postHeader">
-                    <div className="postHeaderLeft">
+                    <div className="postHeaderLeft" onClick={go}>
                         <div className="companyName">
                             {company}
                         </div>
@@ -27,27 +27,29 @@ const Post = ({ img, company, job, Dday, career, area, stack }) => {
                         </div>
                     </div>
 
-                    <img className="goodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={good} />
+                    <img className="goodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, pk, userPK)} />
                 </div>
 
-                <div className="postBoxGroup">
-                    <span className="postBox postDdayBox">
-                        마감 D - {Dday}
-                    </span>
-                </div>
+                <div className="postFooter" onClick={go}>
 
-                <div className="postDetail">
-                    <span className="postDetailText postCareer">
-                        <img className="postDetailImg postCareerImg" src={require('../../assets/images/career.png')} alt="career" />
-                        {career}
-                    </span>
-                    <span className="postDetailText postArea">
-                        <img className="postDetailImg postAreaImg" src={require('../../assets/images/area.png')} alt="area" />
-                        {area}
-                    </span>
-                </div>
+                    <div className="postBoxGroup">
+                        <span className="postBox postDdayBox">
+                            마감 D - {Dday}
+                        </span>
+                    </div>
 
-                <div className="postBoxGroup">
+
+                    <div className="postDetail postBoxGroup">
+                        <span className="postDetailText postCareer">
+                            <img className="postDetailImg postCareerImg" src={require('../../assets/images/career.png')} alt="career" />
+                            {career}
+                        </span>
+                        <span className="postDetailText postArea">
+                            <img className="postDetailImg postAreaImg" src={require('../../assets/images/area.png')} alt="area" />
+                            {area}
+                        </span>
+                    </div>
+
                     {stack.map((v, index) => {
                         return (
                             <span key={v + index} className="postBox postStackBox">

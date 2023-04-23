@@ -28,7 +28,7 @@ const Main = () => {
                         <div className="mainImgBox">
                             <img className="mainImg" src={require('../../assets/images/values.png')} alt='value' />
 
-                            <button className="btn mainBtn purpleBtn" onClick={() => { navigate('/valueMain'); }}>기업 추천 받기</button>
+                            <button className="btn mainBtn purpleBtn" onClick={() => navigate('/valueMain')}>기업 추천 받기</button>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ const Main = () => {
                         <div className="mainImgBox">
                             <img className="mainImg" src={require('../../assets/images/trend.png')} alt='value' />
 
-                            <button className="btn mainBtn grayBtn" onClick={() => { navigate('/trend'); }}>IT 트렌드 보기</button>
+                            <button className="btn mainBtn grayBtn" onClick={() => navigate('/trend')}>IT 트렌드 보기</button>
                         </div>
                     </div>
                 </div>

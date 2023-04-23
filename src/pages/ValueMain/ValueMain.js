@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from "react";
-import cookies from "react-cookies";
+// import cookies from "react-cookies";
 import { Header, FilterValue } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 const ValueMain = () => {
     const navigate = useNavigate();
-    const [userName, setUserName] = useState('사용자');
+    const [name, setName] = useState('사용자');
     const [profit, setProfit] = useState(0);
     const [stable, setStable] = useState(0);
     const [pay, setPay] = useState(0);
     const [culture, setCulture] = useState(0);
     const [grow, setGrow] = useState(0);
     const [open, setOpen] = useState('');
-
-    // sessionStorage.clear();
-    // cookies.remove('profit');
-    // cookies.remove('stable');
-    // cookies.remove('pay');
-    // cookies.remove('culture');
-    // cookies.remove('grow');
-    sessionStorage.setItem('userPK', 'known@user.com');
 
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
@@ -29,13 +21,14 @@ const ValueMain = () => {
         document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
 
         if (sessionStorage.getItem('userPK')) {
-            setUserName(sessionStorage.getItem('userPK'));
+            setName(sessionStorage.getItem('name'));
 
-            if (cookies.load('profit')) setProfit(parseFloat(cookies.load('profit')));
-            if (cookies.load('stable')) setStable(parseFloat(cookies.load('stable')));
-            if (cookies.load('pay')) setPay(parseFloat(cookies.load('pay')));
-            if (cookies.load('culture')) setCulture(parseFloat(cookies.load('culture')));
-            if (cookies.load('grow')) setGrow(parseFloat(cookies.load('grow')));
+            // 5가지 가치 처리방법 어떻게? 로그인때 전달? -> change
+            if (sessionStorage.getItem('profit')) setProfit(parseFloat(sessionStorage.getItem('profit')));
+            if (sessionStorage.getItem('stable')) setStable(parseFloat(sessionStorage.getItem('stable')));
+            if (sessionStorage.getItem('pay')) setPay(parseFloat(sessionStorage.getItem('pay')));
+            if (sessionStorage.getItem('culture')) setCulture(parseFloat(sessionStorage.getItem('culture')));
+            if (sessionStorage.getItem('grow')) setGrow(parseFloat(sessionStorage.getItem('grow')));
         }
         else {
             document.getElementsByClassName('valueBoldGrayText')[0].style.color = 'rgb(111, 108, 217)';
@@ -53,12 +46,13 @@ const ValueMain = () => {
 
             if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup = [];
 
-            cookies.save('profit', profit);
-            cookies.save('stable', stable);
-            cookies.save('pay', pay);
-            cookies.save('culture', culture);
-            cookies.save('grow', grow);
-            cookies.save('big', maxGroup);
+            // 5가지 가치 처리방법에 따라 달라짐 -> change
+            sessionStorage.getItem('profit', profit);
+            sessionStorage.getItem('stable', stable);
+            sessionStorage.getItem('pay', pay);
+            sessionStorage.getItem('culture', culture);
+            sessionStorage.getItem('grow', grow);
+            sessionStorage.getItem('big', maxGroup);
         }
     }, [profit, stable, pay, culture, grow]);
 
@@ -71,7 +65,7 @@ const ValueMain = () => {
                     <div className="valuePageHeader">
                         <div className="valueBox">
                             <div className="valueHeader">
-                                <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
+                                <span className="valueBoldGrayText">{name}</span> 님의 가치관을 선택해주세요.
                             </div>
                             <div className="valueExplain">
                                 수익성, 안정성, 급여, 사내문화, 성장가능성을 토대로 추천해드립니다.
@@ -89,7 +83,7 @@ const ValueMain = () => {
 
                                 <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
 
-                                <button className="btn valueMainBtn purpleBtn" onClick={() => { navigate('/value'); }}>결과 확인하기</button>
+                                <button className="btn valueMainBtn purpleBtn" onClick={() => navigate('/value')}>결과 확인하기</button>
                             </div>
                         </div>
                     </div>

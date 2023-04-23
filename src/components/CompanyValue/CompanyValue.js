@@ -82,7 +82,8 @@ const CompanyValue = ({ img, company, myValue, companyValue }) => {
                     </div>
                 </div>
                 <div className="goCompany">
-                    채용정보 보기 ∨
+                    채용정보 보기
+                    <img className="mypageCompanySelect" src={require('../../assets/images/blueSelect.png')} alt="select" />
                 </div>
             </div>
             <div className="companyValueRight">

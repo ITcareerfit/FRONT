@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import cookies from "react-cookies";
+// import cookies from "react-cookies";
 import { CompanyValue, FilterValue, Header, MyValue } from "../../components";
 import { useNavigate } from "react-router-dom";
 
@@ -15,9 +15,6 @@ const Value = () => {
     const [open, setOpen] = useState('');
     const [type, setType] = useState('');
 
-    // sessionStorage.clear();
-    sessionStorage.setItem('userPK', 'known@user.com');
-
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
 
@@ -26,14 +23,15 @@ const Value = () => {
         document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
 
         if (sessionStorage.getItem('userPK')) {
-            setUserName(sessionStorage.getItem('userPK'));
+            setUserName(sessionStorage.getItem('name'));
 
-            if (cookies.load('profit')) setProfit(parseFloat(cookies.load('profit')));
-            if (cookies.load('stable')) setStable(parseFloat(cookies.load('stable')));
-            if (cookies.load('pay')) setPay(parseFloat(cookies.load('pay')));
-            if (cookies.load('culture')) setCulture(parseFloat(cookies.load('culture')));
-            if (cookies.load('grow')) setGrow(parseFloat(cookies.load('grow')));
-            if (cookies.load('big')) setBig(cookies.load('big'));
+            // 5가지 가치 처리방법 어떻게? 로그인때 전달? -> change
+            if (sessionStorage.getItem('profit')) setProfit(parseFloat(sessionStorage.getItem('profit')));
+            if (sessionStorage.getItem('stable')) setStable(parseFloat(sessionStorage.getItem('stable')));
+            if (sessionStorage.getItem('pay')) setPay(parseFloat(sessionStorage.getItem('pay')));
+            if (sessionStorage.getItem('culture')) setCulture(parseFloat(sessionStorage.getItem('culture')));
+            if (sessionStorage.getItem('grow')) setGrow(parseFloat(sessionStorage.getItem('grow')));
+            if (sessionStorage.getItem('big')) setBig(sessionStorage.getItem('big'));
 
             document.getElementsByClassName('valueDisplay')[0].style.filter = 'none';
             document.getElementsByClassName('valuePosts')[0].style.filter = 'none';
@@ -72,13 +70,14 @@ const Value = () => {
             setType(text);
         }
 
-        // 로그인 안해도 cookie 저장 -> 로그인하면 결과 확인 가능
-        cookies.save('profit', profit);
-        cookies.save('stable', stable);
-        cookies.save('pay', pay);
-        cookies.save('culture', culture);
-        cookies.save('grow', grow);
-        cookies.save('big', maxGroup);
+        // 로그인 안해도 session 저장 -> 로그인하면 결과 확인 가능
+        // 5가지 가치 처리방법에 따라 달라짐 -> change
+        sessionStorage.setItem('profit', profit);
+        sessionStorage.setItem('stable', stable);
+        sessionStorage.setItem('pay', pay);
+        sessionStorage.setItem('culture', culture);
+        sessionStorage.setItem('grow', grow);
+        sessionStorage.setItem('big', maxGroup);
     }, [profit, stable, pay, culture, grow]);
 
     return (
@@ -91,7 +90,7 @@ const Value = () => {
                             <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
                         </div>
                         <div className="valueExplain">
-                            수익성, 안정성, 급여여, 사내문화, 성장가능성을 토대로 추천해드립니다.
+                            수익성, 안정성, 급여, 사내문화, 성장가능성을 토대로 추천해드립니다.
                         </div>
 
                         <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={['1억', '2억', '3억']} result={setProfit} open={[open, setOpen]} />
@@ -103,8 +102,6 @@ const Value = () => {
                         <FilterValue name={'사내문화'} className={'selectValue culture'} mainClassName={'culture'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setCulture} open={[open, setOpen]} />
 
                         <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
-
-                        <button className="btn valueBtn purpleBtn">공고 확인</button>
                     </div>
 
                     <div className="valueDisplay">
@@ -122,10 +119,13 @@ const Value = () => {
                     로그인하고 <br />
                     결과를 확인해 보세요.
                     <br />
-                    <button className="btn noUserValueBtn purpleBtn" onClick={() => { navigate('/login'); }}>로그인 하기</button>
+                    <button className="btn noUserValueBtn purpleBtn" onClick={() => navigate('/login')}>로그인 하기</button>
                 </div>
 
                 <div className="valueSearchText">
+                    <div className="valueBtnBox">
+                        <button className="btn valueBtn purpleBtn">공고 확인</button>
+                    </div>
                     <span className="valueBoldGrayText">{userName}</span>님과 맞는 기업
                 </div>
 

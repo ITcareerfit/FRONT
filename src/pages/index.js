@@ -4,6 +4,7 @@ export { default as SignUp } from './SignUp';
 export { default as Main } from './Main';
 export { default as PastMain } from './PastMain';
 export { default as Mypage } from './Mypage';
+export { default as Goodpost } from './Mypage/Goodpost';
 export { default as Search } from './Search';
 export { default as Info } from './Info';
 export { default as ValueMain } from './ValueMain';

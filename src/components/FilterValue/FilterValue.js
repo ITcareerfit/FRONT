@@ -59,7 +59,7 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
                 <ul className="select selectNone">
                     {option.map((v, index) => {
                         return (
-                            <li key={v + index} className="option" onClick={() => optionSelect(index, v)} value={index}>{v}</li>
+                            <li key={v + index} className="option valueOption" onClick={() => optionSelect(index, v)} value={index}>{v}</li>
                         );
                     })}
                 </ul>

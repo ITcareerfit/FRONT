@@ -1,21 +1,19 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useGood } from "../../hooks";
+import { useParams } from "react-router-dom";
 
 const InfoApply = ({ img, job, company }) => {
-    // const navigate = useNavigate();
+    const good = useGood;
 
-    const good = (event) => {
-        event.target.src === require("../../assets/images/good.png")
-            ? event.target.src = require("../../assets/images/redGood.png")
-            : event.target.src = require("../../assets/images/good.png");
-    };
+    const pk = useParams().infoPK;
+    const userPK = sessionStorage.getItem('userPK');
 
     return (
         <div className="infoApply infoBoxTool">
             <div className="infoApplyIn">
                 <div className="infoApplyHeader">
                     <img className="infoApplyCompanyImg" src={img} alt="company" />
-                    <img className="goodBtn infoGoodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={good} />
+                    <img className="goodBtn infoGoodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, pk, userPK)} />
                 </div>
                 <div className="infoApplyJobName">
                     {job}

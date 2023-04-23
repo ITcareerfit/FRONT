@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Intro, Login, SignUp, Main, Mypage, Search, Info, ValueMain, Value, Trend, Wrong, PastMain } from './pages';
-// import { IsLogin } from "./router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Intro, Login, SignUp, Main, Mypage, Search, Info, ValueMain, Value, Trend, Wrong, PastMain, Goodpost } from './pages';
+import { IsLogin } from "./router";
 
 function App() {
   return (
@@ -11,10 +11,17 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
 
         <Route path="/main" element={<Main />} />
-        <Route path="/mypage" element={<Mypage />} />
+
+        <Route path="/mypage/:userPK" element={<IsLogin><Outlet /></IsLogin>}>
+          {/*:는 뒤에 변수가 옴, useParams를 이용해 id(변수) 값 설정 */}
+          {/* 여러 페이지를 route 해야 할 경우 outlet을 사용해야 올바르게 동작(없다면 goodpost가 로드안됨) */}
+          <Route path="" element={<Mypage />} />
+          <Route path="goodpost" element={<Goodpost />} />
+          {/* /goodpost 말고 goodpost면 url 뒤 /goodpost로 인식 */}
+        </Route>
+
         <Route path="/search" element={<Search />} />
-        <Route path="/info" element={<Info />} />
-        {/* <Route path="/valueMain" element={<IsLogin><Value/></IsLogin>} />*/}
+        <Route path="/info/:infoPK" element={<Info />} />
         <Route path="/valueMain" element={<ValueMain />} />
         <Route path="/value" element={<Value />} />
         <Route path="/trend" element={<Trend />} />

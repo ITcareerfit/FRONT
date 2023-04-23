@@ -26,8 +26,12 @@ body {
     /* --붙여서 선언해놓고 다른 파트 호출 가능 */
 }
 
-#root>.infoPage {
+#root>.signUpPage {
     /* root태그 바로 아래 자식 classname이 infoPage에 적용 */
+    background-color: var(--background-color);
+}
+
+#root>.infoPage {
     background-color: var(--background-color);
 }
 
@@ -102,20 +106,41 @@ body {
     border-bottom-right-radius: 5px;
 }
 
-.keepLogin {
-    margin-top: 10px;
-    margin-bottom: 40px;
-    margin-left: 70px;
+.loginCheck {
+    display: flex;
     font-size: 15px;
     color: var(--darkLine-color);
-    display: flex;
-    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
-.keepLoginImg {
+.loginCheckBox {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.keepLogin {
+    margin-left: 70px;
+}
+
+.keepImg {
     width: 20px;
     cursor: pointer;
     margin-right: 5px;
+}
+
+.keepEmail {
+    margin-right: 70px;
+}
+
+.loginError {
+    display: none;
+    color: red;
+    text-align: left;
+    margin-top: -20px;
+    margin-bottom: 5px;
+    padding-left: 5px;
 }
 
 .btn {
@@ -157,9 +182,9 @@ body {
     color: var(--green-color);
 }
 
-.signUp {
+.signUpPage {
     text-align: center;
-    margin-top: 50px;
+    padding-top: 100px;
 }
 
 .signUpHeader {
@@ -183,7 +208,7 @@ body {
 
 .signUpTitle {
     flex: 1;
-    color: var(--gray-color);
+    color: var(--darkLine-color);
     font-size: 20px;
     font-weight: bold;
     text-align: start;
@@ -248,6 +273,9 @@ body {
     height: 43px;
     font-size: 20px;
     padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    /* nowrap으로 다음줄로 넘어가지 않도록, hidden으로 넘어간 부분 가려지도록 */
 }
 
 .signUpInputRight {
@@ -305,11 +333,10 @@ body {
     flex: 1;
     font-size: 20px;
     border: none;
-    padding-left: -30px;
 }
 
 .pwCheckImg {
-    margin: auto;
+    margin: auto 5px;
     width: 30px;
     height: 30px;
 }
@@ -318,17 +345,27 @@ body {
     margin: 0 2.5px;
 }
 
+.signUpLast {
+    margin-bottom: 65px;
+}
+
 .smallBlue {
     font-size: 13px;
     color: rgb(124, 153, 255);
     margin-top: 2px;
 }
 
+.signUpError {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: red;
+}
+
 .signUpBtn {
-    width: 550px;
+    width: 600px;
     height: 50px;
     border-radius: 10px;
-    margin: 40px 0;
+    margin-bottom: 40px;
     box-shadow: 0px 5px 5px var(--silver-color);
 }
 
@@ -360,6 +397,7 @@ body {
     font-weight: bold;
     color: var(--green-color);
     margin-right: 40px;
+    cursor: pointer;
 }
 
 .headerSearch {
@@ -384,7 +422,11 @@ body {
 .headerBtnBox {
     margin: auto 0;
     margin-left: auto;
+}
+
+.headerUserBox {
     display: flex;
+    cursor: pointer;
 }
 
 .headerUserImg {
@@ -397,7 +439,27 @@ body {
     margin-right: 30px;
     font-weight: bold;
     margin: auto 5px;
-    margin-right: 20px;
+    position: relative;
+}
+
+.headerPopup {
+    position: absolute;
+    top: 48px;
+    z-index: 100;
+    width: 100%;
+    /* 부모가 position relative 여야 width 100% 동작 */
+}
+
+.headerPopupList {
+    background-color: white;
+    border: 1px solid var(--line-color);
+    border-top: none;
+    padding: 5px 15px;
+}
+
+.headerPopupList:hover {
+    /* 마우스 올리면 */
+    color: var(--green-color);
 }
 
 .headerBtn {
@@ -543,6 +605,7 @@ body {
     display: flex;
     width: 1300px;
     margin: 0 auto;
+    margin-bottom: 40px;
     border-radius: 10px;
     background-color: var(--infoBackground-color);
 }
@@ -555,7 +618,6 @@ body {
 
 .mypageValue {
     float: left;
-    /* text-align: start; */
     color: var(--gray-color);
     margin-bottom: 20px;
 }
@@ -572,7 +634,6 @@ body {
 }
 
 .mypageBox {
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -589,6 +650,7 @@ body {
     width: 150px;
     margin: 5px;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .mypageCompanyImg {
@@ -601,6 +663,7 @@ body {
 .mypageCompanyName {
     color: var(--gray-color);
     margin: 0 10px;
+    word-break: break-all;
 }
 
 .mypageCompanyLink {
@@ -618,13 +681,43 @@ body {
     width: 20px;
 }
 
+.mypageCompanyInfo {
+    display: none;
+    background-color: var(--lightGray-color);
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    word-break: break-all;
+    cursor: pointer;
+}
+
+.mypageCompanyInfoTitle {
+    border-top: 1px solid var(--line-color);
+    padding: 5px;
+}
+
+.mypageBoxSecond {
+    justify-content: space-around;
+    width: 100%;
+}
+
+.mypagePostBox {
+    width: 100%;
+}
+
+.mypagePostTool {
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
 .mypagePost {
-    width: 95%;
     border: 1px solid var(--line-color);
     border-radius: 5px;
     background-color: white;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    word-break: break-all;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .mypagePostHeader {
@@ -636,6 +729,7 @@ body {
 .mypagePostCompany {
     color: var(--gray-color);
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .mypageGood {
@@ -647,13 +741,16 @@ body {
     font-size: 22px;
     margin: 0 10px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .mypagePostDetail {
     display: flex;
     color: var(--gray-color);
-    margin-left: 10px;
+    margin: 0 10px;
     margin-bottom: 20px;
+    margin-top: auto;
+    cursor: pointer;
 }
 
 .mypagePostDetailBox {
@@ -683,7 +780,7 @@ body {
 .mypageEditInput {
     flex: 2;
     width: 0;
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     justify-content: space-between;
 }
@@ -708,6 +805,10 @@ body {
 
 .birthDetail {
     margin-right: auto;
+}
+
+.goodpostBox {
+    width: 30%;
 }
 
 .filterBoxGroup {
@@ -802,14 +903,23 @@ body {
     cursor: pointer;
 }
 
-.headerFarPage {
-    padding-top: 30px;
+.searchPage {
+    padding-top: 5px;
+}
+
+.searchBtnBox {
+    text-align: center;
+}
+
+.searchBtn {
+    font-size: 18px;
+    height: 35px;
 }
 
 .filterSearchNum {
     color: var(--gray-color);
     font-weight: bold;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .postGroup {
@@ -824,7 +934,7 @@ body {
     border: 2px solid var(--line-color);
     border-radius: 5px;
     width: 600px;
-    height: 200px;
+    height: auto;
     background-color: white;
     margin-bottom: 30px;
     display: flex;
@@ -848,6 +958,10 @@ body {
 .postText {
     margin: 15px 20px;
     flex: 2;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    /* flex를 행(세로)으로 배치 */
 }
 
 .postHeader {
@@ -891,6 +1005,11 @@ body {
     border: 1px solid rgb(205, 237, 246);
     background-color: rgb(205, 237, 246);
     color: rgb(99, 86, 215);
+}
+
+.postFooter {
+    margin-top: auto;
+    margin-bottom: 5px;
 }
 
 .postDetail {
@@ -1127,7 +1246,7 @@ body {
 }
 
 .valueMainBtn {
-    width: 90%;
+    width: 75%;
     margin-top: 50px;
     height: 50px;
 }
@@ -1136,9 +1255,8 @@ body {
     margin-top: 0;
 }
 
-.valueBtn {
-    margin-top: -15px;
-    margin-bottom: 15px;
+.valueOption {
+    padding: 10px 20px;
 }
 
 .valueDisplay {
@@ -1191,6 +1309,15 @@ body {
     border-top: 1px solid var(--line-color);
     padding-top: 20px;
     padding-left: 10px;
+}
+
+.valueBtnBox {
+    text-align: center;
+}
+
+.valueBtn {
+    margin-top: -15px;
+    margin-bottom: 15px;
 }
 
 .valuePosts {
@@ -1250,8 +1377,8 @@ body {
     font-size: 13px;
     color: blue;
     cursor: pointer;
-    margin-right: 20px;
-    text-align: right;
+    margin-left: 50%;
+    display: flex;
     position: relative;
     top: -40px;
     /* relative position으로 위치 조정 */
@@ -1293,7 +1420,8 @@ body {
 .trendPage {
     display: flex;
     width: 90%;
-    padding: 30px 0;
+    padding: 70px 0;
+    margin: 0 auto;
 }
 
 .trendText {
@@ -1460,11 +1588,6 @@ body {
 
 @media (max-width: 1100px) {
 
-    .headerUser,
-    .headerUserImg {
-        display: none;
-    }
-
     .mainTool {
         width: 75%;
     }
@@ -1480,6 +1603,10 @@ body {
     .mypageEditBirth {
         font-size: 15px;
         padding: 7px 5px;
+    }
+
+    .goodpostBox {
+        width: 48%;
     }
 
     .myValueRadar {
@@ -1500,6 +1627,11 @@ body {
 }
 
 @media (max-width: 1000px) {
+
+    .headerUserBox {
+        display: none;
+    }
+
     .mypageEditTitle {
         font-size: 15px;
     }
@@ -1611,12 +1743,15 @@ body {
 
 @media (max-width: 700px) {
 
-    .signUpGroup {
+    .signUpGroup,
+    .signUpBtn {
         width: 95%;
     }
 
     .headerSearchImg,
-    .headerSearchText {
+    .headerSearchText,
+    .mypageTitleUserEdit,
+    .mypageInfoUserEdit {
         display: none;
     }
 
@@ -1624,8 +1759,8 @@ body {
         font-size: 25px;
     }
 
-    .mypageEditTitle {
-        font-size: 12px;
+    .goCompany {
+        margin-left: 45%;
     }
 }
 
@@ -1654,6 +1789,10 @@ body {
         margin-left: 10px;
     }
 
+    .keepEmail {
+        margin-right: 10px;
+    }
+
     .mainLeft {
         margin-right: 20px;
     }
@@ -1672,16 +1811,23 @@ body {
         height: 0;
     } */
 
-    .mypageTitleUserEdit,
     .postDetail,
-    .mypageInfoUserEdit,
     .infoCompanyName,
     .languageText {
         display: none;
     }
 
+    .goodpostBox {
+        width: 100%;
+    }
+
     .noUserValueDisplay {
         top: -300px;
+    }
+
+    .goCompany {
+        padding-top: 5px;
+        margin-left: 35%;
     }
 }
 

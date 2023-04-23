@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Header, Filter, FilterInput, Post, FilterMany } from "../../components";
 // import { useNavigate } from "react-router-dom";
 
@@ -44,8 +45,7 @@ const Search = () => {
         const num = viewResult.indexOf(name);
         setViewResult((current) => {
             const newViewResult = [...current];
-            newViewResult.splice(num, 1);
-            // num위치부터 1개의 요소를 삭제
+            newViewResult.splice(num, 1); // num위치부터 1개의 요소를 삭제
             setResult(null); // result를 null로 할당해야 가장 최근에 추가한 검색어가 또 들어가지 않음
 
             return newViewResult;
@@ -56,6 +56,19 @@ const Search = () => {
             newColorSet.splice(num, 1);
             return newColorSet;
         });
+    };
+
+    const postCheck = () => {
+        // axios communication
+        if (viewResult.length) {
+            axios.post('/api/post', viewResult
+            ).then((res) => {
+                console.log(res);
+                // session change
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
     };
 
     return (
@@ -103,22 +116,28 @@ const Search = () => {
                 </div>
             </div>
 
-            <div className="basicPage headerFarPage">
+            <div className="basicPage searchPage">
+                <div className="searchBtnBox">
+                    <button className="btn searchBtn purpleBtn" onClick={postCheck}>공고 확인</button>
+                </div>
+
                 <div className="filterSearchNum">
+                    {/* num change after */}
                     검색 결과 60기업
                 </div>
                 <div className="postGroup">
-                    <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'레몬베이스'} job={'Frontend Software Engineer'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
+                    {/* infoPK 있어야함 */}
+                    <Post pk={1} img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'레몬베이스'} job={'Frontend Software Engineers'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
 
-                    <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
+                    <Post pk={1} img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
 
-                    <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'레몬베이스'} job={'Frontend Software Engineer'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
+                    <Post pk={1} img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'레몬베이스'} job={'Frontend Software Engineer'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
 
-                    <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
+                    <Post pk={1} img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
 
-                    <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'레몬베이스'} job={'Frontend Software Engineer'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
+                    <Post pk={1} img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'레몬베이스'} job={'Frontend Software Engineer'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
 
-                    <Post img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
+                    <Post pk={1} img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'네모회사'} job={'백엔드 개발자'} Dday={4} career={'경력 무관'} area={'성남시 분당구'} stack={['Java', 'Spring', 'Linux']} />
                 </div>
             </div>
         </>
