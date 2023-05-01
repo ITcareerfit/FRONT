@@ -3,18 +3,23 @@ import cookies from "react-cookies";
 const useLogout = () => {
 
     // 자동로그인 정보 없애기 & session clear
-    cookies.remove('userPK');
-    cookies.remove('id');
-    cookies.remove('name');
+    cookies.remove('userNum');
+    cookies.remove('email');
+    cookies.remove('userName');
     cookies.remove('birth');
-    cookies.remove('call');
-    cookies.remove('position');
+    cookies.remove('phone');
+    cookies.remove('pos');
     cookies.remove('goodPosts');
     cookies.remove('company1');
     cookies.remove('company2');
     cookies.remove('company3');
     cookies.remove('company4');
     cookies.remove('company5');
+    cookies.remove('profit');
+    cookies.remove('stable');
+    cookies.remove('grow');
+    cookies.remove('pay');
+    cookies.remove('culture');
 
     sessionStorage.clear();
 

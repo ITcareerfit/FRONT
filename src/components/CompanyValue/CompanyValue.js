@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MyValue from "../MyValue";
 
-const CompanyValue = ({ img, company, myValue, companyValue }) => {
+const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
     const [similar, setSimilar] = useState([]);
     const [type, setType] = useState('');
 
@@ -35,9 +35,9 @@ const CompanyValue = ({ img, company, myValue, companyValue }) => {
         <div className="companyValuePost">
             <div className="companyValueLeft">
                 <div className="companyValueIn">
-                    <img className="companyValueImg" src={img} alt="company" />
+                    <img className="companyValueImg" src={cpImg} alt="company" />
                     <div className="companyValueName">
-                        {company}
+                        {infoCpName}
                     </div>
 
                     <div className="companyValueDetail">
@@ -89,7 +89,7 @@ const CompanyValue = ({ img, company, myValue, companyValue }) => {
             <div className="companyValueRight">
                 <div className="companyValueInRight">
                     <div className="companyValueText">
-                        <span className="valueBoldGrayText">{company}</span>는&nbsp;
+                        <span className="valueBoldGrayText">{infoCpName}</span>는&nbsp;
                         <span className="companyValueMax">"{type}"</span> 부분에서 높은 일치율을 보입니다.
                     </div>
                     <div className="companyRadar">

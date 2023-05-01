@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 // import cookies from "react-cookies";
-import { CompanyValue, FilterValue, Header, MyValue } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { CompanyValue, FilterValue, Header, MyValue } from "../../components";
 
 const Value = () => {
     const navigate = useNavigate();
     const [userName, setUserName] = useState('사용자');
-    const [profit, setProfit] = useState(0);
-    const [stable, setStable] = useState(0);
-    const [pay, setPay] = useState(0);
-    const [culture, setCulture] = useState(0);
-    const [grow, setGrow] = useState(0);
+    const [profit, setProfit] = useState(-1);
+    const [stable, setStable] = useState(-1);
+    const [pay, setPay] = useState(-1);
+    const [culture, setCulture] = useState(-1);
+    const [grow, setGrow] = useState(-1);
     const [big, setBig] = useState([]);
     const [open, setOpen] = useState('');
     const [type, setType] = useState('');
@@ -22,16 +22,17 @@ const Value = () => {
         document.getElementsByClassName('headerValues')[0].style.fontWeight = 'bold';
         document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
 
-        if (sessionStorage.getItem('userPK')) {
-            setUserName(sessionStorage.getItem('name'));
+        if (sessionStorage.getItem('userNum')) {
+            setUserName(sessionStorage.getItem('userName'));
 
-            // 5가지 가치 처리방법 어떻게? 로그인때 전달? -> change
-            if (sessionStorage.getItem('profit')) setProfit(parseFloat(sessionStorage.getItem('profit')));
-            if (sessionStorage.getItem('stable')) setStable(parseFloat(sessionStorage.getItem('stable')));
-            if (sessionStorage.getItem('pay')) setPay(parseFloat(sessionStorage.getItem('pay')));
-            if (sessionStorage.getItem('culture')) setCulture(parseFloat(sessionStorage.getItem('culture')));
-            if (sessionStorage.getItem('grow')) setGrow(parseFloat(sessionStorage.getItem('grow')));
-            if (sessionStorage.getItem('big')) setBig(sessionStorage.getItem('big'));
+            if (sessionStorage.getItem('profit')) {
+                setProfit(parseFloat(sessionStorage.getItem('profit')));
+                setStable(parseFloat(sessionStorage.getItem('stable')));
+                setPay(parseFloat(sessionStorage.getItem('pay')));
+                setCulture(parseFloat(sessionStorage.getItem('culture')));
+                setGrow(parseFloat(sessionStorage.getItem('grow')));
+                setBig(sessionStorage.getItem('big'));
+            }
 
             document.getElementsByClassName('valueDisplay')[0].style.filter = 'none';
             document.getElementsByClassName('valuePosts')[0].style.filter = 'none';
@@ -70,8 +71,6 @@ const Value = () => {
             setType(text);
         }
 
-        // 로그인 안해도 session 저장 -> 로그인하면 결과 확인 가능
-        // 5가지 가치 처리방법에 따라 달라짐 -> change
         sessionStorage.setItem('profit', profit);
         sessionStorage.setItem('stable', stable);
         sessionStorage.setItem('pay', pay);
@@ -79,6 +78,13 @@ const Value = () => {
         sessionStorage.setItem('grow', grow);
         sessionStorage.setItem('big', maxGroup);
     }, [profit, stable, pay, culture, grow]);
+
+    const valuePost = () => {
+        if (sessionStorage.getItem('profit') && sessionStorage.getItem('stable') && sessionStorage.getItem('pay') && sessionStorage.getItem('culture') && sessionStorage.getItem('grow')) {
+            // axios로 profit stable, pay, culture, grow 보내고 그에 걸맞는 기업 노출
+        }
+        else alert('모든 가치관을 설정해주세요.');
+    };
 
     return (
         <>
@@ -124,19 +130,19 @@ const Value = () => {
 
                 <div className="valueSearchText">
                     <div className="valueBtnBox">
-                        <button className="btn valueBtn purpleBtn">공고 확인</button>
+                        <button className="btn valueBtn purpleBtn" onClick={valuePost}>공고 확인</button>
                     </div>
                     <span className="valueBoldGrayText">{userName}</span>님과 맞는 기업
                 </div>
 
                 <div className="postGroup valuePosts">
-                    <CompanyValue img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
 
-                    <CompanyValue img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
 
-                    <CompanyValue img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
 
-                    <CompanyValue img={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} company={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
                 </div>
             </div>
         </>

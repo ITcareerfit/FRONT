@@ -1,21 +1,20 @@
 import React from "react";
-// import axios from "axios";
 import { useGood } from "../../hooks";
 import { useNavigate, useParams } from "react-router-dom";
 
-const MypagePost = ({ pk, company, title, career, area }) => {
+const MypagePost = ({ infoId, infoCpName, title, minCareer, maxCareer, infoLoc }) => {
     const good = useGood;
     const navigate = useNavigate();
 
-    const userPK = useParams().userPK; // url의 params 가져오기
+    const userNum = useParams().userNum; // url의 params 가져오기
 
-    const go = () => navigate(`/info/${pk}`);
+    const go = () => navigate(`/info/${infoId}`);
 
     return (
         <div className="mypagePost">
             <div className="mypagePostHeader">
-                <div className="mypagePostCompany" onClick={go}>{company}</div>
-                <img className="goodBtn mypageGood" src={require('../../assets/images/redGood.png')} alt="good" onClick={(event) => good(event, pk, userPK)} />
+                <div className="mypagePostCompany" onClick={go}>{infoCpName}</div>
+                <img className="goodBtn mypageGood" src={require('../../assets/images/redGood.png')} alt="good" onClick={(event) => good(event, infoId, userNum)} />
             </div>
             <div className="mypagePostTitle" onClick={go}>
                 {title}
@@ -23,11 +22,11 @@ const MypagePost = ({ pk, company, title, career, area }) => {
             <div className="mypagePostDetail" onClick={go}>
                 <div className="mypagePostDetailBox">
                     <img className="postDetailImg" src={require('../../assets/images/career.png')} alt="career" />
-                    &nbsp;{career}
+                    &nbsp;{minCareer}{maxCareer}
                 </div>
                 <div className="mypagePostDetailBox">
                     <img className="postDetailImg postAreaImg" src={require('../../assets/images/area.png')} alt="area" />
-                    {area}
+                    {infoLoc}
                 </div>
             </div>
         </div>

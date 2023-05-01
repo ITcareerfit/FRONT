@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import axios from "axios";
 import { Choose, ChooseMany } from "../../components";
 
 const SignUp = () => {
@@ -8,20 +9,21 @@ const SignUp = () => {
     const [position, setPosition] = useState([]);
     const id = useRef(null);
     const pwCheckImg = useRef(null);
-    const name = useRef(null);
-    const birth1 = useRef(null);
-    const birth2 = useRef(null);
-    const birth3 = useRef(null);
-    const call = useRef(null);
+    const userName = useRef(null);
+    const birth = useRef(null);
+    const phone = useRef(null);
 
     const change = () => {
         document.getElementsByClassName('signUpError')[0].style.display = 'none';
-        document.getElementsByClassName('signUpErrorBirth')[0].style.display = 'none';
+
+        if (birth.current.value) {
+            birth.current.style.fontSize = '20px';
+            birth.current.style.color = 'black';
+        }
     };
 
     const passWordCheck = () => {
         document.getElementsByClassName('signUpError')[0].style.display = 'none';
-        document.getElementsByClassName('signUpErrorBirth')[0].style.display = 'none';
 
         const pw = document.getElementsByClassName('signUpPW')[0].value;
         const pwCheck = document.getElementsByClassName('signUpPWCheck')[0].value;
@@ -37,16 +39,24 @@ const SignUp = () => {
     };
 
     const signUp = () => {
-        const now = new Date();
 
-        if (id.current.value && email && pwCheckImg.current.src === require('../../assets/images/samePW.png') && name.current.value && call.current.value) {
-            if (birth1.current.value >= 1900 && birth1.current.value <= now.getFullYear() && birth2.current.value >= 1 && birth2.current.value <= 12 && birth3.current.value >= 1 && birth3.current.value <= 31) {
-                // getFullYear로 현재 년도 가져오기
+        if (id.current.value && email && pwCheckImg.current.src === require('../../assets/images/samePW.png') && birth.current.value && userName.current.value && phone.current.value) {
 
-                // axios 소통하기 (position은 빈배열 혹은 직무가 들어있음)
+            let data = {};
+            data.email = id.current.value + email;
+            data.pw = document.getElementsByClassName('signUpPW')[0].value;
+            data.userName = userName.current.value;
+            data.birth = birth.current.value;
+            data.phone = phone.current.value;
+            if (position.length !== 0) data.pos = position;
 
-            }
-            else document.getElementsByClassName('signUpErrorBirth')[0].style.display = 'block';
+            axios.post(`${process.env.REACT_APP_SERVER_URL}/signup`, data
+            ).then((res) => {
+                console.log(res);
+                console.log(res.data);
+            }).catch((err) => {
+                console.log(err);
+            });
         }
         else document.getElementsByClassName('signUpError')[0].style.display = 'block';
     };
@@ -73,7 +83,7 @@ const SignUp = () => {
                     비밀번호
                 </div>
                 <div className="signUpAnswer">
-                    <input className="signUpPW signUpInside signUpBorder signUpPadding" type="password" onChange={passWordCheck} />
+                    <input className="signUpInside signUpBorder signUpPadding signUpPW" type="password" onChange={passWordCheck} />
                 </div>
             </div>
 
@@ -82,7 +92,7 @@ const SignUp = () => {
                     비밀번호 재확인
                 </div>
                 <div className="signUpAnswer signUpBorder" >
-                    <input className="signUpPWCheck signUpBorder signUpPadding" type="password" onChange={passWordCheck} />
+                    <input className="signUpBorder signUpPadding signUpPWCheck" type="password" onChange={passWordCheck} />
                     <img className="pwCheckImg" ref={pwCheckImg} src={require('../../assets/images/pw.png')} alt="pw" />
                 </div>
             </div>
@@ -92,7 +102,7 @@ const SignUp = () => {
                     이름
                 </div>
                 <div className="signUpAnswer" onChange={change}>
-                    <input className="signUpInside signUpBorder signUpPadding" type="text" ref={name} />
+                    <input className="signUpInside signUpBorder signUpPadding" type="text" ref={userName} />
                 </div>
             </div>
 
@@ -101,9 +111,7 @@ const SignUp = () => {
                     생년월일
                 </div>
                 <div className="signUpAnswer" onChange={change}>
-                    <input className="signUpBorder signUpPadding signUpSmall signUpInputLeft" type="text" placeholder="년(4자)" ref={birth1} />
-                    <input className="signUpBorder signUpPadding signUpSmall signUpInputMiddle" type="text" placeholder="월" ref={birth2} />
-                    <input className="signUpBorder signUpPadding signUpSmall signUpInputRight" type="text" placeholder="일" ref={birth3} />
+                    <input className="signUpInside signUpBorder signUpPadding signUpBirth" type="date" ref={birth} />
                 </div>
             </div>
 
@@ -112,7 +120,7 @@ const SignUp = () => {
                     전화번호
                 </div>
                 <div className="signUpAnswer">
-                    <input className="signUpInside signUpBorder signUpPadding" type="text" placeholder="전화번호 입력 (010-0000-0000)" ref={call} onChange={change} />
+                    <input className="signUpInside signUpBorder signUpPadding" type="text" placeholder="전화번호 입력 (010-0000-0000)" ref={phone} onChange={change} />
                 </div>
             </div>
 
@@ -128,9 +136,6 @@ const SignUp = () => {
 
             <div className="signUpError" style={{ display: 'none' }}>
                 필수 입력 사항이 빠져있습니다.
-            </div>
-            <div className="signUpError signUpErrorBirth" style={{ display: 'none' }}>
-                생년월일 정보를 확인해주십시오.
             </div>
 
             <button className="btn signUpBtn greenBtn" onClick={signUp}>

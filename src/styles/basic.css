@@ -184,7 +184,9 @@ body {
 
 .signUpPage {
     text-align: center;
-    padding-top: 100px;
+    margin: 80px auto;
+    border: 1px solid var(--line-color);
+    width: 780px;
 }
 
 .signUpHeader {
@@ -292,7 +294,7 @@ body {
 
 .select {
     position: absolute;
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     z-index: 10;
     padding: 0;
@@ -305,7 +307,8 @@ body {
 }
 
 .select.selectBlock {
-    max-height: none;
+    max-height: 250px;
+    overflow-y: auto;
 }
 
 .option {
@@ -319,6 +322,10 @@ body {
     text-align: left;
     display: list-item;
     /* li 태그의 기본 설정으로, list 형식으로 나옴 */
+}
+
+.option:hover {
+    background-color: var(--line-color);
 }
 
 .optionBox {
@@ -341,8 +348,10 @@ body {
     height: 30px;
 }
 
-.signUpInputMiddle {
-    margin: 0 2.5px;
+.signUpBirth {
+    padding-right: 10px;
+    color: var(--darkLine-color);
+    font-size: 17px;
 }
 
 .signUpLast {
@@ -811,6 +820,33 @@ body {
     width: 30%;
 }
 
+.pagination {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.footerBtn {
+    border: 1px solid var(--line-color);
+    background-color: white;
+    margin: 0 2px;
+    border-radius: 3px;
+}
+
+.footerBtn:hover {
+    color: var(--green-color);
+}
+
+.footerBtn:disabled {
+    /* footerBtn 비활성화일때 */
+    border: none;
+    background-color: rgb(240, 240, 240);
+}
+
+.footerBtn:disabled:hover {
+    /* footerBtn 비활성화일때 hover */
+    color: rgba(16, 16, 16, 0.302);
+}
+
 .filterBoxGroup {
     padding-top: 85px;
     border-bottom: 1px solid var(--line-color);
@@ -905,15 +941,6 @@ body {
 
 .searchPage {
     padding-top: 5px;
-}
-
-.searchBtnBox {
-    text-align: center;
-}
-
-.searchBtn {
-    font-size: 18px;
-    height: 35px;
 }
 
 .filterSearchNum {
@@ -1020,6 +1047,7 @@ body {
 
 .postDetailText {
     display: flex;
+    margin: auto 0;
 }
 
 .postCareer {
@@ -1042,6 +1070,11 @@ body {
 
 .postAreaImg {
     width: 22px;
+}
+
+.postStackBoxs {
+    display: inline-block;
+    margin: 2px 0;
 }
 
 .postStackBox {
@@ -1569,6 +1602,7 @@ body {
 }
 
 @media (max-width: 1200px) {
+
     .headerSearchText {
         margin-right: 30px;
     }
@@ -1680,6 +1714,13 @@ body {
 }
 
 @media (max-width: 800px) {
+
+    .signUpPage,
+    .signUpGroup,
+    .signUpBtn {
+        width: 95%;
+    }
+
     .headerSearchText {
         margin-right: 10px;
     }
@@ -1743,9 +1784,8 @@ body {
 
 @media (max-width: 700px) {
 
-    .signUpGroup,
-    .signUpBtn {
-        width: 95%;
+    .signUpTitle {
+        font-size: 18px;
     }
 
     .headerSearchImg,
@@ -1782,7 +1822,7 @@ body {
     }
 
     .signUpTitle {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .keepLogin {

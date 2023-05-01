@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const MypageCompany = ({ id, img, name, info, title, open }) => {
+const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
     const navigate = useNavigate();
 
     const check = () => {
@@ -24,9 +24,9 @@ const MypageCompany = ({ id, img, name, info, title, open }) => {
 
     return (
         <div className="mypageCompany">
-            <img className="mypageCompanyImg" src={img} alt="companyLogo" />
+            <img className="mypageCompanyImg" src={cpImg} alt="companyLogo" />
 
-            <div className="mypageCompanyName">{name}</div>
+            <div className="mypageCompanyName">{cpName}</div>
 
             <div className="mypageCompanyLink" onClick={check}>
                 채용정보
@@ -34,7 +34,7 @@ const MypageCompany = ({ id, img, name, info, title, open }) => {
             </div>
 
             <div className="mypageCompanyInfo" id={id}>
-                {info.map((v, index) => {
+                {infoIds.map((v, index) => {
                     return (
                         <div className="mypageCompanyInfoTitle" key={v + index} onClick={() => navigate(`/info/${v}`)}>
                             {title[index]}

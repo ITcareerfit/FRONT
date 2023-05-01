@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const useGood = (event, pk, userPK) => {
+const useGood = (event, infoId, userNum) => {
     let post = {};
-    post.infoPK = pk;
-    post.userPK = userPK;
+    post.infoId = infoId;
+    post.userNum = userNum;
 
     if (event.target.src === require("../../assets/images/good.png")) {
         // add
@@ -22,7 +22,7 @@ const useGood = (event, pk, userPK) => {
         sessionStorage.setItem('goodPosts', res);
     }).catch((err) => {
         console.log(err);
-        alert('관심공고 등록을 진행할 수 없습니다.');
+        alert('다시 시도해주십시오.');
     });
 };
 

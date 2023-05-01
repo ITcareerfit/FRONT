@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const ValueMain = () => {
     const navigate = useNavigate();
-    const [name, setName] = useState('사용자');
-    const [profit, setProfit] = useState(0);
-    const [stable, setStable] = useState(0);
-    const [pay, setPay] = useState(0);
-    const [culture, setCulture] = useState(0);
-    const [grow, setGrow] = useState(0);
+    const [userName, setUserName] = useState('사용자');
+    const [profit, setProfit] = useState(-1);
+    const [stable, setStable] = useState(-1);
+    const [pay, setPay] = useState(-1);
+    const [culture, setCulture] = useState(-1);
+    const [grow, setGrow] = useState(-1);
     const [open, setOpen] = useState('');
 
     useEffect(() => {
@@ -20,15 +20,16 @@ const ValueMain = () => {
         document.getElementsByClassName('headerValues')[0].style.fontWeight = 'bold';
         document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
 
-        if (sessionStorage.getItem('userPK')) {
-            setName(sessionStorage.getItem('name'));
+        if (sessionStorage.getItem('userNum')) {
+            setUserName(sessionStorage.getItem('userName'));
 
-            // 5가지 가치 처리방법 어떻게? 로그인때 전달? -> change
-            if (sessionStorage.getItem('profit')) setProfit(parseFloat(sessionStorage.getItem('profit')));
-            if (sessionStorage.getItem('stable')) setStable(parseFloat(sessionStorage.getItem('stable')));
-            if (sessionStorage.getItem('pay')) setPay(parseFloat(sessionStorage.getItem('pay')));
-            if (sessionStorage.getItem('culture')) setCulture(parseFloat(sessionStorage.getItem('culture')));
-            if (sessionStorage.getItem('grow')) setGrow(parseFloat(sessionStorage.getItem('grow')));
+            if (sessionStorage.getItem('profit')) {
+                setProfit(parseFloat(sessionStorage.getItem('profit')));
+                setStable(parseFloat(sessionStorage.getItem('stable')));
+                setPay(parseFloat(sessionStorage.getItem('pay')));
+                setCulture(parseFloat(sessionStorage.getItem('culture')));
+                setGrow(parseFloat(sessionStorage.getItem('grow')));
+            }
         }
         else {
             document.getElementsByClassName('valueBoldGrayText')[0].style.color = 'rgb(111, 108, 217)';
@@ -36,26 +37,33 @@ const ValueMain = () => {
     }, []);
 
     useEffect(() => {
-        if (sessionStorage.getItem('userPK')) {
-            const valueGroup = [profit, stable, pay, culture, grow];
-            const max = Math.max(...valueGroup);
-            let maxGroup = [];
-            for (let i = 0; i < 5; i++) {
-                if (valueGroup[i] === max) maxGroup.push(i);
-            }
-
-            if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup = [];
-
-            // 5가지 가치 처리방법에 따라 달라짐 -> change
-            sessionStorage.getItem('profit', profit);
-            sessionStorage.getItem('stable', stable);
-            sessionStorage.getItem('pay', pay);
-            sessionStorage.getItem('culture', culture);
-            sessionStorage.getItem('grow', grow);
-            sessionStorage.getItem('big', maxGroup);
+        // 로그인 안해도 저장
+        const valueGroup = [profit, stable, pay, culture, grow];
+        const max = Math.max(...valueGroup);
+        let maxGroup = [];
+        for (let i = 0; i < 5; i++) {
+            if (valueGroup[i] === max) maxGroup.push(i);
         }
+
+        if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup = [];
+
+        sessionStorage.setItem('profit', profit);
+        sessionStorage.setItem('stable', stable);
+        sessionStorage.setItem('pay', pay);
+        sessionStorage.setItem('culture', culture);
+        sessionStorage.setItem('grow', grow);
+        sessionStorage.setItem('big', maxGroup);
     }, [profit, stable, pay, culture, grow]);
 
+    const valueCheck = () => { // useValueCheck으로 hook화 & value페이지에도 적용
+        if (profit === -1 || stable === -1 || pay === -1 || culture === -1 || grow === -1) {
+            alert('모든 가치관을 설정해주세요.');
+        }
+        else {
+            // axios로 값 보내기
+            navigate('/value');
+        }
+    };
 
     return (
         <>
@@ -65,7 +73,7 @@ const ValueMain = () => {
                     <div className="valuePageHeader">
                         <div className="valueBox">
                             <div className="valueHeader">
-                                <span className="valueBoldGrayText">{name}</span> 님의 가치관을 선택해주세요.
+                                <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
                             </div>
                             <div className="valueExplain">
                                 수익성, 안정성, 급여, 사내문화, 성장가능성을 토대로 추천해드립니다.
@@ -83,7 +91,7 @@ const ValueMain = () => {
 
                                 <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
 
-                                <button className="btn valueMainBtn purpleBtn" onClick={() => navigate('/value')}>결과 확인하기</button>
+                                <button className="btn valueMainBtn purpleBtn" onClick={valueCheck}>결과 확인하기</button>
                             </div>
                         </div>
                     </div>

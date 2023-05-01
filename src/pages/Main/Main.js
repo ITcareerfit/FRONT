@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components";
+import { useValueNav } from "../../hooks";
 
 const Main = () => {
     const navigate = useNavigate();
+    const value = useValueNav;
 
     useEffect(() => {
         // 전체 배경색을 바꾸고 싶다면 :root 또는 body로 조절하기
@@ -28,7 +30,7 @@ const Main = () => {
                         <div className="mainImgBox">
                             <img className="mainImg" src={require('../../assets/images/values.png')} alt='value' />
 
-                            <button className="btn mainBtn purpleBtn" onClick={() => navigate('/valueMain')}>기업 추천 받기</button>
+                            <button className="btn mainBtn purpleBtn" onClick={() => value(navigate)}>기업 추천 받기</button>
                         </div>
                     </div>
                 </div>

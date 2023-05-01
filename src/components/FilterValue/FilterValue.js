@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useSelectOpen } from "../../hooks";
 
 const FilterValue = ({ name, className, mainClassName, selectBase, option, result, open }) => {
+    const selectOpen = useSelectOpen;
 
     const [holder, setHolder] = useState(selectBase);
 
     useEffect(() => { }, [selectBase]);
-
-    const selectOpen = (className) => {
-        if (document.getElementsByClassName(className)[0].children[1].classList.item(1) === 'selectNone') {
-            if (open[0] !== '') {
-                document.getElementsByClassName(open[0])[0].children[1].classList.replace('selectBlock', 'selectNone');
-            }
-            document.getElementsByClassName(className)[0].children[1].classList.replace('selectNone', 'selectBlock');
-            open[1](className);
-        }
-        else {
-            document.getElementsByClassName(className)[0].children[1].classList.replace('selectBlock', 'selectNone');
-            open[1]('');
-        }
-    };
 
     const optionSelect = (index, v) => {
         setHolder(v);
@@ -49,7 +37,7 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
             <div className="valueQuestion">
                 {name}
             </div>
-            <div className={className} onClick={() => selectOpen(mainClassName)}>
+            <div className={className} onClick={() => selectOpen(mainClassName, open)}>
 
                 <div className="selectBase valueSelectBase">
                     {holder}

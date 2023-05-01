@@ -2,61 +2,82 @@ import React from "react";
 import { useGood } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 
-const Post = ({ pk, img, company, job, Dday, career, area, stack }) => {
+const Post = ({ infoId, cpImg, infoCpName, title, deadline, minCareer, maxCareer, infoLoc, infoTech }) => {
     const good = useGood;
     const navigate = useNavigate();
 
-    const userPK = sessionStorage.getItem('userPK');
+    const userNum = sessionStorage.getItem('userNum');
 
-    const go = () => navigate(`/info/${pk}`);
+    const go = () => navigate(`/info/${infoId}`);
 
     return (
         <div className="post">
             <div className="postLeft" onClick={go}>
-                <img className="postImg" src={img} alt="companyImg" />
+                {cpImg
+                    ? <img className="postImg" src={cpImg} alt="companyImg" />
+                    : <img className="postImg" src={require('../../assets/images/logo.png')} alt="companyImg" />}
             </div>
 
             <div className="postText">
                 <div className="postHeader">
                     <div className="postHeaderLeft" onClick={go}>
                         <div className="companyName">
-                            {company}
+                            {infoCpName}
                         </div>
                         <div className="jobName">
-                            {job}
+                            {title}
                         </div>
                     </div>
-
-                    <img className="goodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, pk, userPK)} />
+                    <img className="goodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, infoId, userNum)} />
                 </div>
 
                 <div className="postFooter" onClick={go}>
 
                     <div className="postBoxGroup">
                         <span className="postBox postDdayBox">
-                            마감 D - {Dday}
+                            {deadline
+                                ? `~ ${deadline[0]}년 ${deadline[1]}월 ${deadline[2]}일`
+                                : '상시 모집'}
                         </span>
                     </div>
-
-
                     <div className="postDetail postBoxGroup">
                         <span className="postDetailText postCareer">
                             <img className="postDetailImg postCareerImg" src={require('../../assets/images/career.png')} alt="career" />
-                            {career}
+                            {minCareer === -1 && maxCareer === -1
+                                ? '경력 무관'
+                                : minCareer === 0 && maxCareer === 0
+                                    ? '신입'
+                                    : `${minCareer}년 ~ ${maxCareer}년`}
                         </span>
                         <span className="postDetailText postArea">
                             <img className="postDetailImg postAreaImg" src={require('../../assets/images/area.png')} alt="area" />
-                            {area}
+                            {infoLoc
+                                ? infoLoc.split(' ').map((v, index) => (
+                                    index <= 5
+                                        ? v + ' '
+                                        : null
+                                ))
+                                : ' -'}
                         </span>
                     </div>
 
-                    {stack.map((v, index) => {
-                        return (
-                            <span key={v + index} className="postBox postStackBox">
-                                {v}
-                            </span>
-                        );
-                    })}
+                    {infoTech
+                        ? infoTech.map((v, index) => (
+                            v !== '' && index < 3
+                                ? <div key={v + index} className="postStackBoxs">
+                                    <span className="postBox postStackBox">
+                                        {v}
+                                    </span>
+                                </div>
+                                : index === 4
+                                    ? <div key={v + index} className="postStackBoxs">
+                                        <span className="postBox postStackBox">
+                                            {'...'}
+                                        </span>
+                                    </div>
+                                    : null
+                        ))
+                        : null}
                 </div>
             </div>
         </div>

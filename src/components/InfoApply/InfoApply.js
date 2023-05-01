@@ -1,27 +1,28 @@
 import React from "react";
 import { useGood } from "../../hooks";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const InfoApply = ({ img, job, company }) => {
+const InfoApply = ({ cpImg, title, infoCpName }) => {
+    const navigate = useNavigate();
     const good = useGood;
 
-    const pk = useParams().infoPK;
-    const userPK = sessionStorage.getItem('userPK');
+    const infoId = useParams().infoId;
+    const userNum = sessionStorage.getItem('userNum');
 
     return (
         <div className="infoApply infoBoxTool">
             <div className="infoApplyIn">
                 <div className="infoApplyHeader">
-                    <img className="infoApplyCompanyImg" src={img} alt="company" />
-                    <img className="goodBtn infoGoodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, pk, userPK)} />
+                    <img className="infoApplyCompanyImg" src={cpImg} alt="company" />
+                    <img className="goodBtn infoGoodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, infoId, userNum)} />
                 </div>
                 <div className="infoApplyJobName">
-                    {job}
+                    {title}
                 </div>
                 <div className="infoApplyCompanyName">
-                    {company}
+                    {infoCpName}
                 </div>
-                <button className="btn infoBtn purpleBtn">지원하기</button>
+                <button className="btn infoBtn purpleBtn" onClick={() => navigate('/login')}>지원하기</button>
             </div>
         </div>
     );

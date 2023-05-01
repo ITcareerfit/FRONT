@@ -12,8 +12,8 @@ function App() {
 
         <Route path="/main" element={<Main />} />
 
-        <Route path="/mypage/:userPK" element={<IsLogin><Outlet /></IsLogin>}>
-          {/*:는 뒤에 변수가 옴, useParams를 이용해 id(변수) 값 설정 */}
+        <Route path="/mypage/:userNum" element={<IsLogin><Outlet /></IsLogin>}>
+          {/*:는 뒤에 변수가 옴, useParams를 이용해 userNum(변수) 값 설정 */}
           {/* 여러 페이지를 route 해야 할 경우 outlet을 사용해야 올바르게 동작(없다면 goodpost가 로드안됨) */}
           <Route path="" element={<Mypage />} />
           <Route path="goodpost" element={<Goodpost />} />
@@ -21,7 +21,7 @@ function App() {
         </Route>
 
         <Route path="/search" element={<Search />} />
-        <Route path="/info/:infoPK" element={<Info />} />
+        <Route path="/info/:infoId" element={<Info />} />
         <Route path="/valueMain" element={<ValueMain />} />
         <Route path="/value" element={<Value />} />
         <Route path="/trend" element={<Trend />} />

@@ -9,18 +9,23 @@ const Login = () => {
     const keepEmail = useRef(null);
 
     // delete after
-    sessionStorage.setItem('userPK', 12345);
-    sessionStorage.setItem('id', 'userIDuserID@site.com');
-    sessionStorage.setItem('name', '홍길동');
-    sessionStorage.setItem('birth', [2001, 11, 18]);
-    sessionStorage.setItem('call', '010-0000-0000');
-    sessionStorage.setItem('position', ['백엔드']);
-    sessionStorage.setItem('goodPosts', [11, 22, 33]);
-    sessionStorage.setItem('company1', 11);
-    sessionStorage.setItem('company2', 22);
-    sessionStorage.setItem('company3', 33);
-    sessionStorage.setItem('company4', 44);
-    sessionStorage.setItem('company5', 55);
+    sessionStorage.setItem('userNum', 12345);
+    sessionStorage.setItem('email', 'userIDuserID@site.com');
+    sessionStorage.setItem('userName', '홍길동');
+    sessionStorage.setItem('birth', '2001-04-05');
+    sessionStorage.setItem('phone', '010-0000-0000');
+    sessionStorage.setItem('pos', ['백엔드']);
+    sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
+    sessionStorage.setItem('company1', '쿠팡');
+    sessionStorage.setItem('company2', '카카오');
+    sessionStorage.setItem('company3', '네이버');
+    sessionStorage.setItem('company4', '베달의 민족');
+    sessionStorage.setItem('company5', '한화');
+    sessionStorage.setItem('profit', 1);
+    sessionStorage.setItem('stable', 1);
+    sessionStorage.setItem('grow', 1);
+    sessionStorage.setItem('pay', 1);
+    sessionStorage.setItem('culture', 1);
 
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
@@ -60,54 +65,81 @@ const Login = () => {
         if (!email.includes('@')) document.getElementsByClassName('emailError')[0].style.display = 'block';
         else if (pw === '') document.getElementsByClassName('pwError')[0].style.display = 'block';
         else {
-            axios.post('/api/login/test', {
+            axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, {
                 email: email,
                 pw: pw
             }).then((res) => { //axios.post 성공하면
-                console.log(res);
+                if (res.data.message === 'no') document.getElementsByClassName('enterError')[0].style.display = 'block';
+                else {
 
-                // session에 정보 저장
-                // change res data
-                sessionStorage.setItem('userPK', 12345);
-                sessionStorage.setItem('id', 'userIDuserID@site.com');
-                sessionStorage.setItem('name', '홍길동');
-                sessionStorage.setItem('birth', [2001, 11, 18]);
-                sessionStorage.setItem('call', '010-0000-0000');
-                sessionStorage.setItem('position', ['백엔드']);
-                sessionStorage.setItem('goodPosts', [1, 2, 3]);
-                sessionStorage.setItem('company1', 11);
-                sessionStorage.setItem('company2', 22);
-                sessionStorage.setItem('company3', 33);
-                sessionStorage.setItem('company4', 44);
-                sessionStorage.setItem('company5', 55);
-
-                // 로그인 유지하기
-                if (keepLogin.current.classList.contains('keep')) {
-                    // cookies에 정보 저장
+                    // session에 정보 저장
                     // change res data
-                    cookies.save('userPK', 12345);
-                    cookies.save('id', 'userIDuserID@site.com');
-                    cookies.save('name', '홍길동');
-                    cookies.save('birth', [2001, 11, 18]);
-                    cookies.save('call', '010-0000-0000');
-                    cookies.save('position', ['백엔드']);
-                    cookies.save('goodPosts', [1, 2, 3]);
-                    cookies.save('company1', 11);
-                    cookies.save('company2', 22);
-                    cookies.save('company3', 33);
-                    cookies.save('company4', 44);
-                    cookies.save('company5', 55);
-                }
-                // 이메일 기억하기
-                else if (keepEmail.current.classList.contains('keep')) cookies.save('email', email);
+                    sessionStorage.setItem('userNum', 12345);
+                    sessionStorage.setItem('email', 'userIDuserID@site.com');
+                    sessionStorage.setItem('userName', '홍길동');
+                    sessionStorage.setItem('birth', '2001-04-05');
+                    sessionStorage.setItem('phone', '010-0000-0000');
+                    sessionStorage.setItem('pos', ['백엔드']);
+                    sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
+                    sessionStorage.setItem('company1', '쿠팡');
+                    sessionStorage.setItem('company2', '카카오');
+                    sessionStorage.setItem('company3', '네이버');
+                    sessionStorage.setItem('company4', '베달의 민족');
+                    sessionStorage.setItem('company5', '한화');
+                    sessionStorage.setItem('profit', 1);
+                    sessionStorage.setItem('stable', 1);
+                    sessionStorage.setItem('grow', 1);
+                    sessionStorage.setItem('pay', 1);
+                    sessionStorage.setItem('culture', 1);
+                    const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('culture'));
+                    sessionStorage.setItem('big', big);
 
-                navigate(-1); // 이전 페이지로 이동
+                    // 로그인 유지하기 -> cookies
+                    if (keepLogin.current.classList.contains('keep')) {
 
+                        // change res data
+                        cookies.save('userNum', 12345);
+                        cookies.save('email', 'userIDuserID@site.com');
+                        cookies.save('userName', '홍길동');
+                        cookies.save('birth', '2001-04-05');
+                        cookies.save('phone', '010-0000-0000');
+                        cookies.save('pos', ['백엔드']);
+                        cookies.save('goodPosts', [11, 22, 33, 44, 55, 66]);
+                        cookies.save('company1', '쿠팡');
+                        cookies.save('company2', '카카오');
+                        cookies.save('company3', '네이버');
+                        cookies.save('company4', '베달의 민족');
+                        cookies.save('company5', '한화');
+                        cookies.save('profit', 1);
+                        cookies.save('stable', 1);
+                        cookies.save('grow', 1);
+                        cookies.save('pay', 1);
+                        cookies.save('culture', 1);
+                        const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('culture'));
+                        cookies.save('big', big);
+
+                        navigate(-1); // 이전 페이지로 이동
+                    }
+                    // 이메일 기억하기
+                    else if (keepEmail.current.classList.contains('keep')) cookies.save('email', email);
+                };
             }).catch((err) => { //axios.post 에러나면
                 console.log(err);
                 document.getElementsByClassName('enterError')[0].style.display = 'block';
             });
         }
+    };
+
+    const makeBig = (profit, stable, pay, culture, grow) => {
+        const valueGroup = [profit, stable, pay, culture, grow];
+        const max = Math.max(...valueGroup);
+        let maxGroup = [];
+        for (let i = 0; i < 5; i++) {
+            if (valueGroup[i] === max) maxGroup.push(i);
+        }
+
+        if (maxGroup.length === 5 || maxGroup.length === 4) maxGroup = [];
+        return maxGroup;
     };
 
     return (
