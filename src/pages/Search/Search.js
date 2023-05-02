@@ -15,7 +15,7 @@ const Search = () => {
     const [maxPage, setMaxPage] = useState(1);
     const [job, setJob] = useState([]);
     const [stack, setStack] = useState([]);
-    const [company, setCompany] = useState([]);
+    const [company, setCompany] = useState('');
     const [jobType, setJobType] = useState([]);
     const [employee, setEmployee] = useState('');
     const [pay, setPay] = useState('');
@@ -45,13 +45,18 @@ const Search = () => {
     }, [navigate, page]);
 
     useEffect(() => {
-        // result가 이미 viewResult에 있으면 안들어가게 하기
-        if (result !== null && !viewResult.includes(result)) setViewResult([result, ...viewResult]);
+        // result가 이미 viewResult에 있을때 없애기
+        if (result !== null) {
+            let newViewResult = viewResult.filter(data => data[0] !== result[0]); // data!==result는 안됨 -> 참조값이 달라서 항상 다른값
 
-        // radio에서 한 개만 선택되도록 하기
-        if (removeResult !== null) {
-            const newViewResult = viewResult.filter(data => data[0] !== removeResult[0]);
-            setRemoveResult(null);
+            // input, radio에서 한 개만 선택되도록 하기
+            if (removeResult !== null) {
+                newViewResult = newViewResult.filter(data => data[0] !== removeResult[0]);
+                setRemoveResult(null);
+            }
+
+            newViewResult.unshift(result); // 맨 앞에 삽입
+            setResult(null);
             setViewResult(newViewResult);
         }
     }, [result, removeResult, viewResult]);
@@ -60,7 +65,7 @@ const Search = () => {
         axios.post(`${process.env.REACT_APP_SERVER_URL}/search`, {
             job: String(job).split('^'), // string으로 변환 후 ^ 기준으로 나누기 -> 배열화
             stack: String(stack).split('^'),
-            company: String(company).split('^'),
+            company: company,
             jobType: String(jobType).split('^'),
             employee: employee,
             pay: pay,
@@ -100,7 +105,7 @@ const Search = () => {
 
                         <FilterInput className={'selectGroup selectMiddle'} mainClassName={'selectStack'} inputClassName={'selectBase selectInput selectStack'} placeholder={'기술 스택'} result={setResult} viewResult={viewResult} send={[stack, setStack]} />
 
-                        <FilterInput className={'selectGroup selectRight'} mainClassName={'selectCompany'} inputClassName={'selectBase selectInput selectCompany'} placeholder={'기업명'} result={setResult} viewResult={viewResult} send={[company, setCompany]} />
+                        <FilterInput className={'selectGroup selectRight'} mainClassName={'selectCompany'} inputClassName={'selectBase selectInput selectCompany'} placeholder={'기업명'} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={[company, setCompany]} />
                     </div>
 
                     <div className="searchFilter">

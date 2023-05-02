@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const FilterInput = ({ className, mainClassName, inputClassName, placeholder, result, viewResult, send }) => {
+const FilterInput = ({ className, mainClassName, inputClassName, placeholder, result, viewResult, remove, send }) => {
 
     useEffect(() => {
         let background;
@@ -29,6 +29,7 @@ const FilterInput = ({ className, mainClassName, inputClassName, placeholder, re
             case 'selectCompany':
                 background = 'rgb(205, 237, 246)';
                 text = 'rgb(111, 108, 217)';
+                if (send[0] !== '') remove([send[0], background, text]);
                 result([search, background, text]);
                 break;
             default:
