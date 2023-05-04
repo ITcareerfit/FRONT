@@ -11,17 +11,25 @@ const Filter = ({ className, mainClassName, selectBase, option, result, viewResu
         setCheck(null);
         let flag = 0;
         let background, text;
-        if (mainClassName === 'selectEmployee') {
-            background = 'rgb(250, 244, 211)';
-            text = 'rgb(202, 131, 121)';
-        }
-        else if (mainClassName === 'selectPay') {
-            background = 'rgb(255, 236, 214)';
-            text = 'rgb(202, 131, 121)';
-        }
-        else {
-            background = 'rgb(255, 204, 204)';
-            text = 'rgb(255, 124, 140)';
+        switch (mainClassName) {
+            case 'selectType':
+                background = 'rgb(234, 242, 215)';
+                text = 'rgb(104, 134, 122)';
+                break;
+            case 'selectEmployee':
+                background = 'rgb(250, 244, 211)';
+                text = 'rgb(202, 131, 121)';
+                break;
+            case 'selectPay':
+                background = 'rgb(255, 236, 214)';
+                text = 'rgb(202, 131, 121)';
+                break;
+            case 'selectCareer':
+                background = 'rgb(255, 204, 204)';
+                text = 'rgb(255, 124, 140)';
+                break;
+            default:
+                break;
         }
 
         for (let i = 0; i < viewResult.length; i++) {
@@ -43,6 +51,12 @@ const Filter = ({ className, mainClassName, selectBase, option, result, viewResu
         if (check !== null) remove(check);
         let background, text;
         switch (className) {
+            case 'selectType':
+                background = 'rgb(234, 242, 215)';
+                text = 'rgb(104, 134, 122)';
+                result([name, background, text]);
+                setCheck([name, background, text]);
+                break;
             case 'selectEmployee':
                 background = 'rgb(250, 244, 211)';
                 text = 'rgb(202, 131, 121)';

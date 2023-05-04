@@ -1,12 +1,14 @@
 import React from "react";
 
-const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, deadline, minCareer, maxCareer, infoLoc, infoTech, text, content }) => {
+const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, deadline, minCareer, maxCareer, infoLoc, infoTech, content }) => {
 
     return (
         <div className="infoLeft infoBoxTool">
             <div className="infoIn">
                 <div className="infoDetail">
-                    <img className="infoCompanyImg" src={cpImg} alt="company" />
+                    {cpImg
+                        ? <img className="infoCompanyImg" src={cpImg} alt="companyImg" />
+                        : <img className="infoCompanyImg" src={require('../../assets/images/logo.png')} alt="companyImg" />}
                     <div className="infoDetailRight">
                         <div className="infoJobName">
                             {title}
@@ -24,7 +26,8 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                                 직무
                             </div>
                             <div className="infoBoxAnswer">
-                                {infoPos}
+                                {infoPos
+                                    ? infoPos.map((v, index) => index !== infoPos.length - 1 ? v + ', ' : v) : null}
                             </div>
                         </div>
                         <div className="infoText">
@@ -32,7 +35,7 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                                 고용 형태
                             </div>
                             <div className="infoBoxAnswer">
-                                {type}
+                                {type === 1 ? '정규직' : '계약직'}
                             </div>
                         </div>
                         <div className="infoText">
@@ -40,7 +43,7 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                                 연봉
                             </div>
                             <div className="infoBoxAnswer">
-                                {minPay}{maxPay}
+                                {minPay === -1 ? '면접 후 결정' : `${minPay} ~ ${maxPay}`}
                             </div>
                         </div>
                     </div>
@@ -50,7 +53,7 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                                 마감일
                             </div>
                             <div className="infoBoxAnswer">
-                                {deadline}일 마감
+                                {deadline ? `D-${deadline}` : '상시 모집'}
                             </div>
                         </div>
                         <div className="infoText">
@@ -58,7 +61,11 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                                 경력
                             </div>
                             <div className="infoBoxAnswer">
-                                {minCareer}{maxCareer}
+                                {minCareer === -1
+                                    ? '경력 무관'
+                                    : minCareer === 100
+                                        ? '신입'
+                                        : `${minCareer}년 ~ ${maxCareer}년`}
                             </div>
                         </div>
                         <div className="infoText">
@@ -66,7 +73,7 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                                 위치
                             </div>
                             <div className="infoBoxAnswer">
-                                {infoLoc}
+                                {infoLoc ? infoLoc : ' -'}
                             </div>
                         </div>
                     </div>
@@ -87,21 +94,6 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                         })
                         : null}
                 </div>
-
-                {text
-                    ? text.map((v, index) => {
-                        return (
-                            <div key={v + index} className="infoPostText">
-                                <div className="infoPostTitle">
-                                    {v[0]}
-                                </div>
-                                <div className="infoPostAnswer">
-                                    {v[1]}
-                                </div>
-                            </div>
-                        );
-                    })
-                    : null}
 
                 {/* html태그를 react에 띄우기 */}
                 <div className="infoPostText" dangerouslySetInnerHTML={{ __html: content }} />

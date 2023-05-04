@@ -30,9 +30,9 @@ const FilterMany = ({ className, mainClassName, selectBase, option, result, view
                 text = 'rgb(123, 97, 255)';
                 result([name, background, text]);
                 break;
-            case 'selectJobType':
-                background = 'rgb(234, 242, 215)';
-                text = 'rgb(104, 134, 122)';
+            case 'selectStack':
+                background = 'rgb(168, 200, 249)';
+                text = 'rgb(11, 82, 141)';
                 result([name, background, text]);
                 break;
             default:

@@ -10,13 +10,14 @@ const Search = () => {
     const [removeResult, setRemoveResult] = useState(null);
     const [viewResult, setViewResult] = useState([]);
     const [open, setOpen] = useState('');
+    const [num, setNum] = useState(0);
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
     const [job, setJob] = useState([]);
     const [stack, setStack] = useState([]);
     const [company, setCompany] = useState('');
-    const [jobType, setJobType] = useState([]);
+    const [type, setType] = useState('');
     const [employee, setEmployee] = useState('');
     const [pay, setPay] = useState('');
     const [career, setCareer] = useState('');
@@ -31,18 +32,23 @@ const Search = () => {
         document.getElementsByClassName('headerPost')[0].style.color = 'rgb(101, 111, 119)';
     }, []);
 
-    useEffect(() => {
-        // axios get 으로 해당 페이지 채용정보 받아오기
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/search?page=${page}&size=20`
-        ).then((res) => {
-            setMaxPage(res.data.totalPages);
-            setPosts(res.data.content);
-        }).catch((err) => {
-            console.log(err);
-        });
+    // useEffect(() => {
+    //     // axios get 으로 해당 페이지 채용정보 받아오기
+    //     if (viewResult.length === 0) {
+    //         axios.get(`${process.env.REACT_APP_SERVER_URL}/search?page=${page}&size=20`
+    //         ).then((res) => {
+    //             setNum(res.data.totalElements);
+    //             setMaxPage(res.data.totalPages);
+    //             setPosts(res.data.content);
+    //         }).catch((err) => {
+    //             console.log(err);
+    //         });
 
-        navigate(`?page=${page}`);
-    }, [navigate, page]);
+    //         window.scrollTo(0, 0); // 맨 위로 이동
+    //         navigate(`?page=${page}`);
+    //     }
+
+    // }, [viewResult, navigate, page]);
 
     useEffect(() => {
         // result가 이미 viewResult에 있을때 없애기
@@ -62,21 +68,65 @@ const Search = () => {
     }, [result, removeResult, viewResult]);
 
     useEffect(() => {
-        axios.post(`${process.env.REACT_APP_SERVER_URL}/search`, {
-            job: String(job).split('^'), // string으로 변환 후 ^ 기준으로 나누기 -> 배열화
-            stack: String(stack).split('^'),
-            company: company,
-            jobType: String(jobType).split('^'),
-            employee: employee,
-            pay: pay,
-            career: career
-        }).then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.log(err);
-        });
+        let dataJob, dataStack, dataCompany, dataType, dataEmployee, dataPay, dataCareer;
 
-    }, [job, stack, company, jobType, employee, pay, career]);
+        job.length === 0 ? dataJob = null : dataJob = String(job).split('^'); // string으로 변환 후 ^ 기준으로 나누기 -> 배열화
+        stack.length === 0 ? dataStack = null : dataStack = String(stack).split('^');
+        company === '' ? dataCompany = null : dataCompany = company;
+        type === ''
+            ? dataType = null
+            : type === '정규직'
+                ? dataType = 1
+                : dataType = 0;
+        employee === ''
+            ? dataEmployee = 0
+            : dataEmployee = employee.slice(0, -4); // 숫자만 추출 위해 뒤의 문자열은 제거
+        pay === ''
+            ? dataPay = -1
+            : dataPay = pay.slice(0, -5);
+        career === ''
+            ? dataCareer = -1
+            : career === '신입'
+                ? dataCareer = 100
+                : dataCareer = career.slice(0, -4);
+
+        if (dataJob !== null || dataStack !== null || dataCompany !== null || dataType !== null || dataEmployee !== 0 || dataPay !== -1 || dataCareer !== -1) {
+            // 검색 목록 있을때
+            axios.post(`${process.env.REACT_APP_SERVER_URL}/search?page=${page}&size=20`, {
+                job: dataJob,
+                stack: dataStack,
+                company: dataCompany,
+                jobType: dataType,
+                employee: dataEmployee,
+                pay: dataPay,
+                career: dataCareer
+            }).then((res) => {
+                setNum(res.data.total);
+                setPosts(res.data.postDto);
+                res.data.total % 20 === 0 ? setMaxPage(Math.floor(res.data.total / 20)) : setMaxPage(Math.floor(res.data.total / 20) + 1); // Math.floor는 몫만 추출
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+        else {
+            axios.get(`${process.env.REACT_APP_SERVER_URL}/search?page=${page}&size=20`
+            ).then((res) => {
+                setNum(res.data.totalElements);
+                setMaxPage(res.data.totalPages);
+                setPosts(res.data.content);
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+
+        window.scrollTo(0, 0); // 맨 위로 이동
+        navigate(`?page=${page}`);
+
+    }, [page, navigate, job, stack, company, type, employee, pay, career]);
+
+    useEffect(() => {
+        if (page > maxPage) setPage(1);
+    }, [page, maxPage]);
 
     const removeSearchResult = (remove) => {
         const num = viewResult.indexOf(remove);
@@ -103,13 +153,13 @@ const Search = () => {
                         <FilterMany className={'selectGroup selectJob selectLeft'} mainClassName={'selectJob'} selectBase={'직무'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} result={setResult} viewResult={viewResult} send={setJob} open={[open, setOpen]} />
                         {/* setResult를 인자로 보내서 Filter에서의 값 변화 가능하게함 */}
 
-                        <FilterInput className={'selectGroup selectMiddle'} mainClassName={'selectStack'} inputClassName={'selectBase selectInput selectStack'} placeholder={'기술 스택'} result={setResult} viewResult={viewResult} send={[stack, setStack]} />
+                        <FilterMany className={'selectGroup selectStack selectMiddle'} mainClassName={'selectStack'} selectBase={'기술 스택'} option={['react', 'Java', 'Python']} result={setResult} viewResult={viewResult} send={setStack} open={[open, setOpen]} />
 
                         <FilterInput className={'selectGroup selectRight'} mainClassName={'selectCompany'} inputClassName={'selectBase selectInput selectCompany'} placeholder={'기업명'} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={[company, setCompany]} />
                     </div>
 
                     <div className="searchFilter">
-                        <FilterMany className={'selectGroup selectJobType selectLeft'} mainClassName={'selectJobType'} selectBase={'업종'} option={['IT/웹/통신', '기관/협회', '유통/무역/운송', '서비스업', '제조/화학', '미디어/디자인', '은행/금융업', '건설업', '의료/제약/복지', '교육업']} result={setResult} viewResult={viewResult} send={setJobType} open={[open, setOpen]} />
+                        <Filter className={'selectGroup selectType selectLeft'} mainClassName={'selectType'} selectBase={'고용형태'} option={['정규직', '계약직']} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={setType} open={[open, setOpen]} />
 
                         <Filter className={'selectGroup selectEmployee selectMiddle'} mainClassName={'selectEmployee'} selectBase={'사원 수'} option={['5명 이상', '20명 이상', '50명 이상', '100명 이상']} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={setEmployee} open={[open, setOpen]} />
 
@@ -137,8 +187,7 @@ const Search = () => {
             <div className="basicPage searchPage">
 
                 <div className="filterSearchNum">
-                    {/* num change after */}
-                    검색 결과 60기업
+                    검색 결과 {num}개
                 </div>
                 <div className="postGroup">
                     {/* 20개씩 페이징처리 */}
@@ -146,7 +195,7 @@ const Search = () => {
                     {posts
                         ? posts.map((v, index) => {
                             return (
-                                <Post key={v + index} infoId={v.infoId} cpImg={v.infoCpName.cpImg} infoCpName={v.infoCpName.cpName} title={v.title} deadline={v.deadline} minCareer={v.minCareer} maxCareer={v.maxCareer} infoLoc={v.infoLoc} infoTech={v.infoTech} />
+                                <Post key={v + index} infoId={v.infoId} cpImg={v.infoCpName.cpImg} infoCpName={v.infoCpName.cpName} title={v.title} deadline={v.deadline} minCareer={v.minCareer} maxCareer={v.maxCareer} infoLoc={v.infoLoc} infoTech={v.infoTechList} />
                             );
                         })
                         : null}

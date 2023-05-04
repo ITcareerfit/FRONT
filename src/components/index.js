@@ -1,3 +1,4 @@
+export { default as Modal } from './Modal';
 export { default as Choose } from './Choose';
 export { default as ChooseMany } from './ChooseMany';
 export { default as Header } from './Header';
