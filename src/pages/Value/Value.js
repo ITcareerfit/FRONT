@@ -9,7 +9,7 @@ const Value = () => {
     const [profit, setProfit] = useState(-1);
     const [stable, setStable] = useState(-1);
     const [pay, setPay] = useState(-1);
-    const [culture, setCulture] = useState(-1);
+    const [scale, setScale] = useState(-1);
     const [grow, setGrow] = useState(-1);
     const [big, setBig] = useState([]);
     const [open, setOpen] = useState('');
@@ -29,7 +29,7 @@ const Value = () => {
                 setProfit(parseFloat(sessionStorage.getItem('profit')));
                 setStable(parseFloat(sessionStorage.getItem('stable')));
                 setPay(parseFloat(sessionStorage.getItem('pay')));
-                setCulture(parseFloat(sessionStorage.getItem('culture')));
+                setScale(parseFloat(sessionStorage.getItem('scale')));
                 setGrow(parseFloat(sessionStorage.getItem('grow')));
                 setBig(sessionStorage.getItem('big'));
             }
@@ -45,8 +45,8 @@ const Value = () => {
 
     // type 문구 작성
     useEffect(() => {
-        const valueGroup = [profit, stable, pay, culture, grow];
-        const valueText = ['수익', '안정', '급여', '사내문화', '성장'];
+        const valueGroup = [profit, stable, pay, scale, grow];
+        const valueText = ['수익', '안정', '급여', '규모/형태', '성장'];
         const max = Math.max(...valueGroup);
         let maxGroup = [];
         for (let i = 0; i < 5; i++) {
@@ -74,14 +74,14 @@ const Value = () => {
         sessionStorage.setItem('profit', profit);
         sessionStorage.setItem('stable', stable);
         sessionStorage.setItem('pay', pay);
-        sessionStorage.setItem('culture', culture);
+        sessionStorage.setItem('scale', scale);
         sessionStorage.setItem('grow', grow);
         sessionStorage.setItem('big', maxGroup);
-    }, [profit, stable, pay, culture, grow]);
+    }, [profit, stable, pay, scale, grow]);
 
     const valuePost = () => {
-        if (sessionStorage.getItem('profit') && sessionStorage.getItem('stable') && sessionStorage.getItem('pay') && sessionStorage.getItem('culture') && sessionStorage.getItem('grow')) {
-            // axios로 profit stable, pay, culture, grow 보내고 그에 걸맞는 기업 노출
+        if (sessionStorage.getItem('profit') && sessionStorage.getItem('stable') && sessionStorage.getItem('pay') && sessionStorage.getItem('scale') && sessionStorage.getItem('grow')) {
+            // axios로 profit stable, pay, scale, grow 보내고 그에 걸맞는 기업 노출
         }
         else alert('모든 가치관을 설정해주세요.');
     };
@@ -96,7 +96,7 @@ const Value = () => {
                             <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
                         </div>
                         <div className="valueExplain">
-                            수익성, 안정성, 급여, 사내문화, 성장가능성을 토대로 추천해드립니다.
+                            수익성, 안정성, 급여, 규모/형태, 성장가능성을 토대로 추천해드립니다.
                         </div>
 
                         <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={['1억', '2억', '3억']} result={setProfit} open={[open, setOpen]} />
@@ -105,7 +105,7 @@ const Value = () => {
 
                         <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={['1000만원', '2000만원', '3000만원']} result={setPay} open={[open, setOpen]} />
 
-                        <FilterValue name={'사내문화'} className={'selectValue culture'} mainClassName={'culture'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setCulture} open={[open, setOpen]} />
+                        <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setScale} open={[open, setOpen]} />
 
                         <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
                     </div>
@@ -115,7 +115,7 @@ const Value = () => {
                             <span className="valueBoldGrayText">{userName}</span> 님은&nbsp;
                             <span className="valueText">"{type}형"</span> 입니다.
                             <div className="myValueRadar">
-                                <MyValue myValue={[profit, stable, pay, culture, grow]} big={big} />
+                                <MyValue myValue={[profit, stable, pay, scale, grow]} big={big} />
                             </div>
                         </div>
                     </div>
@@ -136,13 +136,13 @@ const Value = () => {
                 </div>
 
                 <div className="postGroup valuePosts">
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
 
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
 
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
 
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, culture, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
                 </div>
             </div>
         </>

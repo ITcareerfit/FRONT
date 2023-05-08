@@ -9,7 +9,7 @@ const ValueMain = () => {
     const [profit, setProfit] = useState(-1);
     const [stable, setStable] = useState(-1);
     const [pay, setPay] = useState(-1);
-    const [culture, setCulture] = useState(-1);
+    const [scale, setScale] = useState(-1);
     const [grow, setGrow] = useState(-1);
     const [open, setOpen] = useState('');
 
@@ -27,7 +27,7 @@ const ValueMain = () => {
                 setProfit(parseFloat(sessionStorage.getItem('profit')));
                 setStable(parseFloat(sessionStorage.getItem('stable')));
                 setPay(parseFloat(sessionStorage.getItem('pay')));
-                setCulture(parseFloat(sessionStorage.getItem('culture')));
+                setScale(parseFloat(sessionStorage.getItem('scale')));
                 setGrow(parseFloat(sessionStorage.getItem('grow')));
             }
         }
@@ -38,7 +38,7 @@ const ValueMain = () => {
 
     useEffect(() => {
         // 로그인 안해도 저장
-        const valueGroup = [profit, stable, pay, culture, grow];
+        const valueGroup = [profit, stable, pay, scale, grow];
         const max = Math.max(...valueGroup);
         let maxGroup = [];
         for (let i = 0; i < 5; i++) {
@@ -50,13 +50,13 @@ const ValueMain = () => {
         sessionStorage.setItem('profit', profit);
         sessionStorage.setItem('stable', stable);
         sessionStorage.setItem('pay', pay);
-        sessionStorage.setItem('culture', culture);
+        sessionStorage.setItem('scale', scale);
         sessionStorage.setItem('grow', grow);
         sessionStorage.setItem('big', maxGroup);
-    }, [profit, stable, pay, culture, grow]);
+    }, [profit, stable, pay, scale, grow]);
 
     const valueCheck = () => { // useValueCheck으로 hook화 & value페이지에도 적용
-        if (profit === -1 || stable === -1 || pay === -1 || culture === -1 || grow === -1) {
+        if (profit === -1 || stable === -1 || pay === -1 || scale === -1 || grow === -1) {
             alert('모든 가치관을 설정해주세요.');
         }
         else {
@@ -76,7 +76,7 @@ const ValueMain = () => {
                                 <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
                             </div>
                             <div className="valueExplain">
-                                수익성, 안정성, 급여, 사내문화, 성장가능성을 토대로 추천해드립니다.
+                                수익성, 안정성, 급여, 규모/형태, 성장가능성을 토대로 추천해드립니다.
                             </div>
 
                             <div className="valueMainBox">
@@ -87,7 +87,7 @@ const ValueMain = () => {
 
                                 <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={['1000만원', '2000만원', '3000만원']} result={setPay} open={[open, setOpen]} />
 
-                                <FilterValue name={'사내문화'} className={'selectValue culture'} mainClassName={'culture'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setCulture} open={[open, setOpen]} />
+                                <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setScale} open={[open, setOpen]} />
 
                                 <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
 

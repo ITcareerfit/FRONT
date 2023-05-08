@@ -25,7 +25,7 @@ const Login = () => {
     sessionStorage.setItem('stable', 1);
     sessionStorage.setItem('grow', 1);
     sessionStorage.setItem('pay', 1);
-    sessionStorage.setItem('culture', 1);
+    sessionStorage.setItem('scale', 1);
 
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
@@ -90,8 +90,8 @@ const Login = () => {
                     sessionStorage.setItem('stable', 1);
                     sessionStorage.setItem('grow', 1);
                     sessionStorage.setItem('pay', 1);
-                    sessionStorage.setItem('culture', 1);
-                    const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('culture'));
+                    sessionStorage.setItem('scale', 1);
+                    const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('scale'));
                     sessionStorage.setItem('big', big);
 
                     // 로그인 유지하기 -> cookies
@@ -114,8 +114,8 @@ const Login = () => {
                         cookies.save('stable', 1);
                         cookies.save('grow', 1);
                         cookies.save('pay', 1);
-                        cookies.save('culture', 1);
-                        const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('culture'));
+                        cookies.save('scale', 1);
+                        const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('scale'));
                         cookies.save('big', big);
 
                         navigate(-1); // 이전 페이지로 이동
@@ -130,8 +130,8 @@ const Login = () => {
         }
     };
 
-    const makeBig = (profit, stable, pay, culture, grow) => {
-        const valueGroup = [profit, stable, pay, culture, grow];
+    const makeBig = (profit, stable, pay, scale, grow) => {
+        const valueGroup = [profit, stable, pay, scale, grow];
         const max = Math.max(...valueGroup);
         let maxGroup = [];
         for (let i = 0; i < 5; i++) {

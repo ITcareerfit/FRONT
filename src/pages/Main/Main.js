@@ -24,7 +24,7 @@ const Main = () => {
                             맞는 기업은 어디일까?
                         </div>
                         <div className="mainText">
-                            수익성, 안정성, 연봉, 사내문화, 성장가능성을<br />
+                            수익성, 안정성, 연봉, 규모/형태, 성장가능성을<br />
                             토대로 추천해드립니다.
                         </div>
                         <div className="mainImgBox">

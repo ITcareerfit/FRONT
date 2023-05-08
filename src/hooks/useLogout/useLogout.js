@@ -19,7 +19,7 @@ const useLogout = () => {
     cookies.remove('stable');
     cookies.remove('grow');
     cookies.remove('pay');
-    cookies.remove('culture');
+    cookies.remove('scale');
 
     sessionStorage.clear();
 

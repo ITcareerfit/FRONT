@@ -25,7 +25,7 @@ const MainProfile = () => {
     const userName = 'known@user.com';
 
     const data = {
-        labels: ['안정성', '성장성', '사내문화', '워라밸', '연봉'],
+        labels: ['안정성', '성장성', '규모/형태', '워라밸', '연봉'],
         // labels: ['','','','',''],
         datasets: [
             {

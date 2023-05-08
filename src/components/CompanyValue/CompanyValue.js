@@ -6,7 +6,7 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
     const [type, setType] = useState('');
 
     useEffect(() => {
-        const valueText = ['수익성', '안정성', '급여', '사내문화', '성장가능성'];
+        const valueText = ['수익성', '안정성', '급여', '규모/형태', '성장가능성'];
         let diff = [0, 0, 0, 0, 0];
         for (let i = 0; i < 5; i++) {
             diff[i] = Math.abs(myValue[i] - companyValue[i]);
@@ -66,7 +66,7 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
                     </div>
                     <div className="companyValueDetail">
                         <div className="companyValueTitle">
-                            사내문화
+                            규모/형태
                         </div>
                         <div className="companyValueAnswer">
                             {companyValue[3]}%

@@ -24,7 +24,7 @@ const MyValue = ({ myValue, companyValue, big, similar }) => {
 
     companyValue
         ? data = {
-            labels: ['수익성', '안정성', '급여', '사내문화', '성장가능성'],
+            labels: ['수익성', '안정성', '급여', '규모/형태', '성장가능성'],
             datasets: [
                 {
                     label: 'My Values',
@@ -42,7 +42,7 @@ const MyValue = ({ myValue, companyValue, big, similar }) => {
             ],
         }
         : data = {
-            labels: ['수익성', '안정성', '급여', '사내문화', '성장가능성'],
+            labels: ['수익성', '안정성', '급여', '규모/형태', '성장가능성'],
             datasets: [
                 {
                     label: 'My Values',
