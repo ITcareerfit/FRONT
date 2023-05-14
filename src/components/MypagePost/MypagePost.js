@@ -21,12 +21,22 @@ const MypagePost = ({ infoId, infoCpName, title, minCareer, maxCareer, infoLoc }
             </div>
             <div className="mypagePostDetail" onClick={go}>
                 <div className="mypagePostDetailBox">
-                    <img className="postDetailImg" src={require('../../assets/images/career.png')} alt="career" />
-                    &nbsp;{minCareer}{maxCareer}
+                    <img className="postDetailImg" src={require('../../assets/images/career.png')} alt="career" />&nbsp;
+                    {minCareer === -1
+                        ? '경력 무관'
+                        : maxCareer === 0
+                            ? '신입'
+                            : `${minCareer}년 ~ ${maxCareer}년`}
                 </div>
                 <div className="mypagePostDetailBox">
                     <img className="postDetailImg postAreaImg" src={require('../../assets/images/area.png')} alt="area" />
-                    {infoLoc}
+                    {infoLoc
+                        ? infoLoc.split(' ').map((v, index) => (
+                            index <= 2
+                                ? v + ' '
+                                : null
+                        ))
+                        : ' -'}
                 </div>
             </div>
         </div>

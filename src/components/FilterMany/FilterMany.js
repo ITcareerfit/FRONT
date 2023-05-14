@@ -23,21 +23,9 @@ const FilterMany = ({ className, mainClassName, selectBase, option, result, view
     }, [viewResult, option, send]);
 
     const optionSelect = (name, className) => {
-        let background, text;
-        switch (className) {
-            case 'selectJob':
-                background = 'rgb(222, 210, 249)';
-                text = 'rgb(123, 97, 255)';
-                result([name, background, text]);
-                break;
-            case 'selectStack':
-                background = 'rgb(168, 200, 249)';
-                text = 'rgb(11, 82, 141)';
-                result([name, background, text]);
-                break;
-            default:
-                break;
-        }
+        const background = 'rgb(222, 210, 249)';
+        const text = 'rgb(123, 97, 255)';
+        result([name, background, text]);
 
         // 창 닫고 배경색 변경
         document.getElementsByClassName(className)[0].children[1].classList.replace('selectBlock', 'selectNone');

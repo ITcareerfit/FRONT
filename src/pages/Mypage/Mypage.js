@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Header, MypageCompany, MypagePost } from "../../components";
+import { ChooseMany, Header, MypageCompany, MypagePost } from "../../components";
 import { useValueNav } from "../../hooks";
 
 const Mypage = () => {
@@ -17,9 +17,12 @@ const Mypage = () => {
     const userName = sessionStorage.getItem('userName');
     const birth = sessionStorage.getItem('birth').split('-');
     const phone = sessionStorage.getItem('phone');
-    const pos = sessionStorage.getItem('pos');
+    const pos = sessionStorage.getItem('pos').split(',');
 
+    const [loading, setLoading] = useState({ display: 'block' });
+    const [show, setShow] = useState({ display: 'none' });
     const [open, setOpen] = useState('');
+    const [position, setPosition] = useState(pos);
     const newName = useRef(null);
     const newPhone = useRef(null);
     const newPos = useRef(null);
@@ -28,6 +31,8 @@ const Mypage = () => {
         document.getElementsByTagName('body')[0].style.background = 'white';
 
         // axios 소통 -> (company1, company2...)로 (img, name), goodPosts로 세부정보 받기
+        setLoading({ display: 'none' });
+        setShow({ display: 'block' });
     }, []);
 
     const edit = () => {
@@ -50,7 +55,14 @@ const Mypage = () => {
     return (
         <>
             <Header />
-            <div className="basicPage">
+            <div className="loadingBox" style={loading}>
+                <div className="loading">
+                    <div className="circle"></div>
+                    <div className="circle"></div>
+                    <div className="circle"></div>
+                </div>
+            </div>
+            <div className="basicPage" style={show}>
                 <div className="mypage">
                     <div className="mypageHeader">
                         <img className="mypageImg" src={require('../../assets/images/mypage.png')} alt="user" />
@@ -112,19 +124,19 @@ const Mypage = () => {
 
                             <div className="mypageEditBox">
                                 <div className="mypageEditTitle">이름</div>
-                                <input className="mypageEditInput signUpBorder mypagePadding" type="text" placeholder={userName} ref={newName} />
+                                <input className="mypageEditInput mypageBorder mypagePadding" type="text" placeholder={userName} ref={newName} />
                             </div>
 
                             <div className="mypageEditBox mypageEditBirthBox">
                                 <div className="mypageEditTitle">생년월일</div>
                                 <div className="mypageEditInput mypageEditInputBirth">
-                                    <div className="signUpBorder mypagePadding mypageEditBirth">
+                                    <div className="mypageBorder mypagePadding mypageEditBirth">
                                         <div className="birthDetail">{birth[0]}</div>
                                         년</div>
-                                    <div className="signUpBorder mypagePadding mypageEditBirth">
+                                    <div className="mypageBorder mypagePadding mypageEditBirth">
                                         <div className="birthDetail">{birth[1]}</div>
                                         월</div>
-                                    <div className="signUpBorder mypagePadding mypageEditBirth">
+                                    <div className="mypageBorder mypagePadding mypageEditBirth">
                                         <div className="birthDetail">{birth[2]}</div>
                                         일</div>
                                 </div>
@@ -132,12 +144,12 @@ const Mypage = () => {
 
                             <div className="mypageEditBox">
                                 <div className="mypageEditTitle">전화번호</div>
-                                <input className="mypageEditInput signUpBorder mypagePadding" type="text" placeholder={phone} ref={newPhone} />
+                                <input className="mypageEditInput mypageBorder mypagePadding" type="text" placeholder={phone} ref={newPhone} />
                             </div>
 
                             <div className="mypageEditBox">
                                 <div className="mypageEditTitle">관심 직무</div>
-                                <input className="mypageEditInput signUpBorder mypagePadding" type="text" placeholder={pos} ref={newPos} />
+                                <ChooseMany className={' mypagePos'} mainClassName={'mypagePos'} option={['프론트', '백엔드', 'AI', 'QA 엔지니어', '웹 기획자']} open={[open, setOpen]} value={[position, setPosition]} />
                             </div>
                         </div>
                     </div>

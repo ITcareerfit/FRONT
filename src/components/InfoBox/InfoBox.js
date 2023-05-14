@@ -63,7 +63,7 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                             <div className="infoBoxAnswer">
                                 {minCareer === -1
                                     ? '경력 무관'
-                                    : minCareer === 100
+                                    : maxCareer === 0
                                         ? '신입'
                                         : `${minCareer}년 ~ ${maxCareer}년`}
                             </div>

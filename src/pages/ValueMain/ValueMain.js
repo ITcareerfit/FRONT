@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import cookies from "react-cookies";
-import { Header, FilterValue } from "../../components";
+import { Header, FilterValue, Modal, ValueTable } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 const ValueMain = () => {
     const navigate = useNavigate();
+    const [modalOpen, setModalOpen] = useState(false);
     const [userName, setUserName] = useState('사용자');
     const [profit, setProfit] = useState(-1);
     const [stable, setStable] = useState(-1);
@@ -71,9 +72,17 @@ const ValueMain = () => {
             <div className="valueMainPage">
                 <div className="basicPage">
                     <div className="valuePageHeader">
+                        <Modal open={modalOpen} className="modal" setOpen={setModalOpen}>
+                            <div className="valueModal">
+                                <div className="valueModalBox">
+                                    <ValueTable />
+                                </div>
+                            </div>
+                        </Modal>
                         <div className="valueBox">
                             <div className="valueHeader">
                                 <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
+                                <img className="valueImg" src={require('../../assets/images/explain.png')} alt="explain" onClick={() => setModalOpen(!modalOpen)} />
                             </div>
                             <div className="valueExplain">
                                 수익성, 안정성, 급여, 규모/형태, 성장가능성을 토대로 추천해드립니다.
@@ -81,15 +90,15 @@ const ValueMain = () => {
 
                             <div className="valueMainBox">
 
-                                <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={['1억', '2억', '3억']} result={setProfit} open={[open, setOpen]} />
+                                <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={[['웹젠', '넥슨 코리아'], ['아프리카 티비', '지어소프트'], ['카카오', '코나아이'], ['위메이드플레이', '위세아이'], ['엔텔스', '오픈베이스']]} result={setProfit} open={[open, setOpen]} />
 
-                                <FilterValue name={'안정성'} className={'selectValue stable'} mainClassName={'stable'} selectBase={'설립년차, 사원 수'} option={['50%', '70%', '100%']} result={setStable} open={[open, setOpen]} />
+                                <FilterValue name={'안정성'} className={'selectValue stable'} mainClassName={'stable'} selectBase={'설립년차, 사원 수'} option={[['하이브랩', '사람인'], ['지니뮤직', '헥토파이셜'], ['현대이지웰', '라온피'], ['SK텔레콤', '아'], ['브리지텍', '케이아이엔엑']]} result={setStable} open={[open, setOpen]} />
 
-                                <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={['1000만원', '2000만원', '3000만원']} result={setPay} open={[open, setOpen]} />
+                                <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={[['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아']]} result={setPay} open={[open, setOpen]} />
 
-                                <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setScale} open={[open, setOpen]} />
+                                <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={[['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아']]} result={setScale} open={[open, setOpen]} />
 
-                                <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
+                                <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={[['라온피플', '네온위즈'], ['인베니아', '더존비즈'], ['투비소프트', '대신정보통신'], ['핑거', '콤텍시스'], ['브리지텍', '에프엔가이']]} result={setGrow} open={[open, setOpen]} />
 
                                 <button className="btn valueMainBtn purpleBtn" onClick={valueCheck}>결과 확인하기</button>
                             </div>

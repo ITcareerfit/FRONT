@@ -45,7 +45,7 @@ const Post = ({ infoId, cpImg, infoCpName, title, deadline, minCareer, maxCareer
                             <img className="postDetailImg postCareerImg" src={require('../../assets/images/career.png')} alt="career" />
                             {minCareer === -1 && maxCareer === -1
                                 ? '경력 무관'
-                                : minCareer === 100 && maxCareer === 100
+                                : minCareer === 0 && maxCareer === 0
                                     ? '신입'
                                     : `${minCareer}년 ~ ${maxCareer}년`}
                         </span>

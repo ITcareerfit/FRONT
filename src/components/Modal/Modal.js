@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactDom from "react-dom";
 import "../../styles/basic.css";
 
-const Modal = ({ open, children, className }) => {
+const Modal = ({ open, children, className, setOpen }) => {
 
     useEffect(() => {
         open
@@ -12,9 +12,16 @@ const Modal = ({ open, children, className }) => {
 
     if (!open) return null;
 
+    const modalOut = () => { setOpen(false); };
+
     return ReactDom.createPortal(
         <div className={className}>
-            {children}
+            <div className="modalOut" onClick={modalOut}>X</div>
+            <div className="modalBox">
+                <div className="modalPadding">
+                    {children}
+                </div>
+            </div>
         </div>,
         document.getElementById('modal')
     );

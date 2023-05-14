@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelectOpen } from "../../hooks";
 
 const ChooseMany = ({ className, mainClassName, option, open, value }) => {
     const selectOpen = useSelectOpen;
+    const [divClassName, setDivClassName] = useState('');
+    const height = useRef(null);
+
+    useEffect(() => {
+        if (mainClassName === 'mypagePos') {
+            setDivClassName('selectBase mypageBorder mypageEditInput mypagePosTool');
+            if (value[0].length === 0) height.current.style.height = '32px';
+            else height.current.style.height = 'auto';
+        }
+        else setDivClassName('selectBase selectSignUp');
+    }, [mainClassName, value]);
 
     const optionSelect = (name, className) => {
         if (value[0].includes(name)) {
@@ -20,14 +31,13 @@ const ChooseMany = ({ className, mainClassName, option, open, value }) => {
 
     return (
         <div className={className} onClick={() => selectOpen(mainClassName, open)}>
-            <div className="selectBase selectSignUp">
+            <div className={divClassName} ref={height}>
                 {value[0].map((v, index) => {
                     if (index !== value[0].length - 1) return v + ', ';
                     else return v;
                 })}
                 <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
             </div>
-
             <div className="select selectNone">
                 {option.map((v, index) => {
                     return (

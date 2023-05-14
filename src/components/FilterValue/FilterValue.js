@@ -11,21 +11,21 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
     const optionSelect = (index, v) => {
         setHolder(v);
 
-        switch (option.length) {
+        switch (index) {
+            case 0:
+                result(96);
+                break;
+            case 1:
+                result(89);
+                break;
             case 2:
-                result((index + 1) / 2 * 100);
+                result(77);
                 break;
             case 3:
-                result((index + 1) / 3 * 100);
+                result(60);
                 break;
             case 4:
-                result((index + 1) / 4 * 100);
-                break;
-            case 5:
-                result((index + 1) / 5 * 100);
-                break;
-            case 6:
-                result((index + 1) / 6 * 100);
+                result(40);
                 break;
             default:
                 break;
@@ -46,8 +46,36 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
 
                 <ul className="select selectNone">
                     {option.map((v, index) => {
+                        let text = '';
+                        switch (index) {
+                            case 0:
+                                text = '상위 4%';
+                                break;
+                            case 1:
+                                text = '상위 11%';
+                                break;
+                            case 2:
+                                text = '상위 23%';
+                                break;
+                            case 3:
+                                text = '상위 40%';
+                                break;
+                            case 4:
+                                text = '상위 60%';
+                                break;
+                            default:
+                                break;
+                        }
                         return (
-                            <li key={v + index} className="option valueOption" onClick={() => optionSelect(index, v)} value={index}>{v}</li>
+                            <li key={v + index} className="option valueOption" onClick={() => optionSelect(index, v)} value={index}>
+                                {text}
+                                <div className="valueOptionList">
+                                    {option[index].map((v) =>
+                                        <span key={v}>
+                                            {v}< br />
+                                        </span>)}
+                                </div>
+                            </li>
                         );
                     })}
                 </ul>

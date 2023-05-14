@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Choose, ChooseMany } from "../../components";
 
@@ -12,6 +12,10 @@ const SignUp = () => {
     const userName = useRef(null);
     const birth = useRef(null);
     const phone = useRef(null);
+
+    useEffect(() => {
+        document.getElementsByTagName('body')[0].style.background = 'white';
+    }, []);
 
     const change = () => {
         document.getElementsByClassName('signUpError')[0].style.display = 'none';

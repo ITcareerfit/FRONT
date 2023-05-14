@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
     const navigate = useNavigate();
+
+    const [post, setPost] = useState(null);
 
     const check = () => {
         if (open[0] !== '') {
@@ -13,13 +16,25 @@ const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
                 // 다른 창 열기
                 open[1](id);
                 document.getElementById(id).style.display = 'block';
+                communicate();
             }
         }
         else {
             // 창 열기
             open[1](id);
             document.getElementById(id).style.display = 'block';
+            communicate();
         }
+    };
+
+    const communicate = () => {
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage?cpName=${cpName}`
+        ).then((res) => {
+            console.log(res);
+            setPost(res.data);
+        }).catch((err) => {
+            console.log(err);
+        });
     };
 
     return (
@@ -34,13 +49,15 @@ const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
             </div>
 
             <div className="mypageCompanyInfo" id={id}>
-                {infoIds.map((v, index) => {
-                    return (
-                        <div className="mypageCompanyInfoTitle" key={v + index} onClick={() => navigate(`/info/${v}`)}>
-                            {title[index]}
-                        </div>
-                    );
-                })}
+                {post // modal change
+                    ? post.map((v, index) => {
+                        return (
+                            <div className="mypageCompanyInfoTitle" key={v + index} onClick={() => navigate(`/info/${v.infoId}`)}>
+                                {v.title}
+                            </div>
+                        );
+                    })
+                    : null}
             </div>
         </div>
     );

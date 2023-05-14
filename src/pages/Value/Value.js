@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 // import cookies from "react-cookies";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { CompanyValue, FilterValue, Header, MyValue } from "../../components";
+import { CompanyValue, FilterValue, Header, Modal, MyValue, ValueTable } from "../../components";
 
 const Value = () => {
     const navigate = useNavigate();
     const [userName, setUserName] = useState('사용자');
+    const [modalOpen, setModalOpen] = useState(false);
     const [profit, setProfit] = useState(-1);
     const [stable, setStable] = useState(-1);
     const [pay, setPay] = useState(-1);
@@ -14,6 +16,11 @@ const Value = () => {
     const [big, setBig] = useState([]);
     const [open, setOpen] = useState('');
     const [type, setType] = useState('');
+    const [company1, setCompany1] = useState(null);
+    const [company2, setCompany2] = useState(null);
+    const [company3, setCompany3] = useState(null);
+    const [company4, setCompany4] = useState(null);
+    const [company5, setCompany5] = useState(null);
 
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
@@ -41,7 +48,7 @@ const Value = () => {
         else {
             document.getElementsByClassName('valueBoldGrayText')[0].style.color = 'rgb(111, 108, 217)';
         }
-    }, []);
+    }, [company1]);
 
     // type 문구 작성
     useEffect(() => {
@@ -80,8 +87,36 @@ const Value = () => {
     }, [profit, stable, pay, scale, grow]);
 
     const valuePost = () => {
-        if (sessionStorage.getItem('profit') && sessionStorage.getItem('stable') && sessionStorage.getItem('pay') && sessionStorage.getItem('scale') && sessionStorage.getItem('grow')) {
+        if (sessionStorage.getItem('userNum') && sessionStorage.getItem('profit') && sessionStorage.getItem('stable') && sessionStorage.getItem('pay') && sessionStorage.getItem('scale') && sessionStorage.getItem('grow')) {
             // axios로 profit stable, pay, scale, grow 보내고 그에 걸맞는 기업 노출
+            axios.post(`${process.env.REACT_APP_SERVER_URL}/value`, {
+                userNum: 0,
+                profit: 40,
+                stable: 40,
+                pay: 40,
+                scale: 40,
+                grow: 40
+                // userNum: sessionStorage.getItem('userNum'),
+                // profit: profit,
+                // stable: stable,
+                // pay: pay,
+                // scale: scale,
+                // grow: grow
+
+                // profit: sessionStorage.getItem('profit'),
+                // stable: sessionStorage.getItem('stable'),
+                // pay: sessionStorage.getItem('pay'),
+                // scale: sessionStorage.getItem('scale'),
+                // grow: sessionStorage.getItem('grow'),
+            }).then((res) => {
+                setCompany1(res.data.company1);
+                setCompany2(res.data.company2);
+                setCompany3(res.data.company3);
+                setCompany4(res.data.company4);
+                setCompany5(res.data.company5);
+            }).catch((err) => {
+                console.log(err);
+            });
         }
         else alert('모든 가치관을 설정해주세요.');
     };
@@ -91,23 +126,31 @@ const Value = () => {
             <Header />
             <div className="basicPage">
                 <div className="valuePageHeader">
+                    <Modal open={modalOpen} className="modal" setOpen={setModalOpen}>
+                        <div className="valueModal">
+                            <div className="valueModalBox">
+                                <ValueTable />
+                            </div>
+                        </div>
+                    </Modal>
                     <div className="valueBox valueBoxLeft">
                         <div className="valueHeader">
                             <span className="valueBoldGrayText">{userName}</span> 님의 가치관을 선택해주세요.
+                            <img className="valueImg" src={require('../../assets/images/explain.png')} alt="explain" onClick={() => setModalOpen(!modalOpen)} />
                         </div>
                         <div className="valueExplain">
                             수익성, 안정성, 급여, 규모/형태, 성장가능성을 토대로 추천해드립니다.
                         </div>
 
-                        <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={['1억', '2억', '3억']} result={setProfit} open={[open, setOpen]} />
+                        <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={[['웹젠', '넥슨 코리아'], ['아프리카 티비', '지어소프트'], ['카카오', '코나아이'], ['위메이드플레이', '위세아이'], ['엔텔스', '오픈베이스']]} result={setProfit} open={[open, setOpen]} />
 
-                        <FilterValue name={'안정성'} className={'selectValue stable'} mainClassName={'stable'} selectBase={'설립년차, 사원 수'} option={['50%', '70%', '100%']} result={setStable} open={[open, setOpen]} />
+                        <FilterValue name={'안정성'} className={'selectValue stable'} mainClassName={'stable'} selectBase={'설립년차, 사원 수'} option={[['하이브랩', '사람인'], ['지니뮤직', '헥토파이셜'], ['현대이지웰', '라온피'], ['SK텔레콤', '아'], ['브리지텍', '케이아이엔엑']]} result={setStable} open={[open, setOpen]} />
 
-                        <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={['1000만원', '2000만원', '3000만원']} result={setPay} open={[open, setOpen]} />
+                        <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={[['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아']]} result={setPay} open={[open, setOpen]} />
 
-                        <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={['0', '1', '2', '3', '4', '5']} result={setScale} open={[open, setOpen]} />
+                        <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={[['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아']]} result={setScale} open={[open, setOpen]} />
 
-                        <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={['10%', '20%', '30%']} result={setGrow} open={[open, setOpen]} />
+                        <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={[['라온피플', '네온위즈'], ['인베니아', '더존비즈'], ['투비소프트', '대신정보통신'], ['핑거', '콤텍시스'], ['브리지텍', '에프엔가이']]} result={setGrow} open={[open, setOpen]} />
                     </div>
 
                     <div className="valueDisplay">
@@ -136,13 +179,19 @@ const Value = () => {
                 </div>
 
                 <div className="postGroup valuePosts">
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                    {company1
+                        ? <>
+                            <CompanyValue cpImg={company1.cpImg} infoCpName={company1.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company1.profit, company1.stable, company1.pay, company1.scale, company1.grow]} />
 
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                            <CompanyValue cpImg={company2.cpImg} infoCpName={company2.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company2.profit, company2.stable, company2.pay, company2.scale, company2.grow]} />
 
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                            <CompanyValue cpImg={company3.cpImg} infoCpName={company3.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company3.profit, company3.stable, company3.pay, company3.scale, company3.grow]} />
 
-                    <CompanyValue cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} infoCpName={'드림어스컴퍼니'} myValue={[profit, stable, pay, scale, grow]} companyValue={[58, 90, 40, 60, 76]} />
+                            <CompanyValue cpImg={company4.cpImg} infoCpName={company4.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company4.profit, company4.stable, company4.pay, company4.scale, company4.grow]} />
+
+                            <CompanyValue cpImg={company5.cpImg} infoCpName={company5.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company5.profit, company5.stable, company5.pay, company5.scale, company5.grow]} />
+                        </>
+                        : null}
                 </div>
             </div>
         </>

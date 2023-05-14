@@ -40,7 +40,7 @@ const Header = () => {
                     </span>
 
                 </div>
-                <div className="headerBtnBox">
+                <div className="headerRight">
 
                     {sessionStorage.getItem('userNum')
                         ? <div className="headerUserBox" onClick={userPopup}>
@@ -48,7 +48,8 @@ const Header = () => {
                             <span className="headerUser">
                                 {email}
                                 <div className="headerPopup" style={{ display: 'none' }}>
-                                    <div className="headerPopupList" onClick={() => navigate(`/mypage/${userNum}`)}>
+                                    <img className="headerPopupImg" src={require('../../assets/images/triangle.png')} alt="triangle" />
+                                    <div className="headerPopupList headerPopupListFirst" onClick={() => navigate(`/mypage/${userNum}`)}>
                                         마이페이지
                                     </div>
                                     <div className="headerPopupList" onClick={() => value(navigate)}>
@@ -60,9 +61,10 @@ const Header = () => {
                                 </div>
                             </span>
                         </div>
-                        : <button className="btn headerBtn blackBtn" onClick={() => navigate('/login')}>
-                            Log In
-                        </button>
+                        : <div className="headerNav">
+                            <span className="headerNavMargin headerNavs" onClick={() => navigate('/login')}>Log In</span>
+                            <span className="headerNavs" onClick={() => navigate('/signup')}>Sign Up</span>
+                        </div>
                     }
                 </div>
             </div>

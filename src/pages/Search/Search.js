@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, Filter, FilterInput, Post, FilterMany, Pagination } from "../../components";
+import { Header, Filter, FilterInput, Post, FilterMany, Pagination, FilterSearch } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
     const navigate = useNavigate();
 
+    const [loading, setLoading] = useState({ display: 'block' });
+    const [show, setShow] = useState({ display: 'none' });
     const [result, setResult] = useState(null);
     const [removeResult, setRemoveResult] = useState(null);
     const [viewResult, setViewResult] = useState([]);
     const [open, setOpen] = useState('');
+    const [tech, setTech] = useState([]);
     const [num, setNum] = useState(0);
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
@@ -32,43 +35,31 @@ const Search = () => {
         document.getElementsByClassName('headerPost')[0].style.color = 'rgb(101, 111, 119)';
     }, []);
 
-    // useEffect(() => {
-    //     // axios get 으로 해당 페이지 채용정보 받아오기
-    //     if (viewResult.length === 0) {
-    //         axios.get(`${process.env.REACT_APP_SERVER_URL}/search?page=${page}&size=20`
-    //         ).then((res) => {
-    //             setNum(res.data.totalElements);
-    //             setMaxPage(res.data.totalPages);
-    //             setPosts(res.data.content);
-    //         }).catch((err) => {
-    //             console.log(err);
-    //         });
-
-    //         window.scrollTo(0, 0); // 맨 위로 이동
-    //         navigate(`?page=${page}`);
-    //     }
-
-    // }, [viewResult, navigate, page]);
-
     useEffect(() => {
         // result가 이미 viewResult에 있을때 없애기
         if (result !== null) {
-            let newViewResult = viewResult.filter(data => data[0] !== result[0]); // data!==result는 안됨 -> 참조값이 달라서 항상 다른값
+            if (viewResult.length === 10) alert('검색은 10개까지만 가능합니다.');
+            else {
+                let newViewResult = viewResult.filter(data => data[0] !== result[0]); // data!==result는 안됨 -> 참조값이 달라서 항상 다른값
 
-            // input, radio에서 한 개만 선택되도록 하기
-            if (removeResult !== null) {
-                newViewResult = newViewResult.filter(data => data[0] !== removeResult[0]);
-                setRemoveResult(null);
+                // input, radio에서 한 개만 선택되도록 하기
+                if (removeResult !== null) {
+                    newViewResult = newViewResult.filter(data => data[0] !== removeResult[0]);
+                    setRemoveResult(null);
+                }
+
+                newViewResult.unshift(result); // 맨 앞에 삽입
+                setResult(null);
+                setViewResult(newViewResult);
             }
-
-            newViewResult.unshift(result); // 맨 앞에 삽입
-            setResult(null);
-            setViewResult(newViewResult);
         }
     }, [result, removeResult, viewResult]);
 
     useEffect(() => {
         let dataJob, dataStack, dataCompany, dataType, dataEmployee, dataPay, dataCareer;
+
+        setLoading({ display: 'block' });
+        setShow({ display: 'none' });
 
         job.length === 0 ? dataJob = null : dataJob = String(job).split('^'); // string으로 변환 후 ^ 기준으로 나누기 -> 배열화
         stack.length === 0 ? dataStack = null : dataStack = String(stack).split('^');
@@ -87,7 +78,7 @@ const Search = () => {
         career === ''
             ? dataCareer = -1
             : career === '신입'
-                ? dataCareer = 100
+                ? dataCareer = 0
                 : dataCareer = career.slice(0, -4);
 
         if (dataJob !== null || dataStack !== null || dataCompany !== null || dataType !== null || dataEmployee !== 0 || dataPay !== -1 || dataCareer !== -1) {
@@ -104,6 +95,8 @@ const Search = () => {
                 setNum(res.data.total);
                 setPosts(res.data.postDto);
                 res.data.total % 20 === 0 ? setMaxPage(Math.floor(res.data.total / 20)) : setMaxPage(Math.floor(res.data.total / 20) + 1); // Math.floor는 몫만 추출
+                setLoading({ display: 'none' });
+                setShow({ display: 'block' });
             }).catch((err) => {
                 console.log(err);
             });
@@ -111,9 +104,14 @@ const Search = () => {
         else {
             axios.get(`${process.env.REACT_APP_SERVER_URL}/search?page=${page}&size=20`
             ).then((res) => {
-                setNum(res.data.totalElements);
-                setMaxPage(res.data.totalPages);
-                setPosts(res.data.content);
+                const techs = [];
+                res.data.techs.map((v) => techs.push(v.techName));
+                setTech(techs);
+                setNum(res.data.postDto.totalElements);
+                setMaxPage(res.data.postDto.totalPages);
+                setPosts(res.data.postDto.content);
+                setLoading({ display: 'none' });
+                setShow({ display: 'block' });
             }).catch((err) => {
                 console.log(err);
             });
@@ -142,7 +140,14 @@ const Search = () => {
     return (
         <>
             <Header />
-            <div className="filterBoxGroup">
+            <div className="loadingBox" style={loading}>
+                <div className="loading">
+                    <div className="circle"></div>
+                    <div className="circle"></div>
+                    <div className="circle"></div>
+                </div>
+            </div>
+            <div className="filterBoxGroup" style={show}>
                 <div className="filterBox">
                     <div className="searchHeader">
                         채용 공고 검색
@@ -153,7 +158,9 @@ const Search = () => {
                         <FilterMany className={'selectGroup selectJob selectLeft'} mainClassName={'selectJob'} selectBase={'직무'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} result={setResult} viewResult={viewResult} send={setJob} open={[open, setOpen]} />
                         {/* setResult를 인자로 보내서 Filter에서의 값 변화 가능하게함 */}
 
-                        <FilterMany className={'selectGroup selectStack selectMiddle'} mainClassName={'selectStack'} selectBase={'기술 스택'} option={['react', 'Java', 'Python']} result={setResult} viewResult={viewResult} send={setStack} open={[open, setOpen]} />
+                        {tech.length !== 0
+                            ? <FilterSearch className={'selectGroup selectStack selectMiddle'} mainClassName={'selectStack'} inputClassName={'selectBase selectInput selectStack'} placeholder={'기술 스택'} option={tech} result={setResult} viewResult={viewResult} send={setStack} open={[open, setOpen]} />
+                            : null}
 
                         <FilterInput className={'selectGroup selectRight'} mainClassName={'selectCompany'} inputClassName={'selectBase selectInput selectCompany'} placeholder={'기업명'} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={[company, setCompany]} />
                     </div>
@@ -184,14 +191,12 @@ const Search = () => {
                 </div>
             </div>
 
-            <div className="basicPage searchPage">
-
+            <div className="basicPage searchPage" style={show}>
                 <div className="filterSearchNum">
                     검색 결과 {num}개
                 </div>
                 <div className="postGroup">
                     {/* 20개씩 페이징처리 */}
-
                     {posts
                         ? posts.map((v, index) => {
                             return (

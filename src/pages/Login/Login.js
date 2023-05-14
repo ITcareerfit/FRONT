@@ -14,7 +14,7 @@ const Login = () => {
     sessionStorage.setItem('userName', '홍길동');
     sessionStorage.setItem('birth', '2001-04-05');
     sessionStorage.setItem('phone', '010-0000-0000');
-    sessionStorage.setItem('pos', ['백엔드']);
+    sessionStorage.setItem('pos', ['백엔드', '프론트']);
     sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
     sessionStorage.setItem('company1', '쿠팡');
     sessionStorage.setItem('company2', '카카오');
@@ -79,7 +79,7 @@ const Login = () => {
                     sessionStorage.setItem('userName', '홍길동');
                     sessionStorage.setItem('birth', '2001-04-05');
                     sessionStorage.setItem('phone', '010-0000-0000');
-                    sessionStorage.setItem('pos', ['백엔드']);
+                    sessionStorage.setItem('pos', ['백엔드', '프론트']);
                     sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
                     sessionStorage.setItem('company1', '쿠팡');
                     sessionStorage.setItem('company2', '카카오');
@@ -103,7 +103,7 @@ const Login = () => {
                         cookies.save('userName', '홍길동');
                         cookies.save('birth', '2001-04-05');
                         cookies.save('phone', '010-0000-0000');
-                        cookies.save('pos', ['백엔드']);
+                        cookies.save('pos', ['백엔드', '프론트']);
                         cookies.save('goodPosts', [11, 22, 33, 44, 55, 66]);
                         cookies.save('company1', '쿠팡');
                         cookies.save('company2', '카카오');
@@ -178,9 +178,7 @@ const Login = () => {
             <br />
             <div className="askSignUp">
                 아직 회원이 아니신가요?
-                <button className="btn signupBtn whiteBtn" onClick={() => navigate('/signup')}>
-                    회원가입
-                </button>
+                <span className="goSignUp" onClick={() => navigate('/signup')}>회원가입</span>
             </div>
         </div>
     );
