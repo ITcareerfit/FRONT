@@ -87,15 +87,15 @@ const Mypage = () => {
 
                             <div className="mypageBox">
                                 {/* img, name, info, title change after */}
-                                <MypageCompany id={'first'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'쿠팡'} infoIds={[1, 2, 3]} title={['aa', 'bb', 'cc']} open={[open, setOpen]} />
+                                <MypageCompany id={'first'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'포티투닷'} open={[open, setOpen]} />
 
-                                <MypageCompany id={'second'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'쿠팡'} infoIds={[1, 2, 3]} title={['aa', 'bb', 'cc']} open={[open, setOpen]} />
+                                <MypageCompany id={'second'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'라인쓰리'} open={[open, setOpen]} />
 
-                                <MypageCompany id={'thrid'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'쿠팡'} infoIds={[1, 2, 3]} title={['aa', 'bb', 'cc']} open={[open, setOpen]} />
+                                <MypageCompany id={'thrid'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'페이타랩'} open={[open, setOpen]} />
 
-                                <MypageCompany id={'fourth'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'쿠팡'} infoIds={[1, 2, 3]} title={['aa', 'bb', 'cc']} open={[open, setOpen]} />
+                                <MypageCompany id={'fourth'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'띵스플로우'} open={[open, setOpen]} />
 
-                                <MypageCompany id={'fifth'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'쿠팡'} infoIds={[1, 2, 3]} title={['aa', 'bb', 'cc']} open={[open, setOpen]} />
+                                <MypageCompany id={'fifth'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'이노팸'} open={[open, setOpen]} />
                             </div>
                         </div>
 
@@ -149,7 +149,7 @@ const Mypage = () => {
 
                             <div className="mypageEditBox">
                                 <div className="mypageEditTitle">관심 직무</div>
-                                <ChooseMany className={' mypagePos'} mainClassName={'mypagePos'} option={['프론트', '백엔드', 'AI', 'QA 엔지니어', '웹 기획자']} open={[open, setOpen]} value={[position, setPosition]} />
+                                <ChooseMany className={' mypagePos'} mainClassName={'mypagePos'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} open={[open, setOpen]} value={[position, setPosition]} />
                             </div>
                         </div>
                     </div>

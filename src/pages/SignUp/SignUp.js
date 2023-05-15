@@ -134,7 +134,7 @@ const SignUp = () => {
                     <div className="smallBlue">(선택)</div>
                 </div>
                 <div className="signUpAnswer">
-                    <ChooseMany className={'selectGroup selectJob'} mainClassName={'selectJob'} option={['프론트엔드', '백엔드', 'AI', 'QA 엔지니어', '웹 기획자']} open={[open, setOpen]} value={[position, setPosition]} />
+                    <ChooseMany className={'selectGroup selectJob'} mainClassName={'selectJob'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} open={[open, setOpen]} value={[position, setPosition]} />
                 </div>
             </div>
 

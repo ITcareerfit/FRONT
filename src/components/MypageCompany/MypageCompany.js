@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Modal, MypagePost } from "../";
 
-const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
-    const navigate = useNavigate();
+const MypageCompany = ({ id, cpImg, cpName, open }) => {
 
+    const [modalOpen, setModalOpen] = useState(false);
     const [post, setPost] = useState(null);
 
     const check = () => {
@@ -30,11 +30,12 @@ const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
     const communicate = () => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage?cpName=${cpName}`
         ).then((res) => {
-            console.log(res);
             setPost(res.data);
         }).catch((err) => {
             console.log(err);
         });
+
+        setModalOpen(!modalOpen);
     };
 
     return (
@@ -49,15 +50,27 @@ const MypageCompany = ({ id, cpImg, cpName, infoIds, title, open }) => {
             </div>
 
             <div className="mypageCompanyInfo" id={id}>
-                {post // modal change
-                    ? post.map((v, index) => {
-                        return (
-                            <div className="mypageCompanyInfoTitle" key={v + index} onClick={() => navigate(`/info/${v.infoId}`)}>
-                                {v.title}
+                <Modal open={modalOpen} className="modal" setOpen={setModalOpen}>
+                    <div className="companyModal">
+                        {cpImg
+                            ? <img className="companyModalImg" src={cpImg} alt="company" />
+                            : <img className="companyModalImg" src={require('../../assets/images/logo.png')} alt="company" />}
+                        <div className="companyModalRight">
+                            <div className="companyModalName">
+                                {cpName}
                             </div>
-                        );
-                    })
-                    : null}
+                            <div>
+                                {post
+                                    ? post[0].infoCpName.culture : null}
+                            </div>
+                        </div>
+                    </div>
+                    {post
+                        ? post.map((v, index) => <div className="companyValueModal" key={v + index}>
+                            <MypagePost infoId={post[index].infoId} infoCpName={post[index].infoCpName.cpName} title={post[index].title} minCareer={post[index].minCareer} maxCareer={post[index].maxCareer} infoLoc={post[index].infoLoc} />
+                        </div>)
+                        : <img className="companyValueModalEmpty" src={require('../../assets/images/empty.png')} alt="empty" />}
+                </Modal>
             </div>
         </div>
     );

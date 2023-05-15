@@ -774,9 +774,70 @@ body {
     cursor: pointer;
 }
 
-.mypageCompanyInfoTitle {
-    border-top: 1px solid var(--line-color);
-    padding: 5px;
+.modal {
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20vh 20vw;
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.7);
+}
+
+.modalOut {
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    right: 0;
+    margin-right: 8vw;
+    margin-top: -10vh;
+    cursor: pointer;
+}
+
+.modalBox {
+    height: 60vh;
+    border-radius: 10px;
+    background-color: white;
+    overflow-y: auto;
+}
+
+.modalPadding {
+    padding: 10px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.companyModal {
+    display: flex;
+    margin-top: 20px;
+}
+
+.companyModalImg {
+    width: 100px;
+    height: auto;
+}
+
+.companyModalRight {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.companyModalName {
+    margin-bottom: auto;
+    color: var(--gray-color);
+    font-size: 17px;
+}
+
+.companyValueModal {
+    width: 50%;
+    margin: 10px auto;
+}
+
+.companyValueModalEmpty {
+    width: 80px;
+    margin-top: 17vh;
 }
 
 .mypageBoxSecond {
@@ -1275,6 +1336,10 @@ body {
     color: var(--darkGray-color);
 }
 
+.infoBoxDday {
+    color: rgb(75, 75, 255);
+}
+
 .infoPostText {
     margin: 40px 0;
 }
@@ -1334,41 +1399,6 @@ body {
 
 .valuePageHeader {
     display: flex;
-}
-
-.modal {
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20vh 20vw;
-    text-align: center;
-    background-color: rgb(0, 0, 0, 0.7);
-}
-
-.modalOut {
-    position: absolute;
-    font-size: 30px;
-    color: white;
-    right: 0;
-    margin-right: 8vw;
-    margin-top: -10vh;
-    cursor: pointer;
-}
-
-.modalBox {
-    height: 60vh;
-    border-radius: 10px;
-    background-color: white;
-    overflow-y: auto;
-}
-
-.modalPadding {
-    padding: 10px;
-    height: 100%;
-    box-sizing: border-box;
 }
 
 .valueModal {
@@ -1545,7 +1575,22 @@ tbody>tr>th {
     filter: blur(20px);
 }
 
-/* .companyModal {} */
+.companyValuePost {
+    border: 1px solid var(--line-color);
+    border-radius: 10px;
+    margin: 20px 0;
+    margin-bottom: 30px;
+    display: flex;
+    width: 600px;
+}
+
+.companyValueLeft {
+    flex: 1;
+    background-color: var(--lightGray-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 100%;
+}
 
 .companyValueIn {
     margin: 20px;
@@ -1562,33 +1607,6 @@ tbody>tr>th {
     font-weight: bold;
     font-size: 17px;
     margin-bottom: 30px;
-}
-
-.companyValueModal {
-    width: 50%;
-    margin: 10px auto;
-}
-
-.companyValueModalEmpty {
-    width: 80px;
-    margin-top: 17vh;
-}
-
-.companyValuePost {
-    border: 1px solid var(--line-color);
-    border-radius: 10px;
-    margin: 20px 0;
-    margin-bottom: 30px;
-    display: flex;
-    width: 600px;
-}
-
-.companyValueLeft {
-    flex: 1;
-    background-color: var(--lightGray-color);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    height: 100%;
 }
 
 .companyValueDetail {
@@ -2078,6 +2096,13 @@ tbody>tr>th {
     .goCompany {
         padding-top: 5px;
         margin-left: 35%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .selectBase {
+        padding-left: 10px;
     }
 }
 

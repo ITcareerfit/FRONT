@@ -172,7 +172,7 @@ const Search = () => {
 
                         <Filter className={'selectGroup selectPay selectMiddle'} mainClassName={'selectPay'} selectBase={'급여'} option={['3000만원 이상', '4000만원 이상', '5000만원 이상', '6000만원 이상', '7000만원 이상']} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={setPay} open={[open, setOpen]} />
 
-                        <Filter className={'selectGroup selectCareer selectRight'} mainClassName={'selectCareer'} selectBase={'경력'} option={['신입', '1년 경력', '2년 경력', '3년 경력', '4년 경력']} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={setCareer} open={[open, setOpen]} />
+                        <Filter className={'selectGroup selectCareer selectRight'} mainClassName={'selectCareer'} selectBase={'경력'} option={['신입', '1년 경력', '2년 경력', '3년 경력', '4년 경력', '5년 경력', '6년 경력', '7년 경력', '8년 경력', '9년 경력']} result={setResult} viewResult={viewResult} remove={setRemoveResult} send={setCareer} open={[open, setOpen]} />
                     </div>
 
                     <div className="searchResult">

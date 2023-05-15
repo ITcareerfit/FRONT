@@ -52,7 +52,7 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                             <div className="infoBoxTitle">
                                 마감일
                             </div>
-                            <div className="infoBoxAnswer">
+                            <div className="infoBoxAnswer infoBoxDday">
                                 {deadline ? `D-${deadline}` : '상시 모집'}
                             </div>
                         </div>
@@ -80,18 +80,19 @@ const InfoBox = ({ cpImg, title, infoCpName, infoPos, type, minPay, maxPay, dead
                 </div>
 
                 <div className="infoPostText">
-                    <div className="infoPostTitle">
-                        기술 스택
-                    </div>
-                    <div className="infoPostAnswer"></div>
-                    {infoTech
-                        ? infoTech.map((v, index) => {
-                            return (
-                                <span key={v + index} className="postBox postStackBox infoStack">
-                                    {v}
-                                </span>
-                            );
-                        })
+                    {infoTech.length !== 1 || infoTech[0] !== '' // 없으면 [''] 상태
+                        ? <>
+                            <div className="infoPostTitle">
+                                기술 스택
+                            </div>
+                            <div className="infoPostAnswer"></div>
+                            {infoTech.map((v, index) => {
+                                return (
+                                    <span key={v + index} className="postBox postStackBox infoStack">
+                                        {v}
+                                    </span>
+                                );
+                            })}</>
                         : null}
                 </div>
 

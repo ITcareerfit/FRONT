@@ -48,16 +48,19 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
     return (
         <>
             <Modal open={modalOpen} className="modal" setOpen={setModalOpen}>
-                {/* <div className="companyModal"> */}
-                <div className="companyValueIn">
+                <div className="companyModal">
                     {cpImg
-                        ? <img className="companyValueImg" src={cpImg} alt="company" />
-                        : <img className="companyValueImg" src={require('../../assets/images/logo.png')} alt="company" />}
-                    <div className="companyValueName">
-                        {infoCpName}
+                        ? <img className="companyModalImg" src={cpImg} alt="company" />
+                        : <img className="companyModalImg" src={require('../../assets/images/logo.png')} alt="company" />}
+                    <div className="companyModalRight">
+                        <div className="companyModalName">
+                            {infoCpName}
+                        </div>
+                        <div>
+                            {post.length !== 0
+                                ? post[0].infoCpName.culture : null}
+                        </div>
                     </div>
-                    {/* </div> */}
-                    {/* 사내문화 설명 들어옴 */}
                 </div>
                 {post.length !== 0
                     ? post.map((v, index) => <div className="companyValueModal" key={v + index}>

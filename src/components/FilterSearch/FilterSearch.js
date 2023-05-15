@@ -6,6 +6,10 @@ const FilterSearch = ({ className, mainClassName, inputClassName, placeholder, o
     const input = useRef(null);
 
     useEffect(() => {
+        document.getElementsByClassName(mainClassName)[0].children[0].children[0].style.background = document.getElementsByClassName(mainClassName)[0].children[0].style.background;
+    }, [open, mainClassName]);
+
+    useEffect(() => {
         // viewResult 기반으로 checkbox 반영
         let makeCheck = [];
         for (let i = 0; i < viewResult.length; i++) {
@@ -38,7 +42,6 @@ const FilterSearch = ({ className, mainClassName, inputClassName, placeholder, o
 
             // filter 배경색 변경
             document.getElementsByClassName(mainClassName)[0].children[0].style.background = 'rgb(232, 238, 243)';
-            document.getElementsByClassName(mainClassName)[0].children[0].children[0].style.background = 'rgb(232, 238, 243)';
         }
         else {
             document.getElementsByClassName(mainClassName)[0].children[1].classList.replace('selectBlock', 'selectNone');
@@ -46,7 +49,6 @@ const FilterSearch = ({ className, mainClassName, inputClassName, placeholder, o
             input.current.disabled = true;
 
             document.getElementsByClassName(mainClassName)[0].children[0].style.background = 'white';
-            document.getElementsByClassName(mainClassName)[0].children[0].children[0].style.background = 'white';
         }
     };
 
@@ -81,7 +83,7 @@ const FilterSearch = ({ className, mainClassName, inputClassName, placeholder, o
         <div className={className} onClick={optionOpen}>
             <div className="inputGroup">
                 <input type="text" className={inputClassName} ref={input} placeholder={placeholder} onChange={change} />
-                <img src={require('../../assets/images/filterSearch.png')} className="selectImg" alt="select" />
+                <img src={require('../../assets/images/search.png')} className="selectImg" alt="select" />
             </div>
 
             <div className="select selectNone">
