@@ -44,10 +44,12 @@ const FilterMany = ({ className, mainClassName, selectBase, option, result, view
                 {option.map((v, index) => {
                     return (
                         <label key={v + index} className="option">
-                            <input type="checkbox" className="optionBox" onChange={() => optionSelect(v, mainClassName)}
-                                checked={check.includes(v)}
-                                value={v} />
-                            {v}
+                            <div className="optionTool">
+                                <input type="checkbox" className="optionBox" onChange={() => optionSelect(v, mainClassName)}
+                                    checked={check.includes(v)}
+                                    value={v} />
+                                <div>{v}</div>
+                            </div>
                         </label>
                     );
                 })}

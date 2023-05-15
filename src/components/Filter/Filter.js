@@ -98,8 +98,10 @@ const Filter = ({ className, mainClassName, selectBase, option, result, viewResu
                         <label key={v + index} className="option">
                             {/* label 태그로 텍스트 클릭해도 클릭 적용되도록 */}
 
-                            <input type="radio" className="optionBox" onChange={() => optionSelect(v, mainClassName)} checked={check ? v === check[0] : 0} value={v} /> {/* checked 속성은 v가 check과 같다면 채워지도록 */}
-                            {v}
+                            <div className="optionTool">
+                                <input type="radio" className="optionBox" onChange={() => optionSelect(v, mainClassName)} checked={check ? v === check[0] : 0} value={v} /> {/* checked 속성은 v가 check과 같다면 채워지도록 */}
+                                <div>{v}</div>
+                            </div>
                         </label>
                     );
                 })}

@@ -313,6 +313,9 @@ body {
     z-index: 10;
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /* grid-emplate-columns로 세로 열 2개씩 고정 */
 }
 
 .select.selectNone {
@@ -323,23 +326,29 @@ body {
 .select.selectBlock {
     max-height: 250px;
     overflow-y: auto;
+    border: 1px solid var(--line-color);
+    border-radius: 5px;
+    background-color: white;
 }
 
 .option {
-    background-color: white;
     list-style: none;
     cursor: pointer;
-    border: 1px solid var(--line-color);
-    border-radius: 5px;
     padding: 10px;
-    margin: 0;
+    margin: auto 0;
+    border: 0;
     text-align: left;
+    word-break: keep-all;
     display: list-item;
     /* li 태그의 기본 설정으로, list 형식으로 나옴 */
 }
 
 .option:hover {
     background-color: var(--line-color);
+}
+
+.optionTool {
+    display: flex;
 }
 
 .optionBox {
@@ -1921,6 +1930,10 @@ tbody>tr>th {
 
     .mypageInfoUserEdit {
         margin: 10px 10px;
+    }
+
+    .select {
+        display: block;
     }
 
     .infoDetail {
