@@ -594,47 +594,58 @@ body {
     color: white;
 }
 
-.loadingBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 70%;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-@keyframes coolspin {
-
-    /*loading*/
+@keyframes rotateLoading {
     0% {
-        transform: rotateZ(0deg);
-    }
-
-    50% {
-        transform: rotateZ(180deg);
+        /* 처음 */
+        transform: rotate(0deg);
     }
 
     100% {
-        transform: rotateZ(180deg);
+        /* 끝 */
+        transform: rotate(360deg);
     }
 }
 
+@keyframes loadingText-opacity {
+    0% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+.loadingContainer {
+    width: 200px;
+    margin: 0px auto;
+    position: relative;
+    padding-top: max(200px, 35vh);
+    /* 200px, 35vh 중 더 큰 값으로 */
+}
+
 .loading {
-    padding: 50vh 0;
-    display: flex;
-    justify-content: center;
+    animation: rotateLoading 1.8s linear 0s infinite;
+    /* 이름, 한 싸이클 시간, 항상 일정한 속도 유지, 몇 초 뒤 애니메이션 시작, 무한히 */
+    height: 200px;
+    border: 2px solid;
+    border-radius: 100%;
+    border-color: transparent var(--green-color);
+    /* transparent는 투명 */
 }
 
-.circle {
-    margin: 30px;
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    background-color: #484848;
-}
-
-.loading:first-child {
-    animation: coolspin 1s ease-in-out infinite;
+#loadingText {
+    animation: loadingText-opacity 2s linear 0s infinite;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 85px;
+    left: 48px;
 }
 
 /* 페이지 기본 틀 */

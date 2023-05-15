@@ -55,13 +55,10 @@ const Mypage = () => {
     return (
         <>
             <Header />
-            <div className="loadingBox" style={loading}>
-                <div className="loading">
-                    <div className="circle"></div>
-                    <div className="circle"></div>
-                    <div className="circle"></div>
-                </div>
-            </div>
+            <div class="loadingContainer" style={loading}>
+                <div class="loading"></div>
+                <div id="loadingText">LOADING</div>
+            </div >
             <div className="basicPage" style={show}>
                 <div className="mypage">
                     <div className="mypageHeader">

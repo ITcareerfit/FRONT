@@ -140,12 +140,9 @@ const Search = () => {
     return (
         <>
             <Header />
-            <div className="loadingBox" style={loading}>
-                <div className="loading">
-                    <div className="circle"></div>
-                    <div className="circle"></div>
-                    <div className="circle"></div>
-                </div>
+            <div class="loadingContainer" style={loading}>
+                <div class="loading"></div>
+                <div id="loadingText">LOADING</div>
             </div>
             <div className="filterBoxGroup" style={show}>
                 <div className="filterBox">
