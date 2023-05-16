@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import { Modal, MypagePost } from "../";
 
 const MypageCompany = ({ id, cpImg, cpName, open }) => {
+
+    const userNum = useParams().userNum;
 
     const [modalOpen, setModalOpen] = useState(false);
     const [post, setPost] = useState(null);
@@ -28,7 +31,7 @@ const MypageCompany = ({ id, cpImg, cpName, open }) => {
     };
 
     const communicate = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage?cpName=${cpName}`
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}?cpName=${cpName}`
         ).then((res) => {
             setPost(res.data);
         }).catch((err) => {
