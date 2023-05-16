@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelectOpen } from "../../hooks";
 
 const FilterValue = ({ name, className, mainClassName, selectBase, option, result, open }) => {
@@ -6,9 +6,7 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
 
     const [holder, setHolder] = useState(selectBase);
 
-    useEffect(() => { }, [selectBase]);
-
-    const optionSelect = (index, v) => {
+    const optionSelect = (v, index) => {
         setHolder(v);
 
         switch (index) {
@@ -67,7 +65,7 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
                                 break;
                         }
                         return (
-                            <li key={v + index} className="option valueOption" onClick={() => optionSelect(index, v)} value={index}>
+                            <li key={v + index} className="option valueOption" onClick={() => optionSelect(text, index)} value={index}>
                                 {text}
                                 <div className="valueOptionList">
                                     {option[index].map((v) =>
