@@ -44,7 +44,7 @@ const FilterValue = ({ name, className, mainClassName, selectBase, option, resul
                     <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
                 </div>
 
-                <ul className="select selectNone">
+                <ul className="select selectNone valueSelect">
                     {option.map((v, index) => {
                         let text = '';
                         switch (index) {
