@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import cookies from "react-cookies";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ChooseMany, Header, MypageCompany, MypagePost } from "../../components";
 import { useValueNav } from "../../hooks";
 
@@ -8,19 +9,21 @@ const Mypage = () => {
     const navigate = useNavigate();
     const value = useValueNav;
 
+    const userNum = useParams().userNum;
+
     // const company1 = sessionStorage.getItem('company1');
     // const company2 = sessionStorage.getItem('company2');
     // const company3 = sessionStorage.getItem('company3');
     // const company4 = sessionStorage.getItem('company4');
     // const company5 = sessionStorage.getItem('company5');
-    const goodPosts = sessionStorage.getItem('goodPosts').split(','); // , 기준으로 나누기
     const userName = sessionStorage.getItem('userName');
-    const birth = sessionStorage.getItem('birth').split('-');
+    const birth = sessionStorage.getItem('birth').split('-'); // - 기준으로 나누기
     const phone = sessionStorage.getItem('phone');
     const pos = sessionStorage.getItem('pos').split(',');
 
     const [loading, setLoading] = useState({ display: 'block' });
     const [show, setShow] = useState({ display: 'none' });
+    const [goodPosts, setGoodPosts] = useState(sessionStorage.getItem('goodPosts').split(','));
     const [open, setOpen] = useState('');
     const [position, setPosition] = useState(pos);
     const newName = useRef(null);
@@ -30,26 +33,27 @@ const Mypage = () => {
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
 
-        // axios 소통 -> (company1, company2...)로 (img, name), goodPosts로 세부정보 받기
+        console.log(userNum);
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/0`
+            // axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}`
+        ).then((res) => {
+            console.log(res);
+            sessionStorage.setItem('goodPosts', res.data.user_gp_list);
+            if (cookies.load('email')) cookies.save('goodPosts', res.data.user_gp_list);
+            setGoodPosts(res.data.gp_list_info);
+        }).catch((err) => {
+            console.log(err);
+        });
+
         setLoading({ display: 'none' });
         setShow({ display: 'block' });
-    }, []);
+    }, [userNum]);
 
     const edit = () => {
         let post = {};
         if (newName.current.value) post.userName = newName.current.value;
         if (newPhone.current.value) post.phone = newPhone.current.value;
         if (newPos.current.value) post.pos = newPos.current.value;
-
-        if (post.userName || post.phone || post.pos) {
-            axios.post('/api/mypageEdit', post
-            ).then((res) => {
-                console.log(res);
-                // session change
-            }).catch((err) => {
-                console.log(err);
-            });
-        }
     };
 
     return (
@@ -102,13 +106,10 @@ const Mypage = () => {
 
                             <div className="mypageBox mypageBoxSecond">
                                 {goodPosts
-                                    ? goodPosts.slice(0, 3).map((v, index) => {
-                                        // 3개만 출력
-
-                                        // company, title, career, area change
+                                    ? goodPosts.slice(0, 3).map((v, index) => { // 3개만 출력
                                         return (
                                             <div className="mypagePostBox mypagePostTool" key={v + index}>
-                                                <MypagePost infoId={v} infoCpName={'카카오'} title={'Frontend Software Engineers'} minCareer={2} maxCareer={7} infoLoc={'서울시 성동구'} />
+                                                <MypagePost infoId={v.infoId} infoCpName={v.infoCpName.cpName} title={v.title} minCareer={v.minCareer} maxCareer={v.maxCareer} infoLoc={v.infoLoc} />
                                             </div>
                                         );
                                     })
