@@ -55,8 +55,8 @@ const Mypage = () => {
     return (
         <>
             <Header />
-            <div class="loadingContainer" style={loading}>
-                <div class="loading"></div>
+            <div className="loadingContainer" style={loading}>
+                <div className="loading"></div>
                 <div id="loadingText">LOADING</div>
             </div >
             <div className="basicPage" style={show}>
