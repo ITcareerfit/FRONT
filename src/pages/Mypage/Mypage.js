@@ -11,19 +11,19 @@ const Mypage = () => {
 
     const userNum = useParams().userNum;
 
-    // const company1 = sessionStorage.getItem('company1');
-    // const company2 = sessionStorage.getItem('company2');
-    // const company3 = sessionStorage.getItem('company3');
-    // const company4 = sessionStorage.getItem('company4');
-    // const company5 = sessionStorage.getItem('company5');
+    const company1 = JSON.parse(sessionStorage.getItem('company1')); // 객체로 변환
+    const company2 = JSON.parse(sessionStorage.getItem('company2'));
+    const company3 = JSON.parse(sessionStorage.getItem('company3'));
+    const company4 = JSON.parse(sessionStorage.getItem('company4'));
+    const company5 = JSON.parse(sessionStorage.getItem('company5'));
     const userName = sessionStorage.getItem('userName');
-    const birth = sessionStorage.getItem('birth').split('-'); // - 기준으로 나누기
+    const birth = sessionStorage.getItem('birth').split(','); // , 기준으로 나누기
     const phone = sessionStorage.getItem('phone');
     const pos = sessionStorage.getItem('pos').split(',');
 
     const [loading, setLoading] = useState({ display: 'block' });
     const [show, setShow] = useState({ display: 'none' });
-    const [goodPosts, setGoodPosts] = useState(sessionStorage.getItem('goodPosts').split(','));
+    const [goodPosts, setGoodPosts] = useState([]);
     const [open, setOpen] = useState('');
     const [position, setPosition] = useState(pos);
     const newName = useRef(null);
@@ -33,11 +33,8 @@ const Mypage = () => {
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
 
-        console.log(userNum);
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/0`
-            // axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}`
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}`
         ).then((res) => {
-            console.log(res);
             sessionStorage.setItem('goodPosts', res.data.user_gp_list);
             if (cookies.load('email')) cookies.save('goodPosts', res.data.user_gp_list);
             setGoodPosts(res.data.gp_list_info);
@@ -87,16 +84,19 @@ const Mypage = () => {
                             <span className="goLink goLinkValue" onClick={() => value(navigate)}>가치관확인</span>
 
                             <div className="mypageBox">
-                                {/* img, name, info, title change after */}
-                                <MypageCompany id={'first'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'포티투닷'} open={[open, setOpen]} />
+                                {company1 !== 'null'
+                                    ? <>
+                                        <MypageCompany id={'first'} cpImg={company1.cpImg} cpName={company1.cpName} open={[open, setOpen]} />
 
-                                <MypageCompany id={'second'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'라인쓰리'} open={[open, setOpen]} />
+                                        <MypageCompany id={'second'} cpImg={company2.cpImg} cpName={company2.cpName} open={[open, setOpen]} />
 
-                                <MypageCompany id={'thrid'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'페이타랩'} open={[open, setOpen]} />
+                                        <MypageCompany id={'thrid'} cpImg={company3.cpImg} cpName={company3.cpName} open={[open, setOpen]} />
 
-                                <MypageCompany id={'fourth'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'띵스플로우'} open={[open, setOpen]} />
+                                        <MypageCompany id={'fourth'} cpImg={company4.cpImg} cpName={company4.cpName} open={[open, setOpen]} />
 
-                                <MypageCompany id={'fifth'} cpImg={'https://mblogthumb-phinf.pstatic.net/20160427_105/ppanppane_1461740027409K9Eqv_PNG/%B8%C6%B5%B5%B3%AF%B5%E5_%B7%CE%B0%ED_%282%29.png?type=w2'} cpName={'이노팸'} open={[open, setOpen]} />
+                                        <MypageCompany id={'fifth'} cpImg={company5.cpImg} cpName={company5.cpName} open={[open, setOpen]} />
+                                    </>
+                                    : <img className="mypageEmpty" src={require('../../assets/images/empty.png')} alt="emply" />}
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@ const Mypage = () => {
                             {/* navigate에 /goodpost가 아니라 goodpost라고 적으면 현 url 뒤 /goodpost 로 이동 */}
 
                             <div className="mypageBox mypageBoxSecond">
-                                {goodPosts
+                                {goodPosts.length !== 0
                                     ? goodPosts.slice(0, 3).map((v, index) => { // 3개만 출력
                                         return (
                                             <div className="mypagePostBox mypagePostTool" key={v + index}>
@@ -113,7 +113,7 @@ const Mypage = () => {
                                             </div>
                                         );
                                     })
-                                    : null}
+                                    : <img className="mypageEmpty" src={require('../../assets/images/empty.png')} alt="emply" />}
                             </div>
                         </div>
 

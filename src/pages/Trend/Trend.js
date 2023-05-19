@@ -113,7 +113,7 @@ const Trend = () => {
                             <div className="trendExtra">※ 매월 말 분석결과를 제공합니다.</div>
                         </div>
                         <div className="doughnutGraph">
-                            <DoughnutGraph labels={doughnutLabel} label={`${year}년 ${month}월`} datas={doughnutDatas} title={'2023년 3월 프로그래밍 언어 트랜드'} size={doughnutSize} />
+                            <DoughnutGraph labels={doughnutLabel} label={`${year}년 ${month}월`} datas={doughnutDatas} title={`${year}년 ${month}월 프로그래밍 언어 트랜드`} size={doughnutSize} />
                         </div>
                     </div>
                 </div>

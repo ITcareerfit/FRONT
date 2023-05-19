@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Choose, ChooseMany } from "../../components";
 
 const SignUp = () => {
+    const navigate = useNavigate();
 
     const [open, setOpen] = useState('');
     const [email, setEmail] = useState('');
@@ -56,10 +58,29 @@ const SignUp = () => {
 
             axios.post(`${process.env.REACT_APP_SERVER_URL}/signup`, data
             ).then((res) => {
-                console.log(res);
-                console.log(res.data);
+                if (res.data.message === 'yes') {
+                    navigate('/main');
+                    sessionStorage.setItem('userNum', res.data.user.userNum);
+                    sessionStorage.setItem('email', res.data.user.email);
+                    sessionStorage.setItem('userName', res.data.user.userName);
+                    sessionStorage.setItem('birth', res.data.user.birth);
+                    sessionStorage.setItem('phone', res.data.user.phone);
+                    sessionStorage.setItem('pos', res.data.user.pos);
+                    sessionStorage.setItem('goodPosts', res.data.user.goodPosts);
+                    sessionStorage.setItem('company1', res.data.user.company1);
+                    sessionStorage.setItem('company2', res.data.user.company2);
+                    sessionStorage.setItem('company3', res.data.user.company3);
+                    sessionStorage.setItem('company4', res.data.user.company4);
+                    sessionStorage.setItem('company5', res.data.user.company5);
+                    sessionStorage.setItem('profit', res.data.user.profit);
+                    sessionStorage.setItem('stable', res.data.user.stable);
+                    sessionStorage.setItem('grow', res.data.user.grow);
+                    sessionStorage.setItem('pay', res.data.user.pay);
+                    sessionStorage.setItem('scale', res.data.user.scale);
+                }
             }).catch((err) => {
                 console.log(err);
+                alert('다시 시도해주십시오.');
             });
         }
         else document.getElementsByClassName('signUpError')[0].style.display = 'block';

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useGood } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +6,15 @@ const Post = ({ infoId, cpImg, infoCpName, title, deadline, minCareer, maxCareer
     const good = useGood;
     const navigate = useNavigate();
 
+    const btn = useRef(null);
+
     const userNum = sessionStorage.getItem('userNum');
+
+    useEffect(() => {
+        const goodPosts = sessionStorage.getItem('goodPosts').split(',');
+        if (goodPosts.length !== 0 && goodPosts.indexOf(String(infoId)) !== -1) btn.current.src = require('../../assets/images/redGood.png');
+        // infdexOf는 해당 값의 index값 반환, 없을 경우 -1 반환
+    }, [infoId]);
 
     const go = () => navigate(`/info/${infoId}`);
 
@@ -28,7 +36,7 @@ const Post = ({ infoId, cpImg, infoCpName, title, deadline, minCareer, maxCareer
                             {title}
                         </div>
                     </div>
-                    <img className="goodBtn" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, infoId, userNum)} />
+                    <img className="goodBtn" src={require('../../assets/images/good.png')} alt="good" ref={btn} onClick={(event) => good(event, infoId, userNum)} />
                 </div>
 
                 <div className="postFooter" onClick={go}>

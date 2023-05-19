@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { Modal, MypagePost } from "../";
 
 const MypageCompany = ({ id, cpImg, cpName, open }) => {
-
     const userNum = useParams().userNum;
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -31,7 +30,7 @@ const MypageCompany = ({ id, cpImg, cpName, open }) => {
     };
 
     const communicate = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}?cpName=${cpName}`
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}?cpName=${cpName}`
         ).then((res) => {
             setPost(res.data);
         }).catch((err) => {
@@ -64,14 +63,19 @@ const MypageCompany = ({ id, cpImg, cpName, open }) => {
                             </div>
                             <div>
                                 {post
-                                    ? post[0].infoCpName.culture : null}
+                                    ? post.length !== 0
+                                        ? post[0].infoCpName.culture
+                                        : null
+                                    : null}
                             </div>
                         </div>
                     </div>
                     {post
-                        ? post.map((v, index) => <div className="companyValueModal" key={v + index}>
-                            <MypagePost infoId={post[index].infoId} infoCpName={post[index].infoCpName.cpName} title={post[index].title} minCareer={post[index].minCareer} maxCareer={post[index].maxCareer} infoLoc={post[index].infoLoc} />
-                        </div>)
+                        ? post.length !== 0
+                            ? post.map((v, index) => <div className="companyValueModal" key={v + index}>
+                                <MypagePost infoId={post[index].infoId} infoCpName={post[index].infoCpName.cpName} title={post[index].title} minCareer={post[index].minCareer} maxCareer={post[index].maxCareer} infoLoc={post[index].infoLoc} />
+                            </div>)
+                            : <img className="companyValueModalEmpty" src={require('../../assets/images/empty.png')} alt="empty" />
                         : <img className="companyValueModalEmpty" src={require('../../assets/images/empty.png')} alt="empty" />}
                 </Modal>
             </div>

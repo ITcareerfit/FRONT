@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import cookies from "react-cookies";
+import cookies from "react-cookies";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CompanyValue, FilterValue, Header, Modal, MyValue, ValueTable } from "../../components";
 
 const Value = () => {
     const navigate = useNavigate();
+    const [userNum, setUserNum] = useState(-1);
     const [userName, setUserName] = useState('사용자');
     const [modalOpen, setModalOpen] = useState(false);
     const [profit, setProfit] = useState(-1);
@@ -30,6 +31,7 @@ const Value = () => {
         document.getElementsByClassName('headerValues')[0].style.color = 'rgb(101, 111, 119)';
 
         if (sessionStorage.getItem('userNum')) {
+            setUserNum(sessionStorage.getItem('userNum'));
             setUserName(sessionStorage.getItem('userName'));
 
             if (sessionStorage.getItem('profit')) {
@@ -84,36 +86,44 @@ const Value = () => {
         sessionStorage.setItem('scale', scale);
         sessionStorage.setItem('grow', grow);
         sessionStorage.setItem('big', maxGroup);
+        if (cookies.load('profit')) {
+            cookies.save('profit', profit);
+            cookies.save('stable', stable);
+            cookies.save('pay', pay);
+            cookies.save('scale', scale);
+            cookies.save('grow', grow);
+            cookies.save('big', maxGroup);
+        }
     }, [profit, stable, pay, scale, grow]);
 
     const valuePost = () => {
         if (sessionStorage.getItem('userNum') && sessionStorage.getItem('profit') && sessionStorage.getItem('stable') && sessionStorage.getItem('pay') && sessionStorage.getItem('scale') && sessionStorage.getItem('grow')) {
             // axios로 profit stable, pay, scale, grow 보내고 그에 걸맞는 기업 노출
             axios.post(`${process.env.REACT_APP_SERVER_URL}/value`, {
-                userNum: 0,
-                profit: 40,
-                stable: 40,
-                pay: 40,
-                scale: 40,
-                grow: 40
-                // userNum: sessionStorage.getItem('userNum'),
-                // profit: profit,
-                // stable: stable,
-                // pay: pay,
-                // scale: scale,
-                // grow: grow
-
-                // profit: sessionStorage.getItem('profit'),
-                // stable: sessionStorage.getItem('stable'),
-                // pay: sessionStorage.getItem('pay'),
-                // scale: sessionStorage.getItem('scale'),
-                // grow: sessionStorage.getItem('grow'),
+                userNum: userNum,
+                profit: profit,
+                stable: stable,
+                pay: pay,
+                scale: scale,
+                grow: grow
             }).then((res) => {
                 setCompany1(res.data.company1);
                 setCompany2(res.data.company2);
                 setCompany3(res.data.company3);
                 setCompany4(res.data.company4);
                 setCompany5(res.data.company5);
+                sessionStorage.setItem('company1', JSON.stringify(res.data.company1)); // 객체형태 보존하기 위함
+                sessionStorage.setItem('company2', JSON.stringify(res.data.company2));
+                sessionStorage.setItem('company3', JSON.stringify(res.data.company3));
+                sessionStorage.setItem('company4', JSON.stringify(res.data.company4));
+                sessionStorage.setItem('company5', JSON.stringify(res.data.company5));
+                if (cookies.load('company1')) {
+                    cookies.save('company1', JSON.stringify(res.data.company1));
+                    cookies.save('company2', JSON.stringify(res.data.company2));
+                    cookies.save('company3', JSON.stringify(res.data.company3));
+                    cookies.save('company4', JSON.stringify(res.data.company4));
+                    cookies.save('company5', JSON.stringify(res.data.company5));
+                }
             }).catch((err) => {
                 console.log(err);
             });
@@ -181,15 +191,15 @@ const Value = () => {
                 <div className="postGroup valuePosts">
                     {company1
                         ? <>
-                            <CompanyValue cpImg={company1.cpImg} infoCpName={company1.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company1.profit, company1.stable, company1.pay, company1.scale, company1.grow]} />
+                            <CompanyValue cpImg={company1.cpImg} infoCpName={company1.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company1.profit.toFixed(3), company1.stable.toFixed(3), company1.pay.toFixed(3), company1.scale.toFixed(3), company1.grow.toFixed(3)]} />
 
-                            <CompanyValue cpImg={company2.cpImg} infoCpName={company2.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company2.profit, company2.stable, company2.pay, company2.scale, company2.grow]} />
+                            <CompanyValue cpImg={company2.cpImg} infoCpName={company2.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company2.profit.toFixed(3), company2.stable.toFixed(3), company2.pay.toFixed(3), company2.scale.toFixed(3), company2.grow.toFixed(3)]} />
 
-                            <CompanyValue cpImg={company3.cpImg} infoCpName={company3.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company3.profit, company3.stable, company3.pay, company3.scale, company3.grow]} />
+                            <CompanyValue cpImg={company3.cpImg} infoCpName={company3.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company3.profit.toFixed(3), company3.stable.toFixed(3), company3.pay.toFixed(3), company3.scale.toFixed(3), company3.grow.toFixed(3)]} />
 
-                            <CompanyValue cpImg={company4.cpImg} infoCpName={company4.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company4.profit, company4.stable, company4.pay, company4.scale, company4.grow]} />
+                            <CompanyValue cpImg={company4.cpImg} infoCpName={company4.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company4.profit.toFixed(3), company4.stable.toFixed(3), company4.pay.toFixed(3), company4.scale.toFixed(3), company4.grow.toFixed(3)]} />
 
-                            <CompanyValue cpImg={company5.cpImg} infoCpName={company5.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company5.profit, company5.stable, company5.pay, company5.scale, company5.grow]} />
+                            <CompanyValue cpImg={company5.cpImg} infoCpName={company5.cpName} myValue={[profit, stable, pay, scale, grow]} companyValue={[company5.profit.toFixed(3), company5.stable.toFixed(3), company5.pay.toFixed(3), company5.scale.toFixed(3), company5.grow.toFixed(3)]} />
                         </>
                         : null}
                 </div>

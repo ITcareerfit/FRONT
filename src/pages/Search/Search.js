@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, Filter, FilterInput, Post, FilterMany, Pagination, FilterSearch } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { Header, Filter, FilterInput, Post, FilterMany, Pagination, FilterSearch } from "../../components";
 
 const Search = () => {
     const navigate = useNavigate();
@@ -118,13 +118,14 @@ const Search = () => {
         }
 
         window.scrollTo(0, 0); // 맨 위로 이동
-        navigate(`?page=${page}`);
 
-    }, [page, navigate, job, stack, company, type, employee, pay, career]);
+        if (page > maxPage) {
+            navigate('?page=1');
+            setPage(1);
+        }
+        else navigate(`?page=${page}`);
 
-    useEffect(() => {
-        if (page > maxPage) setPage(1);
-    }, [page, maxPage]);
+    }, [page, maxPage, navigate, job, stack, company, type, employee, pay, career]);
 
     const removeSearchResult = (remove) => {
         const num = viewResult.indexOf(remove);

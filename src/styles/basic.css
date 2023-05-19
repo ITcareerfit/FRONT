@@ -492,7 +492,7 @@ body {
     background-color: white;
     border-left: 1px solid var(--line-color);
     border-right: 1px solid var(--line-color);
-    padding: 5px 15px;
+    padding: 5px 10px;
 }
 
 .headerPopupList:hover {
@@ -860,6 +860,11 @@ body {
     margin-top: 17vh;
 }
 
+.mypageEmpty {
+    margin: auto;
+    margin-top: 12vh;
+}
+
 .mypageBoxSecond {
     justify-content: space-around;
     width: 100%;
@@ -902,7 +907,7 @@ body {
 
 .mypagePostTitle {
     text-align: start;
-    font-size: 22px;
+    font-size: 20px;
     margin: 0 10px;
     margin-bottom: 10px;
     cursor: pointer;

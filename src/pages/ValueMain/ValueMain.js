@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import cookies from "react-cookies";
 import { Header, FilterValue, Modal, ValueTable } from "../../components";
 import { useNavigate } from "react-router-dom";
 

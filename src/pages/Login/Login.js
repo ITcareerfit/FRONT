@@ -9,23 +9,23 @@ const Login = () => {
     const keepEmail = useRef(null);
 
     // delete after
-    sessionStorage.setItem('userNum', 12345);
-    sessionStorage.setItem('email', 'userIDuserID@site.com');
-    sessionStorage.setItem('userName', '홍길동');
-    sessionStorage.setItem('birth', '2001-04-05');
-    sessionStorage.setItem('phone', '010-0000-0000');
-    sessionStorage.setItem('pos', ['백엔드', '프론트']);
-    sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
-    sessionStorage.setItem('company1', '쿠팡');
-    sessionStorage.setItem('company2', '카카오');
-    sessionStorage.setItem('company3', '네이버');
-    sessionStorage.setItem('company4', '베달의 민족');
-    sessionStorage.setItem('company5', '한화');
-    sessionStorage.setItem('profit', 1);
-    sessionStorage.setItem('stable', 1);
-    sessionStorage.setItem('grow', 1);
-    sessionStorage.setItem('pay', 1);
-    sessionStorage.setItem('scale', 1);
+    // sessionStorage.setItem('userNum', 12345);
+    // sessionStorage.setItem('email', 'userIDuserID@site.com');
+    // sessionStorage.setItem('userName', '홍길동');
+    // sessionStorage.setItem('birth', '2001-04-05');
+    // sessionStorage.setItem('phone', '010-0000-0000');
+    // sessionStorage.setItem('pos', ['백엔드', '프론트']);
+    // sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
+    // sessionStorage.setItem('company1', '쿠팡');
+    // sessionStorage.setItem('company2', '카카오');
+    // sessionStorage.setItem('company3', '네이버');
+    // sessionStorage.setItem('company4', '베달의 민족');
+    // sessionStorage.setItem('company5', '한화');
+    // sessionStorage.setItem('profit', 1);
+    // sessionStorage.setItem('stable', 1);
+    // sessionStorage.setItem('grow', 1);
+    // sessionStorage.setItem('pay', 1);
+    // sessionStorage.setItem('scale', 1);
 
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.background = 'white';
@@ -71,57 +71,53 @@ const Login = () => {
             }).then((res) => { //axios.post 성공하면
                 if (res.data.message === 'no') document.getElementsByClassName('enterError')[0].style.display = 'block';
                 else {
-
                     // session에 정보 저장
-                    // change res data
-                    sessionStorage.setItem('userNum', 12345);
-                    sessionStorage.setItem('email', 'userIDuserID@site.com');
-                    sessionStorage.setItem('userName', '홍길동');
-                    sessionStorage.setItem('birth', '2001-04-05');
-                    sessionStorage.setItem('phone', '010-0000-0000');
-                    sessionStorage.setItem('pos', ['백엔드', '프론트']);
-                    sessionStorage.setItem('goodPosts', [11, 22, 33, 44, 55, 66]);
-                    sessionStorage.setItem('company1', '쿠팡');
-                    sessionStorage.setItem('company2', '카카오');
-                    sessionStorage.setItem('company3', '네이버');
-                    sessionStorage.setItem('company4', '베달의 민족');
-                    sessionStorage.setItem('company5', '한화');
-                    sessionStorage.setItem('profit', 1);
-                    sessionStorage.setItem('stable', 1);
-                    sessionStorage.setItem('grow', 1);
-                    sessionStorage.setItem('pay', 1);
-                    sessionStorage.setItem('scale', 1);
+                    sessionStorage.setItem('userNum', res.data.user.userNum);
+                    sessionStorage.setItem('email', res.data.user.email);
+                    sessionStorage.setItem('userName', res.data.user.userName);
+                    sessionStorage.setItem('birth', res.data.user.birth);
+                    sessionStorage.setItem('phone', res.data.user.phone);
+                    sessionStorage.setItem('pos', res.data.user.pos);
+                    sessionStorage.setItem('goodPosts', res.data.user.goodPosts);
+                    sessionStorage.setItem('company1', JSON.stringify(res.data.user.company1));
+                    sessionStorage.setItem('company2', JSON.stringify(res.data.user.company2));
+                    sessionStorage.setItem('company3', JSON.stringify(res.data.user.company3));
+                    sessionStorage.setItem('company4', JSON.stringify(res.data.user.company4));
+                    sessionStorage.setItem('company5', JSON.stringify(res.data.user.company5));
+                    sessionStorage.setItem('profit', res.data.user.profit);
+                    sessionStorage.setItem('stable', res.data.user.stable);
+                    sessionStorage.setItem('grow', res.data.user.grow);
+                    sessionStorage.setItem('pay', res.data.user.pay);
+                    sessionStorage.setItem('scale', res.data.user.scale);
                     const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('scale'));
                     sessionStorage.setItem('big', big);
 
                     // 로그인 유지하기 -> cookies
                     if (keepLogin.current.classList.contains('keep')) {
 
-                        // change res data
-                        cookies.save('userNum', 12345);
-                        cookies.save('email', 'userIDuserID@site.com');
-                        cookies.save('userName', '홍길동');
-                        cookies.save('birth', '2001-04-05');
-                        cookies.save('phone', '010-0000-0000');
-                        cookies.save('pos', ['백엔드', '프론트']);
-                        cookies.save('goodPosts', [11, 22, 33, 44, 55, 66]);
-                        cookies.save('company1', '쿠팡');
-                        cookies.save('company2', '카카오');
-                        cookies.save('company3', '네이버');
-                        cookies.save('company4', '베달의 민족');
-                        cookies.save('company5', '한화');
-                        cookies.save('profit', 1);
-                        cookies.save('stable', 1);
-                        cookies.save('grow', 1);
-                        cookies.save('pay', 1);
-                        cookies.save('scale', 1);
+                        cookies.save('userNum', res.data.user.userNum);
+                        cookies.save('email', res.data.user.email);
+                        cookies.save('userName', res.data.user.userName);
+                        cookies.save('birth', res.data.user.birth);
+                        cookies.save('phone', res.data.user.phone);
+                        cookies.save('pos', res.data.user.pos);
+                        cookies.save('goodPosts', res.data.user.goodPosts);
+                        cookies.save('company1', JSON.stringify(res.data.user.company1));
+                        cookies.save('company2', JSON.stringify(res.data.user.company2));
+                        cookies.save('company3', JSON.stringify(res.data.user.company3));
+                        cookies.save('company4', JSON.stringify(res.data.user.company4));
+                        cookies.save('company5', JSON.stringify(res.data.user.company5));
+                        cookies.save('profit', res.data.user.profit);
+                        cookies.save('stable', res.data.user.stable);
+                        cookies.save('grow', res.data.user.grow);
+                        cookies.save('pay', res.data.user.pay);
+                        cookies.save('scale', res.data.user.scale);
                         const big = makeBig(sessionStorage.getItem('profit'), sessionStorage.getItem('stable'), sessionStorage.getItem('grow'), sessionStorage.getItem('pay'), sessionStorage.getItem('scale'));
                         cookies.save('big', big);
-
-                        navigate(-1); // 이전 페이지로 이동
                     }
                     // 이메일 기억하기
                     else if (keepEmail.current.classList.contains('keep')) cookies.save('email', email);
+                    navigate(-1); // 이전 페이지로 이동
                 };
             }).catch((err) => { //axios.post 에러나면
                 console.log(err);
