@@ -91,6 +91,7 @@ const LineGraph = ({ labels, label, datas, title }) => {
                 type: 'linear',
                 display: true,
                 position: 'left',
+                min: 0
             }
         }
     };

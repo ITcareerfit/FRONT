@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelectOpen } from "../../hooks";
 
 const Choose = ({ className, mainClassName, option, open, value }) => {
     const selectOpen = useSelectOpen;
+
+    const [divClassName, setDivClassName] = useState('');
+    const height = useRef(null);
+
+    useEffect(() => {
+        if (mainClassName === 'jobType') {
+            setDivClassName('selectBase mypageBorder mypageEditInput mypagePosTool');
+            if (value[0].length === 0) height.current.style.height = '32px';
+            else height.current.style.height = 'auto';
+        }
+        else setDivClassName('selectBase selectSignUp');
+    }, [mainClassName, value]);
 
     const optionSelect = (name, className) => {
         value[1](name);
@@ -15,8 +27,12 @@ const Choose = ({ className, mainClassName, option, open, value }) => {
 
     return (
         <div className={className} onClick={() => selectOpen(mainClassName, open)}>
-            <div className="selectBase selectSignUp">
-                {value[0]}
+            <div className={divClassName} ref={height}>
+                {mainClassName === 'jobType'
+                    ? value[0] === ''
+                        ? 'IT 직무 선택'
+                        : value[0]
+                    : value[0]}
                 <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
             </div>
 

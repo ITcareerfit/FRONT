@@ -831,12 +831,14 @@ body {
 
 .companyModal {
     display: flex;
-    margin-top: 20px;
+    margin: 20px 0;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--line-color);
 }
 
 .companyModalImg {
     width: 100px;
-    height: auto;
+    height: 100px;
 }
 
 .companyModalRight {
@@ -847,11 +849,29 @@ body {
 .companyModalName {
     margin-bottom: auto;
     color: var(--gray-color);
-    font-size: 17px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.companyModalCultureBox {
+    color: var(--gray-color);
+    padding-left: 15px;
+}
+
+.companyModalCulture {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(0, 112, 192);
+    margin: 5px 0;
+    margin-top: 10px;
+}
+
+.companyModalCultureBad {
+    color: red;
 }
 
 .companyValueModal {
-    width: 50%;
+    width: 70%;
     margin: 10px auto;
 }
 
@@ -861,8 +881,7 @@ body {
 }
 
 .mypageEmpty {
-    margin: auto;
-    margin-top: 12vh;
+    margin: 12vh auto;
 }
 
 .mypageBoxSecond {
@@ -1145,6 +1164,12 @@ body {
     color: var(--gray-color);
     font-weight: bold;
     margin: 20px 0;
+}
+
+.searchEnd {
+    text-align: right;
+    margin-top: -25px;
+    cursor: pointer;
 }
 
 .postGroup {
@@ -1697,6 +1722,24 @@ tbody>tr>th {
     padding-top: 0;
 }
 
+.trendMonth {
+    text-align: right;
+    margin-top: 20px;
+    margin-bottom: -15px;
+    height: 0;
+}
+
+.trendBtn {
+    margin-left: 10px;
+    height: auto;
+    color: var(--green-color);
+    cursor: pointer;
+}
+
+.trendBtn:hover {
+    font-size: 20px;
+}
+
 .trendPage {
     display: flex;
     width: 90%;
@@ -1760,6 +1803,16 @@ tbody>tr>th {
 
 .trendGraph {
     flex: 1;
+}
+
+.trendExplain {
+    font-size: 15px;
+    color: var(--darkLine-color);
+    margin-bottom: 10px;
+}
+
+.trendSelectTool {
+    width: 50%;
 }
 
 .graph {

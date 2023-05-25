@@ -8,6 +8,7 @@ const MypageCompany = ({ id, cpImg, cpName, open }) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [post, setPost] = useState(null);
+    const [culture, setCulture] = useState(null);
 
     const check = () => {
         if (open[0] !== '') {
@@ -32,7 +33,9 @@ const MypageCompany = ({ id, cpImg, cpName, open }) => {
     const communicate = () => {
         axios.post(`${process.env.REACT_APP_SERVER_URL}/mypage/${userNum}?cpName=${cpName}`
         ).then((res) => {
-            setPost(res.data);
+            setPost(res.data.postDto);
+            const cultures = res.data.culture.split('/');
+            setCulture([cultures[0], cultures[1]]);
         }).catch((err) => {
             console.log(err);
         });
@@ -61,11 +64,14 @@ const MypageCompany = ({ id, cpImg, cpName, open }) => {
                             <div className="companyModalName">
                                 {cpName}
                             </div>
-                            <div>
-                                {post
-                                    ? post.length !== 0
-                                        ? post[0].infoCpName.culture
-                                        : null
+                            <div className="companyModalCultureBox">
+                                {culture
+                                    ? <>
+                                        <div className="companyModalCulture">✓ 장점</div>
+                                        {culture[0]}
+                                        <div className="companyModalCulture companyModalCultureBad">✓ 단점</div>
+                                        {culture[1]}
+                                    </>
                                     : null}
                             </div>
                         </div>

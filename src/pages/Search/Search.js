@@ -14,6 +14,8 @@ const Search = () => {
     const [open, setOpen] = useState('');
     const [tech, setTech] = useState([]);
     const [num, setNum] = useState(0);
+    const [end, setEnd] = useState(false);
+    const [endMark, setEndMark] = useState('□');
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
@@ -56,7 +58,7 @@ const Search = () => {
     }, [result, removeResult, viewResult]);
 
     useEffect(() => {
-        let dataJob, dataStack, dataCompany, dataType, dataEmployee, dataPay, dataCareer;
+        let dataJob, dataStack, dataCompany, dataType, dataEmployee, dataPay, dataCareer, showEnd;
 
         setLoading({ display: 'block' });
         setShow({ display: 'none' });
@@ -80,6 +82,9 @@ const Search = () => {
             : career === '신입'
                 ? dataCareer = 0
                 : dataCareer = career.slice(0, -4);
+        end === true
+            ? showEnd = 1
+            : showEnd = 0;
 
         if (dataJob !== null || dataStack !== null || dataCompany !== null || dataType !== null || dataEmployee !== 0 || dataPay !== -1 || dataCareer !== -1) {
             // 검색 목록 있을때
@@ -90,7 +95,8 @@ const Search = () => {
                 jobType: dataType,
                 employee: dataEmployee,
                 pay: dataPay,
-                career: dataCareer
+                career: dataCareer,
+                show: showEnd
             }).then((res) => {
                 setNum(res.data.total);
                 setPosts(res.data.postDto);
@@ -125,7 +131,19 @@ const Search = () => {
         }
         else navigate(`?page=${page}`);
 
-    }, [page, maxPage, navigate, job, stack, company, type, employee, pay, career]);
+    }, [page, maxPage, navigate, end, job, stack, company, type, employee, pay, career]);
+
+    const searchPost = () => {
+        if (end) {
+            setEndMark('□');
+            document.getElementsByClassName('searchEnd')[0].style.color = 'rgb(101, 111, 119)';
+        }
+        else {
+            setEndMark('■');
+            document.getElementsByClassName('searchEnd')[0].style.color = 'rgb(29, 154, 120)';
+        }
+        setEnd(!end);
+    };
 
     const removeSearchResult = (remove) => {
         const num = viewResult.indexOf(remove);
@@ -192,6 +210,10 @@ const Search = () => {
             <div className="basicPage searchPage" style={show}>
                 <div className="filterSearchNum">
                     검색 결과 {num}개
+                    <div className="searchEnd" onClick={searchPost}>
+                        <span id="endPost">{endMark} </span>
+                        마감 공고 보기
+                    </div>
                 </div>
                 <div className="postGroup">
                     {/* 20개씩 페이징처리 */}

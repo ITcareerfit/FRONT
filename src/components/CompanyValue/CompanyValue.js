@@ -8,6 +8,7 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
     const [similar, setSimilar] = useState([]);
     const [type, setType] = useState('');
     const [post, setPost] = useState([]);
+    const [culture, setCulture] = useState(null);
 
     useEffect(() => {
         const valueText = ['수익성', '안정성', '급여', '규모/형태', '성장가능성'];
@@ -37,7 +38,9 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
     const littlePost = () => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/value?cpName=${infoCpName}`
         ).then((res) => {
-            setPost(res.data);
+            setPost(res.data.postDto);
+            const cultures = res.data.culture.split('/');
+            setCulture([cultures[0], cultures[1]]);
         }).catch((err) => {
             console.log(err);
         });
@@ -57,8 +60,14 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
                             {infoCpName}
                         </div>
                         <div>
-                            {post.length !== 0
-                                ? post[0].infoCpName.culture : null}
+                            {culture
+                                ? <>
+                                    <div className="companyModalCulture">✓ 장점</div>
+                                    {culture[0]}
+                                    <div className="companyModalCulture companyModalCultureBad">✓ 단점</div>
+                                    {culture[1]}
+                                </>
+                                : null}
                         </div>
                     </div>
                 </div>

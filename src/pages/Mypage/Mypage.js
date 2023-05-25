@@ -17,7 +17,7 @@ const Mypage = () => {
     const company4 = JSON.parse(sessionStorage.getItem('company4'));
     const company5 = JSON.parse(sessionStorage.getItem('company5'));
     const userName = sessionStorage.getItem('userName');
-    const birth = sessionStorage.getItem('birth').split(','); // , 기준으로 나누기
+    // const birth = sessionStorage.getItem('birth').split(','); // , 기준으로 나누기
     const phone = sessionStorage.getItem('phone');
     const pos = sessionStorage.getItem('pos').split(',');
 
@@ -84,7 +84,7 @@ const Mypage = () => {
                             <span className="goLink goLinkValue" onClick={() => value(navigate)}>가치관확인</span>
 
                             <div className="mypageBox">
-                                {company1 !== 'null'
+                                {company1 !== null
                                     ? <>
                                         <MypageCompany id={'first'} cpImg={company1.cpImg} cpName={company1.cpName} open={[open, setOpen]} />
 
@@ -125,7 +125,7 @@ const Mypage = () => {
                                 <input className="mypageEditInput mypageBorder mypagePadding" type="text" placeholder={userName} ref={newName} />
                             </div>
 
-                            <div className="mypageEditBox mypageEditBirthBox">
+                            {/* <div className="mypageEditBox mypageEditBirthBox">
                                 <div className="mypageEditTitle">생년월일</div>
                                 <div className="mypageEditInput mypageEditInputBirth">
                                     <div className="mypageBorder mypagePadding mypageEditBirth">
@@ -138,7 +138,7 @@ const Mypage = () => {
                                         <div className="birthDetail">{birth[2]}</div>
                                         일</div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="mypageEditBox">
                                 <div className="mypageEditTitle">전화번호</div>
@@ -147,7 +147,7 @@ const Mypage = () => {
 
                             <div className="mypageEditBox">
                                 <div className="mypageEditTitle">관심 직무</div>
-                                <ChooseMany className={' mypagePos'} mainClassName={'mypagePos'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} open={[open, setOpen]} value={[position, setPosition]} />
+                                <ChooseMany className={'mypagePos'} mainClassName={'mypagePos'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} open={[open, setOpen]} value={[position, setPosition]} />
                             </div>
                         </div>
                     </div>

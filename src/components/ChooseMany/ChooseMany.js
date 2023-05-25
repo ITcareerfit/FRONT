@@ -15,27 +15,35 @@ const ChooseMany = ({ className, mainClassName, option, open, value }) => {
         else setDivClassName('selectBase selectSignUp');
     }, [mainClassName, value]);
 
-    const optionSelect = (name, className) => {
+    const optionSelect = (name, mainClassName) => {
         if (value[0].includes(name)) {
             const newCheck = value[0].filter(elem => elem !== name);
             // elem이 name이면 빼고 새 배열 생성
             value[1](newCheck);
         }
-        else value[1]([...value[0], name]);
+        else {
+            if (className.length === 13) {
+                if (value[0].length < 3) value[1]([...value[0], name]);
+                else alert('3개까지만 선택 가능합니다.');
+            }
+            else value[1]([...value[0], name]);
+        }
 
         // 창 닫고 배경색 변경
-        document.getElementsByClassName(className)[0].children[1].classList.replace('selectBlock', 'selectNone');
+        document.getElementsByClassName(mainClassName)[0].children[1].classList.replace('selectBlock', 'selectNone');
         open[1]('');
-        document.getElementsByClassName(className)[0].children[0].style.background = 'white';
+        document.getElementsByClassName(mainClassName)[0].children[0].style.background = 'white';
     };
 
     return (
         <div className={className} onClick={() => selectOpen(mainClassName, open)}>
             <div className={divClassName} ref={height}>
-                {value[0].map((v, index) => {
-                    if (index !== value[0].length - 1) return v + ', ';
-                    else return v;
-                })}
+                {value[0].length === 0
+                    ? '관심 직무'
+                    : value[0].map((v, index) => {
+                        if (index !== value[0].length - 1) return v + ', ';
+                        else return v;
+                    })}
                 <img src={require('../../assets/images/select.png')} className="selectImg" alt="select" />
             </div>
             <div className="select selectNone">
