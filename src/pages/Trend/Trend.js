@@ -3,7 +3,7 @@ import axios from "axios";
 import { Header, DoughnutGraph, BarGraph, LineGraph, ChooseMany, Choose } from "../../components";
 
 const Trend = () => {
-    const [month, setMonth] = useState(4);
+    const [month, setMonth] = useState(5);
     const [language, setLanguage] = useState('');
     const [lanPercentage, setLanPercentage] = useState('');
     // const [lanReason, setLanReason] = useState('');
@@ -25,7 +25,7 @@ const Trend = () => {
     const [selectJob, setSelectJob] = useState([]);
     const [selectJobType, setSelectJobType] = useState('프론트엔드');
 
-    const lanReason = 'AI 관련 채용이 대폭 증가함';
+    const lanReason = 'AI 관련 채용이 증가함';
     const jobTitle = '2023년 상반기 IT 직무 트렌드';
     const jobReason = 'ChatGPT의 수요가 증가함';
     const jobTypeTitle = '2023년 상반기 IT 직무별';
@@ -131,7 +131,7 @@ const Trend = () => {
                             <span className="trendBold">2023년 {month}월 채용공고 데이터</span>
                             를 기반으로 분석한 결과 <span className="trendItem">"{language}"</span>이(가) 약 {lanPercentage}%로 1위를 차지하였습니다.
                             <br /><br />
-                            전월에 비하여 <span className="trendBold">{lanReason}</span>에 따라 {language}의 수요가 증가하는 추세를 보였습니다.
+                            <span className="trendBold">{lanReason}</span>에 따라 {language}의 수요가 증가하는 추세를 보였습니다.
                             <div className="trendExtra">※ 매월 말 분석결과를 제공합니다.</div>
                         </div>
                         <div className="doughnutGraph">
@@ -145,10 +145,11 @@ const Trend = () => {
                 <div className="basicPage trendSection">
                     <div className="trendPage">
                         <div className="trendGraph">
-                            <div>
+                            <div className="graphExplainTool">
                                 <div className="trendExplain">※ 직무 3가지를 선택해주세요.</div>
                                 <ChooseMany className={'mypagePos job trendSelectTool'} mainClassName={'mypagePos'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} open={[open, setOpen]} value={[selectJob, setSelectJob]} />
                             </div>
+                            <div className="graphExplain">공고수</div>
                             <BarGraph labels={barLabels} label={barLabel} datas={barDatas} title={jobTitle} />
                         </div>
                         <div className="trendText jobText">
@@ -182,10 +183,11 @@ const Trend = () => {
                             <div className="trendExtra">※ 매월 말 분석결과를 제공합니다.</div>
                         </div>
                         <div className="trendGraph">
-                            <div>
+                            <div className="graphExplainTool">
                                 <div className="trendExplain">※ 직무 한가지를 선택해주세요.</div>
                                 <Choose className={'mypagePos jobType trendSelectTool'} mainClassName={'jobType'} option={['DBA', 'ERP', 'iOS', 'QA', 'VR/AR/3D', '개발PM', '게임 서버', '게임 클라이언트', '그래픽스', '데브옵스', '데이터 엔지니어링', '로보틱스 미들웨어', '머신러닝', '모바일 게임', '블록체인', '사물인터넷(IoT)', '서버/백엔드', '시스템 소프트웨어', '시스템/네트워크', '안드로이드', '웹 퍼블리싱', '웹 풀스택', '응용 프로그램', '인공지능(AI)', '인터넷 보안', '임베디드 소프트웨어', '크로스 플랫폼', '프론트엔드']} open={[open, setOpen]} value={[selectJobType, setSelectJobType]} />
                             </div>
+                            <div className="graphExplain">공고수</div>
                             <LineGraph labels={lineLabels} label={lineLabel} datas={lineDatas} title={`${selectJobType} 트렌드`} />
                         </div>
                     </div>

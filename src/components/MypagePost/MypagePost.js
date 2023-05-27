@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useGood } from "../../hooks";
 import { useNavigate, useParams } from "react-router-dom";
 
 const MypagePost = ({ infoId, infoCpName, title, minCareer, maxCareer, infoLoc }) => {
     const good = useGood;
     const navigate = useNavigate();
+    const btn = useRef(null);
 
     const userNum = useParams().userNum; // url의 params 가져오기
+
+    useEffect(() => {
+        const goodPosts = sessionStorage.getItem('goodPosts').split(',');
+        if (goodPosts.length !== 0 && goodPosts.indexOf(String(infoId)) !== -1) btn.current.src = require('../../assets/images/redGood.png');
+        // infdexOf는 해당 값의 index값 반환, 없을 경우 -1 반환
+    }, [infoId]);
 
     const go = () => navigate(`/info/${infoId}`);
 
@@ -14,7 +21,7 @@ const MypagePost = ({ infoId, infoCpName, title, minCareer, maxCareer, infoLoc }
         <div className="mypagePost">
             <div className="mypagePostHeader">
                 <div className="mypagePostCompany" onClick={go}>{infoCpName}</div>
-                <img className="goodBtn mypageGood" src={require('../../assets/images/redGood.png')} alt="good" onClick={(event) => good(event, infoId, userNum)} />
+                <img className="goodBtn mypageGood" src={require('../../assets/images/good.png')} alt="good" onClick={(event) => good(event, infoId, userNum)} ref={btn} />
             </div>
             <div className="mypagePostTitle" onClick={go}>
                 {title}

@@ -836,9 +836,13 @@ body {
     border-bottom: 1px solid var(--line-color);
 }
 
+.companyModalImgBox {
+    margin-top: 0;
+}
+
 .companyModalImg {
     width: 100px;
-    height: 100px;
+    height: auto;
 }
 
 .companyModalRight {
@@ -870,6 +874,12 @@ body {
     color: red;
 }
 
+.companyModalExplain {
+    color: var(--gray-color);
+    margin-top: 10px;
+    font-size: 13px;
+}
+
 .companyValueModal {
     width: 70%;
     margin: 10px auto;
@@ -878,6 +888,7 @@ body {
 .companyValueModalEmpty {
     width: 80px;
     margin-top: 17vh;
+    margin-bottom: 17vh;
 }
 
 .mypageEmpty {
@@ -1805,6 +1816,10 @@ tbody>tr>th {
     flex: 1;
 }
 
+.graphExplainTool {
+    position: relative;
+}
+
 .trendExplain {
     font-size: 15px;
     color: var(--darkLine-color);
@@ -1813,6 +1828,13 @@ tbody>tr>th {
 
 .trendSelectTool {
     width: 50%;
+}
+
+.graphExplain {
+    color: var(--title-color);
+    height: 0;
+    position: relative;
+    top: 40px;
 }
 
 .graph {

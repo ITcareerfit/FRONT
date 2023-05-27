@@ -22,7 +22,7 @@ const ChooseMany = ({ className, mainClassName, option, open, value }) => {
             value[1](newCheck);
         }
         else {
-            if (className.length === 13) {
+            if (className.length === 29) {
                 if (value[0].length < 3) value[1]([...value[0], name]);
                 else alert('3개까지만 선택 가능합니다.');
             }

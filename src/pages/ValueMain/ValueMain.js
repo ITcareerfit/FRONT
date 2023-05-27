@@ -84,20 +84,21 @@ const ValueMain = () => {
                                 <img className="valueImg" src={require('../../assets/images/explain.png')} alt="explain" onClick={() => setModalOpen(!modalOpen)} />
                             </div>
                             <div className="valueExplain">
-                                수익성, 안정성, 급여, 규모/형태, 성장가능성을 토대로 추천해드립니다.
+                                수익성, 안정성, 급여, 규모/형태, 성장가능성을 토대로 추천해드립니다.<br />
+                                ※ 최근 3개년 기업 재무상태표, 손익계산서 (전자공시시스템) 기반으로 합니다.
                             </div>
 
                             <div className="valueMainBox">
 
-                                <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'2022년 기준 매출액'} option={[['웹젠', '넥슨 코리아'], ['아프리카 티비', '지어소프트'], ['카카오', '코나아이'], ['위메이드플레이', '위세아이'], ['엔텔스', '오픈베이스']]} result={setProfit} open={[open, setOpen]} />
+                                <FilterValue name={'수익성'} className={'selectValue profit'} mainClassName={'profit'} selectBase={'매출액순이익률, 매출액영업이익률, ROE'} option={[['웹젠', '넥슨 코리아'], ['아프리카 티비', '지어소프트'], ['카카오', '코나아이'], ['위메이드플레이', '위세아이'], ['엔텔스', '오픈베이스']]} result={setProfit} open={[open, setOpen]} />
 
-                                <FilterValue name={'안정성'} className={'selectValue stable'} mainClassName={'stable'} selectBase={'설립년차, 사원 수'} option={[['하이브랩', '사람인'], ['지니뮤직', '헥토파이셜'], ['현대이지웰', '라온피'], ['SK텔레콤', '아'], ['브리지텍', '케이아이엔엑']]} result={setStable} open={[open, setOpen]} />
+                                <FilterValue name={'안정성'} className={'selectValue stable'} mainClassName={'stable'} selectBase={'유동성비율, 부채비율, 자기자본비율'} option={[['하이브랩', '사람인'], ['지니뮤직', '헥토파이셜'], ['현대이지웰', '라온피'], ['SK텔레콤', '아'], ['브리지텍', '케이아이엔엑']]} result={setStable} open={[open, setOpen]} />
 
-                                <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={[['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아']]} result={setPay} open={[open, setOpen]} />
+                                <FilterValue name={'급여'} className={'selectValue pay'} mainClassName={'pay'} selectBase={'신입 초봉 기준'} option={[['구글코리아', '네이버'], ['우아한형제들', '넥슨코리아'], ['한국정보통신', '버킷플레이스'], ['예스24', '아프리카 티비'], ['아이티센', '더존비즈온']]} result={setPay} open={[open, setOpen]} />
 
-                                <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'0~5기준'} option={[['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아'], ['second', '아아']]} result={setScale} open={[open, setOpen]} />
+                                <FilterValue name={'규모/형태'} className={'selectValue scale'} mainClassName={'scale'} selectBase={'사원 수, 기업형태'} option={[['SK텔레콤', '엘지유플러스'], ['케이티알파', '웹젠'], ['캘럭시아머니트리', '오픈베이스'], ['위메이드플레이', '커넥트웨이브'], ['투비소프트', '엠로']]} result={setScale} open={[open, setOpen]} />
 
-                                <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'3년치 매출액 변동률'} option={[['라온피플', '네온위즈'], ['인베니아', '더존비즈'], ['투비소프트', '대신정보통신'], ['핑거', '콤텍시스'], ['브리지텍', '에프엔가이']]} result={setGrow} open={[open, setOpen]} />
+                                <FilterValue name={'성장가능성'} className={'selectValue grow'} mainClassName={'grow'} selectBase={'영업이익, 매출액, 당기순이익증가율'} option={[['라온피플', '네온위즈'], ['인베니아', '더존비즈'], ['투비소프트', '대신정보통신'], ['핑거', '콤텍시스'], ['브리지텍', '에프엔가이']]} result={setGrow} open={[open, setOpen]} />
 
                                 <button className="btn valueMainBtn purpleBtn" onClick={valueCheck}>결과 확인하기</button>
                             </div>

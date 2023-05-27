@@ -40,7 +40,7 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
         ).then((res) => {
             setPost(res.data.postDto);
             const cultures = res.data.culture.split('/');
-            setCulture([cultures[0], cultures[1]]);
+            setCulture([cultures[0].split('.'), cultures[1].split('.')]);
         }).catch((err) => {
             console.log(err);
         });
@@ -52,9 +52,11 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
         <>
             <Modal open={modalOpen} className="modal" setOpen={setModalOpen}>
                 <div className="companyModal">
-                    {cpImg
-                        ? <img className="companyModalImg" src={cpImg} alt="company" />
-                        : <img className="companyModalImg" src={require('../../assets/images/logo.png')} alt="company" />}
+                    <div className="companyModalImgBox">
+                        {cpImg
+                            ? <img className="companyModalImg" src={cpImg} alt="company" />
+                            : <img className="companyModalImg" src={require('../../assets/images/logo.png')} alt="company" />}
+                    </div>
                     <div className="companyModalRight">
                         <div className="companyModalName">
                             {infoCpName}
@@ -63,9 +65,10 @@ const CompanyValue = ({ cpImg, infoCpName, myValue, companyValue }) => {
                             {culture
                                 ? <>
                                     <div className="companyModalCulture">✓ 장점</div>
-                                    {culture[0]}
+                                    {culture[0].map((v) => { return <div key={v}>{v}</div>; })}
                                     <div className="companyModalCulture companyModalCultureBad">✓ 단점</div>
-                                    {culture[1]}
+                                    {culture[1].map((v) => { return <div key={v}>{v}</div>; })}
+                                    <div className="companyModalExplain">※ 사내문화는 잡플래닛 리뷰 데이터 약 4000개를 기반으로 합니다.</div>
                                 </>
                                 : null}
                         </div>

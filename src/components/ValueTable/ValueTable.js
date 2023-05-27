@@ -21,10 +21,10 @@ const ValueTable = () => {
                         하이브랩<br />사람인
                     </td>
                     <td>
-                        second<br />아아
+                        구글코리아<br />네이버
                     </td>
                     <td>
-                        second<br />아아
+                        SK텔레콤<br />엘지유플러스
                     </td>
                     <td>
                         라온피플<br />네온위즈
@@ -39,10 +39,10 @@ const ValueTable = () => {
                         지니뮤직<br />헥토파이셜
                     </td>
                     <td>
-                        second<br />아아
+                        우아한형제들<br />넥슨코리아
                     </td>
                     <td>
-                        second<br />아아
+                        케이티알파<br />웹젠
                     </td>
                     <td>
                         인베니아<br />더존비즈
@@ -57,10 +57,10 @@ const ValueTable = () => {
                         현대이지웰<br />라온피
                     </td>
                     <td>
-                        second<br />아아
+                        한국정보통신<br />버킷플레이스
                     </td>
                     <td>
-                        second<br />아아
+                        갤럭시아머니트리<br />오픈베이스
                     </td>
                     <td>
                         투비소프트<br />대신정보통신
@@ -75,10 +75,10 @@ const ValueTable = () => {
                         sk텔레콤<br />아
                     </td>
                     <td>
-                        second<br />아아
+                        예스24<br />아프리카티비
                     </td>
                     <td>
-                        second<br />아아
+                        위메이드플레이<br />커넥트웨이브
                     </td>
                     <td>
                         핑거<br />콤텍시스
@@ -93,10 +93,10 @@ const ValueTable = () => {
                         브리지텍<br />케이아이엔엑
                     </td>
                     <td>
-                        second<br />아아
+                        아이티센<br />더존비즈온
                     </td>
                     <td>
-                        second<br />아아
+                        투비소프트<br />엠로
                     </td>
                     <td>
                         브리지텍<br />에프엔가이
