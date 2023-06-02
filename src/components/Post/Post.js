@@ -11,9 +11,11 @@ const Post = ({ infoId, cpImg, infoCpName, title, deadline, minCareer, maxCareer
     const userNum = sessionStorage.getItem('userNum');
 
     useEffect(() => {
-        const goodPosts = sessionStorage.getItem('goodPosts').split(',');
-        if (goodPosts.length !== 0 && goodPosts.indexOf(String(infoId)) !== -1) btn.current.src = require('../../assets/images/redGood.png');
-        // infdexOf는 해당 값의 index값 반환, 없을 경우 -1 반환
+        if (sessionStorage.getItem('goodPosts')) {
+            const goodPosts = sessionStorage.getItem('goodPosts').split(',');
+            if (goodPosts.length !== 0 && goodPosts.indexOf(String(infoId)) !== -1) btn.current.src = require('../../assets/images/redGood.png');
+            // infdexOf는 해당 값의 index값 반환, 없을 경우 -1 반환
+        }
     }, [infoId]);
 
     const go = () => navigate(`/info/${infoId}`);
